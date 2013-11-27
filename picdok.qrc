@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/">
+        <file>html/snip1</file>
+        <file>html/snip2</file>
+        <file>html/snip3</file>
+        <file>html/snip4</file>
+        <file>html/snip5</file>
+        <file>html/snip678</file>
+        <file>html/snip9</file>
+        <file>misc/picdok.png</file>
+    </qresource>
+</RCC>

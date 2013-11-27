@@ -1,0 +1,9 @@
+1. Add option to allow side-by-side comparison of two images.
+
+2. Add process to pre-load next image to speed up image loading
+   when stepping through a directory.
+
+3. Find a way to stop having to edit picdok.ui to add '/source'
+   to the icon name when moving it into the distribution folder.
+   (This may be just a matter of restructuring the projects to
+    match in terms of folder structure.)

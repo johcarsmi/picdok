@@ -1,0 +1,21 @@
+[Desktop Entry]
+Categories=Graphics;Photography;
+Comment[en_GB]=
+Comment=
+Exec=picdok
+GenericName[en_GB]=Picture Documentation Program
+GenericName=Picture Documentation Program
+Icon=picdok.png
+MimeType=
+Name[en_GB]=Picdok
+Name=Picdok
+Path=
+StartupNotify=true
+Terminal=false
+TerminalOptions=
+Type=Application
+Version=1.0
+X-DBUS-ServiceName=
+X-DBUS-StartupType=none
+X-KDE-SubstituteUID=false
+X-KDE-Username=
