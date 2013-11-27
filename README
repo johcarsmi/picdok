@@ -1,14 +1,15 @@
 This is the readme file for the picdok program version 0.2.1.
 
-Description: picdok is a simple program for helping the management and documentation
-of jpeg picture files. It works assuming that all the pictures of interest are in a
-single directory. E.g. ~/Pictures/Holiday2012
+Description: picdok is a simple program for helping the management and
+documentation of jpeg picture files. It works assuming that all the pictures of
+interest are in a single directory. E.g. ~/Pictures/Holiday2012
+
 It can:-
 1. Rename all the files based on a string containing constant characters and
-   tokens for date parts, to which is appended a serial number whose length and step are
-   user controlled. The serial number resets when the 'root' part changes.
-   This was created to allow pictures from more than one camera to be merged
-   into a sensible order to allow selection etc.
+   tokens for date parts, to which is appended a serial number whose length and
+   step are user controlled. The serial number resets when the 'root' part
+   changes. This was created to allow pictures from more than one camera to be
+   merged into a sensible order to allow selection etc.
 2. Add and update the 'UserComment' EXIF data field with required information.
 3. Rename individual files to allow user control of directory sequence.
 4. Deselect individual files. This puts the current file into a sub-diretory
@@ -16,34 +17,36 @@ It can:-
    their mind later.
 4. Delete individual files.
 5. Select the directory for processing.
-6. Generate a simple html page with the file-name, DateTimeOriginal and UserComment
-   as an index for the directory. For this a user may enter:
+6. Generate a simple html page with the file-name, DateTimeOriginal and
+   UserComment as an index for the directory. For this a user may enter:
     a) Title for the page.
     b) A description of the content.
     c) A series of topic strings which get output as an unordered list.
-   which are output above the table containing the picture information. A preview
-   of the generated page is available at the time of generation. The fixed html for
-   this page is held in Qt resource files embedded in the program.
-7. Show pictures full screen using left/right arrows, space/backspace to move forward
-   and backward through the directory and "Q" or <Esc> to close the show. If a second
-   screen is attached the output is directed to that screen.
-http://www.pcbattery.co.uk/laptop_battery_desc.php?id=93730
+   which are output above the table containing the picture information. A
+   preview of the generated page is available at the time of generation. The
+   fixed html for this page is held in Qt resource files embedded in the
+   program.
+7. Show pictures full screen using left/right arrows, space/backspace to move
+   forward and backward through the directory and "Q" or <Esc> to close the
+   show. If a second screen is attached the output is directed to that screen.
+
 Program options:
 1. Set the cursor in the UserComment field if it is empty.
 2. Confirm deselect actions.
 3. Confirm delete actions.
 4. Move to the next picture when the comment is saved.
 
-  It is a QT 4 program using the libexiv2 library and was originally developed using the
-QtCreator IDE v. 2.5.0 based on Qt version 4.8.1
+  It is a QT 4 program using the libexiv2 library and was originally developed
+using the QtCreator IDE v. 2.5.0 based on Qt version 4.8.1
 
 Parameters:
 
     path-to-directory
 
-  picdok accepts a single parameter of a path to a directory. If it exists the program
-will start there, if not and it is the first use of the program then it will start in
-the run-time directory. By default it starts with the last directory accessed.
+  picdok accepts a single parameter of a path to a directory. If it exists the
+program will start there, if not and it is the first use of the program then it
+will start in the run-time directory. By default it starts with the last
+directory accessed.
 
 Files created and used by the program:
 
@@ -54,8 +57,8 @@ Files created and used by the program:
     The currently saved program options.
 
 .picdok.data
-  Created in the directory with the pictures it holds the additional user text entered
-  for the index page and the output html file name.
+  Created in the directory with the pictures it holds the additional user text
+  entered for the index page and the output html file name.
 
 Dependencies.
 
@@ -82,11 +85,10 @@ Installation:
   a menu file (picdok.desktop) into /usr/share/applications and
   an icon file (picdok.png) into /usr/share/icons/hicolor/48x48/apps .
 
-  The menu item should appear in the menu in the Graphics / Photography selection.
+  The menu item should appear in the menu in the Graphics / Photography
+  selection.
 
 
 Author: John Carrick Smith
 License: LGPL
 Contact: jcarricksmith |at| gmail |dot| com
-
-Command to create archive: tar -cvjf picdok-0-2-0.tar.gz picdok-0-2
