@@ -517,7 +517,104 @@
   <tabstop>pbDel</tabstop>
  </tabstops>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>pbSave</sender>
+   <signal>clicked()</signal>
+   <receiver>PdPageGen</receiver>
+   <slot>doSave()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>303</x>
+     <y>498</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>442</x>
+     <y>431</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pbGen</sender>
+   <signal>clicked()</signal>
+   <receiver>PdPageGen</receiver>
+   <slot>doGen()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>449</x>
+     <y>499</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>467</x>
+     <y>461</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pbClose</sender>
+   <signal>clicked()</signal>
+   <receiver>PdPageGen</receiver>
+   <slot>doClose()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>141</x>
+     <y>496</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>460</x>
+     <y>335</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pbQuit</sender>
+   <signal>clicked()</signal>
+   <receiver>PdPageGen</receiver>
+   <slot>doQuit()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>25</x>
+     <y>503</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>39</x>
+     <y>438</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pbAdd</sender>
+   <signal>clicked()</signal>
+   <receiver>PdPageGen</receiver>
+   <slot>doAdd()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>393</x>
+     <y>318</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>464</x>
+     <y>255</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pbDel</sender>
+   <signal>clicked()</signal>
+   <receiver>PdPageGen</receiver>
+   <slot>doDel()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>407</x>
+     <y>365</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>465</x>
+     <y>384</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
  <slots>
   <slot>doQuit()</slot>
   <slot>doSave()</slot>

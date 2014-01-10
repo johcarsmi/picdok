@@ -575,6 +575,7 @@ void Picdok::doOptions()    // Present the program options form.
     delete OptionForm;
 }
 
+//  These methods handle the full-screen showing of pictures.
 void Picdok::doShowPic(bool Chkd)   // Start showing the picture full screen (on additional screen if present).
 {
     if (Chkd)   // If menu item has been checked then create form, else close it.

@@ -1,5 +1,7 @@
 Change Log for picdok
 
+10/01/2014
+    Reinserted signal-slot connections on pdpagegen.ui.
 21/11/2013
     Restructured project to put headers, sources, forms and misc files into separate directories.
     Version number changed to 0.2.1
