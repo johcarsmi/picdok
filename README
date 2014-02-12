@@ -10,6 +10,9 @@ It can:-
    step are user controlled. The serial number resets when the 'root' part
    changes. This was created to allow pictures from more than one camera to be
    merged into a sensible order to allow selection etc.
+   The date on which the renaming is based is the DateTimeOriginal in the EXIF
+   data of the picture. The merging of pictures from more than one camera is
+   dependant on the clocks in both cameras being synchronised!
 2. Add and update the 'UserComment' EXIF data field with required information.
 3. Rename individual files to allow user control of directory sequence.
 4. Deselect individual files. This puts the current file into a sub-diretory
@@ -57,7 +60,7 @@ Files created and used by the program:
     The currently saved program options.
 
 .picdok.data
-  Created in the directory with the pictures it holds the additional user text
+  Created in the directory with the pictures. It holds the additional user text
   entered for the index page and the output html file name.
 
 Dependencies.

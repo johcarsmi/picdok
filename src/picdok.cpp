@@ -61,6 +61,7 @@ Picdok::Picdok(QWidget *parent) :
     connect(ui->lblPic, SIGNAL(pdlSigDel()), this, SLOT(doDelete()));
     connect(ui->lblPic, SIGNAL(pdlSigRen()), this, SLOT(doPicRename()));
     desk = QApplication::desktop();
+    setFocusOnCommentIfEmpty();
     WaitPtr(false);
 }
 

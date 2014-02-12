@@ -16,7 +16,7 @@
 #include <QSettings>
 #include <QDesktopWidget>
 
-#include"pdshowpic.h"
+#include "pdshowpic.h"
 
 namespace Ui {
     class Picdok;

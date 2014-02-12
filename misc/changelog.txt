@@ -1,40 +1,54 @@
 Change Log for picdok
 
+08/02/2014
+    Added 'SetFocusOnCommentIfEmpty' to constructor so that first picture
+    behaves the same as subsquent pictures.
 10/01/2014
     Reinserted signal-slot connections on pdpagegen.ui.
 21/11/2013
-    Restructured project to put headers, sources, forms and misc files into separate directories.
-    Version number changed to 0.2.1
+    Restructured project to put headers, sources, forms and misc files into
+    separate directories. Version number changed to 0.2.1
 06/11/2013
     The show on primary screen now covers system taskbar.
 02/11/2013
-    Facility to show pictures full-screen added. If shown on primary display the system taskbar is still visible.
-    Version number changed to 0.2.0. 26/09/2013
+    Facility to show pictures full-screen added. If shown on primary display
+    the system taskbar is still visible.
 10/10/2013
-    Changed 'charset' in file 'snip1' to 'UTF-8' to get umlauts to display correctly.
+    Changed 'charset' in file 'snip1' to 'UTF-8' to get umlauts to display
+    correctly.
+26/09/2013
+    Version number changed to 0.2.0.
 25/09/2013
-    Stopped going to next image on save if called as a result of moving off the current picture without
-    saving a changed User Comment. Pressing the 'Next Empty' button now only sets focus to the comment
-    control if this option has been set.
+    Stopped going to next image on save if called as a result of moving off
+    the current picture without saving a changed User Comment. Pressing the
+    'Next Empty' button now only sets focus to the comment control if this
+    option has been set.
 17/09/2013
     Now rotates the QImage rather than QPixMap as more efficient.
 16/09/2013
-    Simplified resize event handling to call doResize() from Picdok::resizeEvent() and removed extra event.
+    Simplified resize event handling to call doResize() from
+    Picdok::resizeEvent() and removed extra event.
 20/06/2013
-    Added picdok.png file as a resource, then added it as WindowIcon of the main form from the resource menu.
+    Added picdok.png file as a resource, then added it as WindowIcon of the
+    main form from the resource menu.
 14/06/2013
-    Removed autodefault setting for push buttons in pdpagegen.ui to stop form closing if Enter key pressed.
-    Changed message from 'Next Empty' to 'All remaining pictures have user comment.'
+    Removed autodefault setting for push buttons in pdpagegen.ui to stop form
+    closing if Enter key pressed. Changed message from 'Next Empty' to 'All
+    remaining pictures have user comment.'
 07/06/2013
     Added the number of files in the directory to the status bar entry.
-    Added position of current picture in directory after filename combobox (pos/total) format.
+    Added position of current picture in directory after filename combobox
+    (pos/total) format.
 28/05/2013
-    Now checks for changes to UserComment entry on form when navigating away from the current picture and prompts user to Save or Discard.
-    Menu entries added to Image menu for Next, Next Empty and Prior with Ctrl based shortcuts to match pushbuttons on form.
+    Now checks for changes to UserComment entry on form when navigating away
+    from the current picture and prompts user to Save or Discard.
+    Menu entries added to Image menu for Next, Next Empty and Prior with Ctrl
+    based shortcuts to match pushbuttons on form.
 09/04/2013
-    Signal added to PicDokPlainTextEdit to tell when the Enter/Return key has been pressed.
-    pdRenamePic modified to pick up new signal from PicDokPlainTextEdit and activate renaming process.
-    Cursor position in pdRenamePic entry field set to 4th position from end.
+    Signal added to PicDokPlainTextEdit to tell when the Enter/Return key has
+    been pressed. pdRenamePic modified to pick up new signal from
+    PicDokPlainTextEdit and activate renaming process. Cursor position in
+    pdRenamePic entry field set to 4th position from end.
     Version number changed to 0.1.5
 
 09/04/2013
