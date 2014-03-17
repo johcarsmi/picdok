@@ -53,14 +53,15 @@ HEADERS  += hdr/picdok.h \
     hdr/pdconfirm.h \
     hdr/pdshowpic.h
 
-FORMS    += frm/picdok.ui \
+FORMS    += \
     frm/pdrenfiles.ui \
     frm/pdrenamepic.ui \
     frm/pdpagegen.ui \
     frm/pdpreview.ui \
     frm/pdoptions.ui \
     frm/pdconfirm.ui \
-    frm/pdshowpic.ui
+    frm/pdshowpic.ui \
+    frm/picdok.ui
 
 RESOURCES   = picdok.qrc
 

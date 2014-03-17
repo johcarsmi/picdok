@@ -523,6 +523,8 @@ void Picdok::doDelete()     // Delete the current image file.
 
 void Picdok::deleteCurrentFromCombo()
 {
+    picUserComment = picUserCommentSave;            // To stop prompt to save changes, which isn't going to happen.
+    ui->txtComment->setText(picUserCommentSave);    // contd.
     int delIx = ui->cmbPicFile->currentIndex();
     ui->cmbPicFile->removeItem(delIx);
     dirFiles.removeAt(delIx);
