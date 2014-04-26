@@ -1,5 +1,8 @@
 Change Log for picdok
 
+02/04/2014
+    Put '<' and '>' around standard software names in #include statements
+    instead of '"' and '"'.
 08/02/2014
     Added 'SetFocusOnCommentIfEmpty' to constructor so that first picture
     behaves the same as subsquent pictures.

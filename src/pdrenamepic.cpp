@@ -4,7 +4,7 @@
 */
 #include "ui_pdrenamepic.h"
 #include <QDir>
-#include "QMessageBox"
+#include <QMessageBox>
 
 PdRenamePic::PdRenamePic(QWidget *parent, const QString &inFile, const QString &inDir) :
     QDialog(parent),

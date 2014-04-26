@@ -5,7 +5,7 @@ int main(int argc, char *argv[])
 {
     int retval;
     QApplication a(argc, argv);
-    QApplication::setApplicationVersion(APPVER);    // APPVER is defined as an argument to the compiler in the project file
+    QApplication::setApplicationVersion(APPVER);    // APPVER is defined in a 'DEFINES +=' in the project file.
     Picdok *w = new Picdok;
     w->show();
     retval = a.exec();

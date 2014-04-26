@@ -4,12 +4,12 @@
 */
 #include "pdrenfiles.h"
 #include "ui_pdrenfiles.h"
-#include "QMessageBox"
-#include "QtAlgorithms"
-#include "picdok.h"
-#include "QDir"
+#include <QMessageBox>
+#include <QtAlgorithms>
+#include <QDir>
 #include <exiv2/image.hpp>
 #include <cmath>
+#include "picdok.h"
 
 PdRenFiles::PdRenFiles(QWidget *parent, const QStringList &inFiles, const QString &inDir, QSettings *inSettings) :
     QDialog(parent),

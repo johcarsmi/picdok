@@ -3,8 +3,8 @@
 
 #include <QDialog>
 #include <QSettings>
-#include "picdokplaintextedit.h"
 #include <QStringListModel>
+#include "picdokplaintextedit.h"
 #include "picdok.h"
 
 #define DATA_FILE ".picdok.data"

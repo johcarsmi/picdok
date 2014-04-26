@@ -68,7 +68,7 @@ RESOURCES   = picdok.qrc
 # Added JCS to get it to link with libexiv2.so
 LIBS += -L/usr/lib -lexiv2
 
-# Static elements of html page referred to from RESOURCES file pikdoc.qrc
+# Static elements of html page referred to from RESOURCES file pikdoc.qrc etc.
 OTHER_FILES += \
     html/snip1 \
     html/snip2 \
