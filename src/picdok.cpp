@@ -4,7 +4,7 @@
  *  Renames, deselects or deletes individual files.
  *  Renames all the files in the directory according to a template based on fixed characters,
  *   date elements and a programmatically generated serial number of selectable length and increment.
- *  Generates an html index page based on title, description and subject data entered by the use.
+ *  Generates an html index page based on title, description and subject data entered by the user.
 */
 #include "picdok.h"
 #include "ui_picdok.h"
@@ -27,6 +27,7 @@
 #include "pdpagegen.h"
 #include "pdoptions.h"
 #include "pdconfirm.h"
+#include "pdpreview.h"
 
 class exifEx: public std::exception     // For handling missing data exceptions.
 {
@@ -623,7 +624,6 @@ void Picdok::nextRequested()    // If a next picture is available, show it.
     if (ui->pbNext->isEnabled())
     {
         doNext();
-        //showPic->setPic(pixmDisp);
     }
 }
 
@@ -633,4 +633,22 @@ void Picdok::priorRequested()    // If a prior picture is available, show it.
     {
         doPrior();
     }
+}
+
+void Picdok::doViewIndex()      // View index file if found.
+{
+    datafile = new QSettings(curDir + QDir::separator() + DATA_FILE, QSettings::IniFormat, this);
+    QString oFile = curDir + QDir::separator() + datafile->value("ofile", "_picInfo.html").toString();
+    if (QFile::exists(oFile))
+    {
+        PdPreview *preview = new PdPreview(this, oFile);
+        preview->exec();
+        delete preview;
+
+    }
+    else
+    {
+        QMessageBox::information(this, ERROR_TITLE, "Unable to open the index file\r\n\r\nHas it been generated?");
+    }
+    delete datafile;
 }

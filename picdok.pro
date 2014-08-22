@@ -24,7 +24,7 @@ INSTALLS += menu
 VERSION  = 0.2.1
 
 APPVERSTR = '\\"$${VERSION}\\"'     # places quotes around the version string
-DEFINES += APPVER=\"$${APPVERSTR}\" # create an APPVER macro containing the version string
+DEFINES += APPVER=\"$${APPVERSTR}\" # create an APPVER defines containing the version string
 
 INCLUDEPATH += hdr
 

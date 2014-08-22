@@ -1,5 +1,9 @@
 Change Log for picdok
 
+22/08/2104
+    Added the ability to view a generated index file without regenerating it.
+19/08/2014
+    Made pdpagegen.ui scale by changing form to a grid layout.
 02/04/2014
     Put '<' and '>' around standard software names in #include statements
     instead of '"' and '"'.

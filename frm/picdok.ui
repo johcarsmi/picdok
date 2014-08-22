@@ -434,6 +434,8 @@ Only enabled if the description has been changed.</string>
     <addaction name="action_Set_Directory"/>
     <addaction name="action_Rename_Files"/>
     <addaction name="action_Generate_Index"/>
+    <addaction name="separator"/>
+    <addaction name="action_View_Index"/>
    </widget>
    <widget class="QMenu" name="menu_Image">
     <property name="title">
@@ -607,6 +609,17 @@ Only enabled if the description has been changed.</string>
     <string>F9</string>
    </property>
   </action>
+  <action name="action_View_Index">
+   <property name="text">
+    <string>~View Index</string>
+   </property>
+   <property name="toolTip">
+    <string>View generated index file</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+I</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="3" margin="11"/>
  <customwidgets>
@@ -703,8 +716,8 @@ Only enabled if the description has been changed.</string>
    <slot>doNext()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>531</x>
-     <y>591</y>
+     <x>630</x>
+     <y>608</y>
     </hint>
     <hint type="destinationlabel">
      <x>391</x>
@@ -984,6 +997,22 @@ Only enabled if the description has been changed.</string>
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>action_View_Index</sender>
+   <signal>triggered()</signal>
+   <receiver>Picdok</receiver>
+   <slot>doViewIndex()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>366</x>
+     <y>320</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>doClose()</slot>
@@ -1004,5 +1033,6 @@ Only enabled if the description has been changed.</string>
   <slot>doDeselect()</slot>
   <slot>doOptions()</slot>
   <slot>doShowPic(bool)</slot>
+  <slot>doViewIndex()</slot>
  </slots>
 </ui>

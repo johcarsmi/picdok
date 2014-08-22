@@ -51,12 +51,12 @@ private:
     QString picUserComment;
     QString picUserCommentSave;
     QString picDatTimOri;
-    QString checkParams(QStringList *);
     QImage *img;
     QImage *imgDisp;
     QPixmap *pixmDisp;
     QMatrix *matx;
     QSettings *settings;
+    QSettings *datafile;
     int cmbIx;
     int fHt;
     int fWdth;
@@ -69,6 +69,7 @@ private:
     PdShowPic *showPic;
     QDesktopWidget *desk;
     // Functions
+    QString checkParams(QStringList *);
     void readSettings(const QString &);
     void setDirFiles();
     void populateCombo();
@@ -88,6 +89,7 @@ private slots:
     void doRenameFiles();
     void renOcome(const bool inOcome);
     void doGeneratePage();
+    void doViewIndex();
     // Menu / Image
     void doPicRename();
     void doDelete();
