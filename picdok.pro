@@ -80,4 +80,5 @@ OTHER_FILES += \
     misc/picdok.png \
     misc/changelog.txt \
     misc/picdok.desktop \
-    README
+    README \
+    picdok-0-2-1.tar.gz
