@@ -1,5 +1,7 @@
 Change Log for picdok
 
+20/10/2014
+    Removed redundant 'mainToolBar' from picdok.ui.
 22/08/2104
     Added the ability to view a generated index file without regenerating it.
 19/08/2014
