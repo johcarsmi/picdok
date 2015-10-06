@@ -1,4 +1,4 @@
-This is the readme file for the picdok program version 0.2.1.
+This is the readme file for the picdok program version 0.2.2.
 
 Description: picdok is a simple program for helping the management and
 documentation of jpeg picture files. It works assuming that all the pictures of
@@ -19,8 +19,9 @@ It can:-
    of the current directory named 'deselected'. This allows the user to change
    their mind later.
 4. Delete individual files.
-5. Select the directory for processing.
-6. Generate a simple html page with the file-name, DateTimeOriginal and
+5. Move individual files to another directoruy.
+6. Select the directory for processing.
+7. Generate a simple html page with the file-name, DateTimeOriginal and
    UserComment as an index for the directory. For this a user may enter:
     a) Title for the page.
     b) A description of the content.
@@ -29,7 +30,7 @@ It can:-
    preview of the generated page is available at the time of generation. The
    fixed html for this page is held in Qt resource files embedded in the
    program.
-7. Show pictures full screen using left/right arrows, space/backspace to move
+8. Show pictures full screen using left/right arrows, space/backspace to move
    forward and backward through the directory and "Q" or <Esc> to close the
    show. If a second screen is attached the output is directed to that screen.
 

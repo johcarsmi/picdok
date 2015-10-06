@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>734</width>
+    <width>742</width>
     <height>642</height>
    </rect>
   </property>
@@ -414,7 +414,7 @@ Only enabled if the description has been changed.</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>734</width>
+     <width>742</width>
      <height>19</height>
     </rect>
    </property>
@@ -446,6 +446,7 @@ Only enabled if the description has been changed.</string>
     <addaction name="action_Prior"/>
     <addaction name="separator"/>
     <addaction name="action_Rename"/>
+    <addaction name="action_Move"/>
     <addaction name="actionDese_lect"/>
     <addaction name="action_Delete"/>
     <addaction name="separator"/>
@@ -482,7 +483,7 @@ Only enabled if the description has been changed.</string>
   </action>
   <action name="action_About">
    <property name="text">
-    <string>&amp;About</string>
+    <string>&amp;About ...</string>
    </property>
   </action>
   <action name="action_Rename">
@@ -498,7 +499,7 @@ Only enabled if the description has been changed.</string>
   </action>
   <action name="action_Set_Directory">
    <property name="text">
-    <string>&amp;Set Directory</string>
+    <string>&amp;Set Directory ...</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+D</string>
@@ -506,7 +507,7 @@ Only enabled if the description has been changed.</string>
   </action>
   <action name="action_Rename_Files">
    <property name="text">
-    <string>&amp;Rename Files</string>
+    <string>&amp;Rename Files ...</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+R</string>
@@ -525,7 +526,7 @@ Only enabled if the description has been changed.</string>
   </action>
   <action name="action_Generate_Index">
    <property name="text">
-    <string>&amp;Generate Index</string>
+    <string>&amp;Generate Index ...</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+G</string>
@@ -560,7 +561,7 @@ Only enabled if the description has been changed.</string>
   </action>
   <action name="action_Options">
    <property name="text">
-    <string>&amp;Options</string>
+    <string>&amp;Options ...</string>
    </property>
   </action>
   <action name="action_Next">
@@ -603,13 +604,24 @@ Only enabled if the description has been changed.</string>
   </action>
   <action name="action_View_Index">
    <property name="text">
-    <string>~View Index</string>
+    <string>~View Index ...</string>
    </property>
    <property name="toolTip">
     <string>View generated index file</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+I</string>
+   </property>
+  </action>
+  <action name="action_Move">
+   <property name="text">
+    <string>&amp;Move To...</string>
+   </property>
+   <property name="toolTip">
+    <string>Move picture to another directory</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+M</string>
    </property>
   </action>
  </widget>
@@ -724,8 +736,8 @@ Only enabled if the description has been changed.</string>
    <slot>doNextEmpty()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>643</x>
-     <y>591</y>
+     <x>730</x>
+     <y>608</y>
     </hint>
     <hint type="destinationlabel">
      <x>537</x>
@@ -1005,6 +1017,22 @@ Only enabled if the description has been changed.</string>
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>action_Move</sender>
+   <signal>triggered()</signal>
+   <receiver>Picdok</receiver>
+   <slot>doPicMove()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>370</x>
+     <y>320</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>doClose()</slot>
@@ -1026,5 +1054,6 @@ Only enabled if the description has been changed.</string>
   <slot>doOptions()</slot>
   <slot>doShowPic(bool)</slot>
   <slot>doViewIndex()</slot>
+  <slot>doPicMove()</slot>
  </slots>
 </ui>

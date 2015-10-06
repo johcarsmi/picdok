@@ -61,6 +61,7 @@ Picdok::Picdok(QWidget *parent) :
     connect(ui->lblPic, SIGNAL(pdlSigDesel()), this, SLOT(doDeselect()));
     connect(ui->lblPic, SIGNAL(pdlSigDel()), this, SLOT(doDelete()));
     connect(ui->lblPic, SIGNAL(pdlSigRen()), this, SLOT(doPicRename()));
+    connect(ui->lblPic, SIGNAL(pdlSigMov()), this, SLOT(doPicMove()));
     desk = QApplication::desktop();
     setFocusOnCommentIfEmpty();
     WaitPtr(false);
@@ -651,4 +652,25 @@ void Picdok::doViewIndex()      // View index file if found.
         QMessageBox::information(this, ERROR_TITLE, "Unable to open the index file\r\n\r\nHas it been generated?");
     }
     delete datafile;
+}
+
+void Picdok::doPicMove()    // Move the picture file to a new directory.
+{
+    newDir = QFileDialog::getExistingDirectory(this,
+                               tr("Select Required Directory"),
+                               curDir,
+                               QFileDialog::ShowDirsOnly&QFileDialog::ReadOnly&QFileDialog::DontResolveSymlinks);
+    if (newDir != "" )
+    {
+        QFile *qf = new QFile(curDir + QDir::separator() + curFile, this);
+        if (qf->rename(newDir + QDir::separator() + curFile))
+        {
+            deleteCurrentFromCombo();
+        }
+        else
+        {
+            QMessageBox::critical(this, ERROR_TITLE, tr("Failure in moving file, error %1.").arg(qf->error()));
+        }
+        delete qf;
+    }
 }

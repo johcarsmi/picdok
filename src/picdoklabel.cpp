@@ -7,12 +7,14 @@
 PicDokLabel::PicDokLabel(QWidget *parent) :
     QLabel(parent)
 {   // Create context menu actions and connect signals to slots.
-    delAct = new QAction(tr("Delete"),this);
-    connect(delAct, SIGNAL(triggered()), this, SLOT(doPdlDelete()));
     renAct = new QAction(tr("Rename"),this);
     connect(renAct, SIGNAL(triggered()), this, SLOT(doPdlRename()));
+    movAct = new QAction(tr("Move To ..."),this);
+    connect(movAct, SIGNAL(triggered()), this, SLOT(doPdlMove()));
     deselAct = new QAction(tr("Deselect"),this);
     connect(deselAct, SIGNAL(triggered()), this, SLOT(doPdlDeselect()));
+    delAct = new QAction(tr("Delete"),this);
+    connect(delAct, SIGNAL(triggered()), this, SLOT(doPdlDelete()));
 }
 
 PicDokLabel::~PicDokLabel()
@@ -27,10 +29,11 @@ void PicDokLabel::contextMenuEvent(QContextMenuEvent *ev)
     // Overrides the default contextMenuEvent handler.
     //QMessageBox::information(this, "Event Occurred", tr("reason %1 type %2").arg(ev->reason()).arg(ev->type())); //: DEBUG
     QMenu menu(this);
+    menu.addAction(renAct);
+    menu.addAction(movAct);
+    menu.addSeparator();
     menu.addAction(deselAct);
     menu.addAction(delAct);
-    menu.addSeparator();
-    menu.addAction(renAct);
     menu.exec(ev->globalPos());
 }
 
@@ -47,4 +50,8 @@ void PicDokLabel::doPdlDelete()
 void PicDokLabel::doPdlDeselect()
 {
     emit pdlSigDesel();
+}
+void PicDokLabel::doPdlMove()
+{
+    emit pdlSigMov();
 }

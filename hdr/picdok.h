@@ -94,6 +94,7 @@ private slots:
     void doPicRename();
     void doDelete();
     void doDeselect();
+    void doPicMove();
     void doEditComment();
     void doShowPic(bool Chkd);
     // ShowPic communication

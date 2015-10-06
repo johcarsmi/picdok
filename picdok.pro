@@ -14,14 +14,14 @@ target.path = /usr/local/bin
 INSTALLS += target
 
 icon.path = /usr/share/icons/hicolor/48x48/apps     # freedesktop.org standard location for icons
-icon.files = picdok.png
+icon.files = misc/picdok.png
 INSTALLS += icon
 
 menu.path = /usr/share/applications                 # freedesktop.org standard location for menus
-menu.files = picdok.desktop
+menu.files = misc/picdok.desktop
 INSTALLS += menu
 
-VERSION  = 0.2.1
+VERSION  = 0.2.2
 
 APPVERSTR = '\\"$${VERSION}\\"'     # places quotes around the version string
 DEFINES += APPVER=\"$${APPVERSTR}\" # create an APPVER defines containing the version string
@@ -81,4 +81,3 @@ OTHER_FILES += \
     misc/changelog.txt \
     misc/picdok.desktop \
     README \
-    picdok-0-2-1.tar.gz

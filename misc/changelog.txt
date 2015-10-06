@@ -1,5 +1,8 @@
 Change Log for picdok
 
+06/10/2015
+    Added the function to move a picture to another directory.
+    Added elipses to menu entries that open another form.
 20/10/2014
     Removed redundant 'mainToolBar' from picdok.ui.
 22/08/2104
