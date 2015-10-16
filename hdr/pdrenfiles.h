@@ -2,6 +2,9 @@
 #define PDRENFILES_H
 
 #include <QDialog>
+#include <QDate>
+#include <QTime>
+#include <QDateTime>
 #include "picdok.h"
 #include <exiv2/image.hpp>
 
@@ -50,6 +53,11 @@ private:
     QStringList *badFiles;
     QStringList *nParams;
     QSettings *settings;
+    QString exifDate;
+    QStringList dateParts;
+    QDate eDate;
+    QTime eTime;
+    QDateTime eDT;
     // Functions
     QString getPicDate(const QString &);
     bool validateFormatStr(const QString &, QStringList *);

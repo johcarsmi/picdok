@@ -7,6 +7,9 @@
 #include <QMessageBox>
 #include <QtAlgorithms>
 #include <QDir>
+#include <QDate>
+#include <QTime>
+#include <QDateTime>
 #include <exiv2/image.hpp>
 #include <cmath>
 #include "picdok.h"
@@ -122,7 +125,12 @@ QString PdRenFiles::getPicDate(const QString &inFile)   // Get the DateTimeOrigi
     Exiv2::ExifData &exifData = rimage->exifData();
     if (exifData.empty()) return "";
     Exiv2::Exifdatum &datum = exifData["Exif.Photo.DateTimeOriginal"];
-    return datum.toString().c_str();
+    exifDate = datum.toString().c_str();
+    dateParts = exifDate.split(" ");
+    eDate = QDate::fromString(dateParts[0], "yyyy:MM:dd");
+    eTime = QTime::fromString(dateParts[1], "hh:mm:ss");
+    eDT = QDateTime(eDate,eTime);
+    return eDT.toString(Qt::ISODate);
 }
 
 bool PrSortImageOnDate (const RenameData &i1, const RenameData &i2)     // Comparison method for sorting files.

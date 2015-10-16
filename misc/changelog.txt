@@ -1,8 +1,11 @@
 Change Log for picdok
 
+16/10/2015
+    Fixed a bug which did not sort correctly pictures in pdRenFiles 
+    when a leading zero is missing from a date or time part.
 06/10/2015
     Added the function to move a picture to another directory.
-    Added elipses to menu entries that open another form.
+    Added ellipses to menu entries that open another form.
 20/10/2014
     Removed redundant 'mainToolBar' from picdok.ui.
 22/08/2104
