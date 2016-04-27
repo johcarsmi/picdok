@@ -54,7 +54,7 @@ private:
     QImage *img;
     QImage *imgDisp;
     QPixmap *pixmDisp;
-    QMatrix *matx;
+    QTransform *matx;
     QSettings *settings;
     QSettings *datafile;
     int cmbIx;

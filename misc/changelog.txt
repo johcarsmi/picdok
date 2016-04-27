@@ -1,5 +1,9 @@
 Change Log for picdok
 
+27/04/2016
+    Removed code which positioned focus incorrectly when returning
+    from a full-screen display.
+    Allows saving a comment to create EXIF data if none exists.
 16/10/2015
     Fixed a bug which did not sort correctly pictures in pdRenFiles 
     when a leading zero is missing from a date or time part.

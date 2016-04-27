@@ -51,7 +51,7 @@ Picdok::Picdok(QWidget *parent) :
     img = new QImage;
     imgDisp = new QImage;
     pixmDisp = new QPixmap;
-    matx = new QMatrix;
+    matx = new QTransform;
     settings = new QSettings(QDir::homePath() + QDir::separator() + SETTINGS_FILE, QSettings::IniFormat, this);
     // Check command line parameter and use supplied directory if valid, else use saved settings,or current directory if none.
     readSettings(checkParams(inParams));
@@ -416,7 +416,7 @@ void Picdok::doSave()     // Save the revised UserComment data back to the sourc
         image.get();
         image->readMetadata();
         Exiv2::ExifData &exifData = image->exifData();
-        if (exifData.empty()) throw exifExcpt;
+        //if (exifData.empty()) throw exifExcpt;    // Commented out as writing a key creates the exif data.
         exifData["Exif.Photo.UserComment"] = "charset=\"Ascii\" " + ui->txtComment->toPlainText().trimmed().toStdString();
         image->setExifData(exifData);
         image->writeMetadata();
@@ -615,7 +615,6 @@ void Picdok::closeShowPic() // Close down the picture full screen and un-check m
         delete showPic;
         showPic = 0;
         ui->actionSho_w->setChecked(false);
-        this->setFocus();
         this->activateWindow();
     }
 }
