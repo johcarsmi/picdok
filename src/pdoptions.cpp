@@ -33,6 +33,11 @@ void PdOptions::setAutoMove(bool &inAutoMove)
     ui->cbAutoMove->setChecked(inAutoMove);
 }
 
+void PdOptions::setNoWarnNoExif(bool &inNoWarnNoExif)
+{
+    ui->cbNoWarnNoExif->setChecked(inNoWarnNoExif);
+}
+
 bool PdOptions::getFocusEmpty()
 {
     return ui->cbFocusEmpty->isChecked();
@@ -51,6 +56,11 @@ bool PdOptions::getDeselConf()
 bool PdOptions::getAutoMove()
 {
     return ui->cbAutoMove->isChecked();
+}
+
+bool PdOptions::getNoWarnNoExif()
+{
+    return ui->cbNoWarnNoExif->isChecked();
 }
 
 void PdOptions::doSave()

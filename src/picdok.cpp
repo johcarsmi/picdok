@@ -110,6 +110,7 @@ void Picdok::readSettings(const QString & inDir)    // Get the last used directo
     deselConf =  settings->value("deselConf", "false").toBool();
     delConf = settings->value("delConf","false").toBool();
     focusEmpty = settings->value("focusEmpty","false").toBool();
+    noWarnNoExif = settings->value("noWarnNoExif", "false").toBool();
     settings->endGroup();
     if (inDir != "") curDir = inDir;
     else curDir = settings->value("directory", "").toString();  // The default of "" gives program run directory.
@@ -345,7 +346,10 @@ void Picdok::doSetPicture()     // Display selected picture and EXIF data.
 {
     if (!getExifData(curFullFileName, picUserComment, picOrientation, picDatTimOri))
     {
-        QMessageBox::information(this, ERROR_TITLE, tr("exif data not obtained"));
+        if (!noWarnNoExif)
+        {
+            QMessageBox::information(this, ERROR_TITLE, tr("exif data not obtained"));
+        }
     }
     // Set picture date and comment.
     ui->lblPicDat->setText(picDatTimOri.left(10).replace(':',"/"));
@@ -561,6 +565,7 @@ void Picdok::doOptions()    // Present the program options form.
     OptionForm->setDeselConf(deselConf);
     OptionForm->setDelConf(delConf);
     OptionForm->setFocusOnEmpty(focusEmpty);
+    OptionForm->setNoWarnNoExif(noWarnNoExif);
     OptionForm->exec();
     if (OptionForm->getGoodExit())  // User pressed Save button on form.
     {   // Move set values to local variables.
@@ -568,12 +573,14 @@ void Picdok::doOptions()    // Present the program options form.
         deselConf = OptionForm->getDeselConf();
         delConf = OptionForm->getDelConf();
         focusEmpty = OptionForm->getFocusEmpty();
+        noWarnNoExif = OptionForm->getNoWarnNoExif();
         // Save in settings file.
         settings->beginGroup("options");
         settings->setValue("autoMove", autoMove);
         settings->setValue("deselConf", deselConf);
         settings->setValue("delConf", delConf);
         settings->setValue("focusEmpty", focusEmpty);
+        settings->setValue("noWarnNoExif", noWarnNoExif);
         settings->endGroup();
         settings->sync();
     }
@@ -671,5 +678,46 @@ void Picdok::doPicMove()    // Move the picture file to a new directory.
             QMessageBox::critical(this, ERROR_TITLE, tr("Failure in moving file, error %1.").arg(qf->error()));
         }
         delete qf;
+    }
+}
+
+void Picdok::doUndoDeselect()
+{
+    QString deselDir = curDir + QDir::separator() + "deselected";
+    //qDebug(deselDir.toAscii());
+    QDir recoDir = QDir(deselDir);
+    if (recoDir.exists())
+    {
+        recoFile = QFileDialog::getOpenFileName(this,
+                                   tr("Choose file to recover"),
+                                   deselDir,
+                                   QFileDialog::ExistingFile&QFileDialog::ReadOnly);
+        if (recoFile != "")
+        {
+            QFileInfo fi(recoFile);
+            if (!QFile::rename(deselDir + QDir::separator() + fi.fileName(), curDir + QDir::separator() + fi.fileName()))
+            {
+                QMessageBox::critical(this,
+                                    "Error",
+                                    "A file of the same name already exists." + QString("\n") +
+                                    "Action aborted.");
+                return;
+            }
+            // Need to scan list of items and insert into the correct place in the file order.
+            int pix = 0;
+            QString a = ui->cmbPicFile->itemText(pix);
+            QString b = fi.fileName();
+            while (ui->cmbPicFile->itemText(pix) < fi.fileName() && pix < ui->cmbPicFile->count())
+            {
+                pix++;
+            }
+            ui->cmbPicFile->insertItem(pix,fi.fileName());
+        }
+    }
+    else
+    {
+        QMessageBox::information(this,
+                            "Notification",
+                            "No deselected files exist.");
     }
 }

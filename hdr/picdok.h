@@ -51,6 +51,7 @@ private:
     QString picUserComment;
     QString picUserCommentSave;
     QString picDatTimOri;
+    QString recoFile;
     QImage *img;
     QImage *imgDisp;
     QPixmap *pixmDisp;
@@ -66,6 +67,7 @@ private:
     bool delConf;
     bool deselConf;
     bool focusEmpty;
+    bool noWarnNoExif;
     PdShowPic *showPic;
     QDesktopWidget *desk;
     // Functions
@@ -90,6 +92,7 @@ private slots:
     void renOcome(const bool inOcome);
     void doGeneratePage();
     void doViewIndex();
+    void doUndoDeselect();
     // Menu / Image
     void doPicRename();
     void doDelete();

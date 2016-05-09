@@ -18,10 +18,12 @@ public:
     void setDelConf(bool &);
     void setDeselConf(bool &);
     void setAutoMove(bool &);
+    void setNoWarnNoExif(bool &);
     bool getFocusEmpty();
     bool getDelConf();
     bool getDeselConf();
     bool getAutoMove();
+    bool getNoWarnNoExif();
     bool getGoodExit();
     
 private:

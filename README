@@ -39,6 +39,7 @@ Program options:
 2. Confirm deselect actions.
 3. Confirm delete actions.
 4. Move to the next picture when the comment is saved.
+5. Supress warning if no EXIF data exists in a picture.
 
   It is a QT 4 program using the libexiv2 library and was originally developed
 using the QtCreator IDE v. 2.5.0 based on Qt version 4.8.1

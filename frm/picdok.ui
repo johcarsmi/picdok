@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>742</width>
+    <width>755</width>
     <height>642</height>
    </rect>
   </property>
@@ -129,7 +129,7 @@ taken:</string>
            </size>
           </property>
           <property name="text">
-           <string>T&amp;ext:</string>
+           <string>Te&amp;xt:</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -414,8 +414,8 @@ Only enabled if the description has been changed.</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>742</width>
-     <height>19</height>
+     <width>755</width>
+     <height>27</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_Program">
@@ -436,6 +436,8 @@ Only enabled if the description has been changed.</string>
     <addaction name="action_Generate_Index"/>
     <addaction name="separator"/>
     <addaction name="action_View_Index"/>
+    <addaction name="separator"/>
+    <addaction name="action_Undo_Deselect"/>
    </widget>
    <widget class="QMenu" name="menu_Image">
     <property name="title">
@@ -604,7 +606,7 @@ Only enabled if the description has been changed.</string>
   </action>
   <action name="action_View_Index">
    <property name="text">
-    <string>~View Index ...</string>
+    <string>&amp;View Index ...</string>
    </property>
    <property name="toolTip">
     <string>View generated index file</string>
@@ -622,6 +624,17 @@ Only enabled if the description has been changed.</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+M</string>
+   </property>
+  </action>
+  <action name="action_Undo_Deselect">
+   <property name="text">
+    <string>&amp;Undo Deselect</string>
+   </property>
+   <property name="toolTip">
+    <string>Bring back a deselected file</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Z</string>
    </property>
   </action>
  </widget>
@@ -688,8 +701,8 @@ Only enabled if the description has been changed.</string>
    <slot>doClose()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>63</x>
-     <y>582</y>
+     <x>71</x>
+     <y>613</y>
     </hint>
     <hint type="destinationlabel">
      <x>242</x>
@@ -704,8 +717,8 @@ Only enabled if the description has been changed.</string>
    <slot>doPrior()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>199</x>
-     <y>591</y>
+     <x>283</x>
+     <y>613</y>
     </hint>
     <hint type="destinationlabel">
      <x>208</x>
@@ -774,22 +787,6 @@ Only enabled if the description has been changed.</string>
     <hint type="destinationlabel">
      <x>147</x>
      <y>515</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>txtComment</sender>
-   <signal>textChanged()</signal>
-   <receiver>Picdok</receiver>
-   <slot>doEnableSave()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>256</x>
-     <y>535</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>244</x>
-     <y>561</y>
     </hint>
    </hints>
   </connection>
@@ -1033,6 +1030,22 @@ Only enabled if the description has been changed.</string>
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>action_Undo_Deselect</sender>
+   <signal>triggered()</signal>
+   <receiver>Picdok</receiver>
+   <slot>doUndoDeselect()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>377</x>
+     <y>320</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>doClose()</slot>
@@ -1055,5 +1068,6 @@ Only enabled if the description has been changed.</string>
   <slot>doShowPic(bool)</slot>
   <slot>doViewIndex()</slot>
   <slot>doPicMove()</slot>
+  <slot>doUndoDeselect()</slot>
  </slots>
 </ui>
