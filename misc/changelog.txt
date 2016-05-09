@@ -3,6 +3,7 @@ Change Log for picdok
     Added an option to supress warning if no EXIF data exists in a picture.
     Added a function to return a picture to the main directory from the
     "deselected" directory.
+    Version number changed to 0.2.3
 27/04/2016
     Removed code which positioned focus incorrectly when returning
     from a full-screen display.
