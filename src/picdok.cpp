@@ -705,8 +705,6 @@ void Picdok::doUndoDeselect()
             }
             // Need to scan list of items and insert into the correct place in the file order.
             int pix = 0;
-            QString a = ui->cmbPicFile->itemText(pix);
-            QString b = fi.fileName();
             while (ui->cmbPicFile->itemText(pix) < fi.fileName() && pix < ui->cmbPicFile->count())
             {
                 pix++;
