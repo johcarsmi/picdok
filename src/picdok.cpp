@@ -229,7 +229,7 @@ void Picdok::renOcome(const bool inOcome)   // Refresh file list if renaming was
 void Picdok::setDirFiles()  // Retrieve the list of files and populate the combo with them.
 {
     WaitPtr(true);
-    QDir *dirQ = new QDir(curDir, "*.jpg", QDir::Name);
+    QDir *dirQ = new QDir(curDir, "", QDir::Name);
     QStringList filt;
     filt << "*.jpg" << "*.jpeg" << "*.JPG" << "*.JPEG";
     dirQ->setNameFilters(filt);
@@ -283,6 +283,15 @@ void Picdok::doComboChanged()   // Handle the signal when a new file is selected
     }
     WaitPtr(true);
     curFile = ui->cmbPicFile->currentText();
+    // TODO: check that file still exists and find alternative if not
+    if (!QFile::exists(curDir + QDir::separator() + curFile))
+    {
+        // File doesn't exist action.
+        int curIx = ui->cmbPicFile->currentIndex();
+        setDirFiles();
+        ui->cmbPicFile->setCurrentIndex(curIx);
+        QMessageBox::information(this, tr("Notification"), tr("Requested file no longer exists.\n\nShowing nearest."));
+    }
     // Set Next and Next Empty button state, disable if at last else enable.
     if (ui->cmbPicFile->currentIndex() >= ui->cmbPicFile->count() - 1)
     {
@@ -717,5 +726,22 @@ void Picdok::doUndoDeselect()
         QMessageBox::information(this,
                             "Notification",
                             "No deselected files exist.");
+    }
+}
+
+void Picdok::doRefresh()    // Refresh the view of the current directory and reset picture if possible.
+{
+    QString activeFile = curFile;
+    setDirFiles();
+    int newIx = dirFiles.indexOf(activeFile, 0);
+    if (newIx >= 0)
+    {
+        ui->cmbPicFile->setCurrentIndex(newIx);
+    }
+    else
+    {
+        QMessageBox::information(this,
+                                 tr("Information"),
+                                 tr("Current file changed/deleted by another program.\nSet to start of directory"));
     }
 }

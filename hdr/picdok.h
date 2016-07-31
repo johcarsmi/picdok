@@ -91,6 +91,7 @@ private slots:
     void doRenameFiles();
     void renOcome(const bool inOcome);
     void doGeneratePage();
+    void doRefresh();
     void doViewIndex();
     void doUndoDeselect();
     // Menu / Image

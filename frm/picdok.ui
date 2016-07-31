@@ -434,6 +434,7 @@ Only enabled if the description has been changed.</string>
     <addaction name="action_Set_Directory"/>
     <addaction name="action_Rename_Files"/>
     <addaction name="action_Generate_Index"/>
+    <addaction name="action_Refresh"/>
     <addaction name="separator"/>
     <addaction name="action_View_Index"/>
     <addaction name="separator"/>
@@ -635,6 +636,17 @@ Only enabled if the description has been changed.</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Z</string>
+   </property>
+  </action>
+  <action name="action_Refresh">
+   <property name="text">
+    <string>R&amp;efresh</string>
+   </property>
+   <property name="toolTip">
+    <string>Refresh the list of files in the directory.</string>
+   </property>
+   <property name="shortcut">
+    <string>F5</string>
    </property>
   </action>
  </widget>
@@ -1046,6 +1058,22 @@ Only enabled if the description has been changed.</string>
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>action_Refresh</sender>
+   <signal>triggered()</signal>
+   <receiver>Picdok</receiver>
+   <slot>doRefresh()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>377</x>
+     <y>320</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>doClose()</slot>
@@ -1069,5 +1097,6 @@ Only enabled if the description has been changed.</string>
   <slot>doViewIndex()</slot>
   <slot>doPicMove()</slot>
   <slot>doUndoDeselect()</slot>
+  <slot>doRefresh()</slot>
  </slots>
 </ui>
