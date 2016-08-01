@@ -283,12 +283,16 @@ void Picdok::doComboChanged()   // Handle the signal when a new file is selected
     }
     WaitPtr(true);
     curFile = ui->cmbPicFile->currentText();
-    // TODO: check that file still exists and find alternative if not
+    // Check that file still exists and find alternative if not
     if (!QFile::exists(curDir + QDir::separator() + curFile))
     {
         // File doesn't exist action.
         int curIx = ui->cmbPicFile->currentIndex();
         setDirFiles();
+        if (curIx >= ui->cmbPicFile->count())       // Check if index is beyond new size.
+        {
+            curIx = ui->cmbPicFile->count() -1;
+        }
         ui->cmbPicFile->setCurrentIndex(curIx);
         QMessageBox::information(this, tr("Notification"), tr("Requested file no longer exists.\n\nShowing nearest."));
     }
