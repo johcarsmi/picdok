@@ -101,6 +101,7 @@ private slots:
     void doPicMove();
     void doEditComment();
     void doShowPic(bool Chkd);
+    void doMoveFirst();
     // ShowPic communication
     void closeShowPic();
     void nextRequested();

@@ -1,4 +1,6 @@
 Change Log for picdok
+26/10/2016
+    Added meny option to go to the first image in the directory.
 31/07/2016
     Added function to refresh the combobox from the directory.
     Now shows nearest file if selected file in combobox no longer exists.

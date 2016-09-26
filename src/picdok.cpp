@@ -194,6 +194,12 @@ void Picdok::doNextEmpty()  // Find the next picture file without a UserComment 
     QMessageBox::information(this, tr("Information"), tr("All remaining pictures have user comment data."));
 }
 
+void Picdok::doMoveFirst()
+{
+    ui->cmbPicFile->setCurrentIndex(0);
+    setFocusOnCommentIfEmpty();
+}
+
 void Picdok::doSetDirectory()   // Handle the menu entry to set the directory of picture files to be used.
 {
     newDir = QFileDialog::getExistingDirectory(this,

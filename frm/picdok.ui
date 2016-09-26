@@ -447,6 +447,7 @@ Only enabled if the description has been changed.</string>
     <addaction name="action_Next"/>
     <addaction name="actionNex_t_Empty"/>
     <addaction name="action_Prior"/>
+    <addaction name="action_First"/>
     <addaction name="separator"/>
     <addaction name="action_Rename"/>
     <addaction name="action_Move"/>
@@ -647,6 +648,20 @@ Only enabled if the description has been changed.</string>
    </property>
    <property name="shortcut">
     <string>F5</string>
+   </property>
+  </action>
+  <action name="action_First">
+   <property name="text">
+    <string>&amp;First</string>
+   </property>
+   <property name="toolTip">
+    <string>Go to first picture in directory.</string>
+   </property>
+   <property name="shortcut">
+    <string>Home</string>
+   </property>
+   <property name="visible">
+    <bool>true</bool>
    </property>
   </action>
  </widget>
@@ -1074,6 +1089,22 @@ Only enabled if the description has been changed.</string>
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>action_First</sender>
+   <signal>triggered()</signal>
+   <receiver>Picdok</receiver>
+   <slot>doMoveFirst()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>377</x>
+     <y>320</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>doClose()</slot>
@@ -1098,5 +1129,6 @@ Only enabled if the description has been changed.</string>
   <slot>doPicMove()</slot>
   <slot>doUndoDeselect()</slot>
   <slot>doRefresh()</slot>
+  <slot>doMoveFirst()</slot>
  </slots>
 </ui>
