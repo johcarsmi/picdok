@@ -676,6 +676,9 @@ Only enabled if the description has been changed.</string>
    <class>PicdokTextEdit</class>
    <extends>QWidget</extends>
    <header>picdoktextedit.h</header>
+   <slots>
+    <signal>textChanged()</signal>
+   </slots>
   </customwidget>
  </customwidgets>
  <tabstops>
@@ -1102,6 +1105,22 @@ Only enabled if the description has been changed.</string>
     <hint type="destinationlabel">
      <x>377</x>
      <y>320</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>txtComment</sender>
+   <signal>textChanged()</signal>
+   <receiver>Picdok</receiver>
+   <slot>doEnableSave()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>512</x>
+     <y>561</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>191</x>
+     <y>533</y>
     </hint>
    </hints>
   </connection>

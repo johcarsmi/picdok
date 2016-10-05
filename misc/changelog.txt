@@ -1,4 +1,6 @@
 Change Log for picdok
+05/10/2016
+    Corrected an issue where the Save button was not being enabled.
 26/10/2016
     Added meny option to go to the first image in the directory.
 31/07/2016
