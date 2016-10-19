@@ -114,6 +114,7 @@ void Picdok::readSettings(const QString & inDir)    // Get the last used directo
     settings->endGroup();
     if (inDir != "") curDir = inDir;
     else curDir = settings->value("directory", "").toString();  // The default of "" gives program run directory.
+    if (!QDir(curDir).exists()) curDir = "";
     setDirFiles();
 }
 
@@ -670,7 +671,6 @@ void Picdok::doViewIndex()      // View index file if found.
         PdPreview *preview = new PdPreview(this, oFile);
         preview->exec();
         delete preview;
-
     }
     else
     {

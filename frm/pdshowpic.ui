@@ -77,7 +77,7 @@
   <property name="windowTitle">
    <string>Picdok Picture Show Screen</string>
   </property>
-  <widget class="QLabel" name="lblImg">
+  <widget class="PdPicLabel" name="lblImg">
    <property name="geometry">
     <rect>
      <x>120</x>
@@ -103,6 +103,13 @@
    </property>
   </widget>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>PdPicLabel</class>
+   <extends>QLabel</extends>
+   <header>pdpiclabel.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

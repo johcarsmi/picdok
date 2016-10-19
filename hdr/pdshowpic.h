@@ -24,11 +24,24 @@ public:
 
 private:
     Ui::PdShowPic *ui;
+    QPixmap dispPix;
+    QPixmap savedInPix;
+    int outHeight;
+    int outWidth;
+    float zoomFactor;
+    QRect liveRect;
+    QPoint liveCentre;
+    int newX; int newY; int newH; int newW;
 
 signals:
     void closeReq();
     void nextPic();
     void priorPic();
+
+private slots:
+    void pspZin();
+    void pspZout();
+    void pspMovePic(QPoint *);
 
 };
 

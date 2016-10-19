@@ -1,4 +1,10 @@
 Change Log for picdok
+19/10/2016
+    Added panning and zooming to the full-screen image.
+    Version increased to 0.3.0
+17/10/2016
+    Handle the situation where the saved directory name in .picdok.settings
+    no longer exists gracefully.
 05/10/2016
     Corrected an issue where the Save button was not being enabled.
 26/10/2016

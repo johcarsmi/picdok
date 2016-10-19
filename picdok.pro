@@ -21,7 +21,7 @@ menu.path = /usr/share/applications                 # freedesktop.org standard l
 menu.files = misc/picdok.desktop
 INSTALLS += menu
 
-VERSION  = 0.2.3
+VERSION  = 0.3.0
 
 APPVERSTR = '\\"$${VERSION}\\"'     # places quotes around the version string
 DEFINES += APPVER=\"$${APPVERSTR}\" # create an APPVER defines containing the version string
@@ -39,7 +39,8 @@ SOURCES += src/main.cpp\
     src/pdpreview.cpp \
     src/pdoptions.cpp \
     src/pdconfirm.cpp \
-    src/pdshowpic.cpp
+    src/pdshowpic.cpp \
+    src/pdpiclabel.cpp
 
 HEADERS  += hdr/picdok.h \
     hdr/picdoktextedit.h \
@@ -51,7 +52,8 @@ HEADERS  += hdr/picdok.h \
     hdr/pdpreview.h \
     hdr/pdoptions.h \
     hdr/pdconfirm.h \
-    hdr/pdshowpic.h
+    hdr/pdshowpic.h \
+    hdr/pdpiclabel.h
 
 FORMS    += \
     frm/pdrenfiles.ui \
