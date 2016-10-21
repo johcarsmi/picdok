@@ -1,4 +1,7 @@
 Change Log for picdok
+21/10/2016
+    Panning and zooming debugged.
+    Can now pan using arrow keys.
 19/10/2016
     Added panning and zooming to the full-screen image.
     Version increased to 0.3.0

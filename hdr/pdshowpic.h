@@ -32,6 +32,9 @@ private:
     QRect liveRect;
     QPoint liveCentre;
     int newX; int newY; int newH; int newW;
+    bool onTheMove;
+    QPoint *panPoint;
+    int panPixels;
 
 signals:
     void closeReq();
