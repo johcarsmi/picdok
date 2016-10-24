@@ -5,18 +5,32 @@ PdPicLabel::PdPicLabel(QWidget *parent) : QLabel(parent)
 {
     nowPt = new QPoint;
     moving = false;
+    tim = new QTimer(this);
+    tim->setInterval(3000);     // 3 seconds is an arbitrary period.
+    connect(tim, SIGNAL(timeout()), this, SLOT(TimExpire()));
+    tim->start();
+    this->setMouseTracking(true);
 }
 
 PdPicLabel::~PdPicLabel()
 {
     QApplication::setOverrideCursor(Qt::ArrowCursor);
     delete nowPt;
+    delete tim;
 }
 
 // The code is to handle zooming and panning through mouse actions.
 
 void PdPicLabel::mousePressEvent(QMouseEvent *evt)
 {
+    if (tim->isActive())
+    {
+        tim->stop();
+    }
+    if (QApplication::overrideCursor()->shape() == Qt::BlankCursor)
+    {
+        QApplication::restoreOverrideCursor();
+    }
     //qDebug("PdPicLabel: downX = %d : downY = %d", startX, startY);
     if (evt->button() == Qt::LeftButton)
     {
@@ -26,11 +40,20 @@ void PdPicLabel::mousePressEvent(QMouseEvent *evt)
         QApplication::setOverrideCursor(Qt::ClosedHandCursor);
         evt->accept();
     }
+    else if (evt->button() == Qt::RightButton)
+    {
+        QApplication::setOverrideCursor(Qt::ArrowCursor);
+    }
     else evt->ignore();
 }
 
 void PdPicLabel::mouseMoveEvent(QMouseEvent *evt)
 {
+    if (QApplication::overrideCursor()->shape() == Qt::BlankCursor)
+    {
+        QApplication::restoreOverrideCursor();
+    }
+    tim->start();       // Set or reset time period.
     if (moving)
     {
         int dX, dY;
@@ -48,11 +71,16 @@ void PdPicLabel::mouseMoveEvent(QMouseEvent *evt)
 
 void PdPicLabel::mouseReleaseEvent(QMouseEvent *evt)
 {
+    tim->start();
     if (evt->button() == Qt::LeftButton)
     {
         moving = false;
-        QApplication::setOverrideCursor(Qt::OpenHandCursor);
+        QApplication::restoreOverrideCursor();
         evt->accept();
+    }
+    else if (evt->button() == Qt::RightButton)
+    {
+        QApplication::restoreOverrideCursor();
     }
     else evt->ignore();
 }
@@ -75,11 +103,18 @@ void PdPicLabel::enterEvent(QEvent *evt)
 {
     QApplication::setOverrideCursor(Qt::OpenHandCursor);
     evt->accept();
+    tim->start();
 }
 
 void PdPicLabel::leaveEvent(QEvent *evt)
 {
     QApplication::setOverrideCursor(Qt::ArrowCursor);
     evt->accept();
+    tim->stop();
 }
 
+void PdPicLabel::TimExpire()
+{
+    QApplication::setOverrideCursor(Qt::BlankCursor);
+    tim->stop();
+}

@@ -24,11 +24,15 @@ private:
     int endY;
     QPoint *nowPt;
     bool moving;
+    QTimer *tim;
 
 signals:
     void zoomIn();
     void zoomOut();
     void movePic(QPoint *);
+
+private slots:
+    void TimExpire();
 };
 
 #endif // PDPICLABEL_H

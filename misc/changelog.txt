@@ -1,4 +1,9 @@
 Change Log for picdok
+24/10/2016
+    Automatic hiding of the cursor if it remains over the full-screen
+    picture for more than 3 seconds.
+    Show arrow pointer for right mouse press.
+    Version updated to 0.3.1
 21/10/2016
     Panning and zooming debugged.
     Can now pan using arrow keys.
