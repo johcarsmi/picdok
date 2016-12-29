@@ -2,7 +2,7 @@
  * A class which extends QLabel to allow a context menu to be added.
 */
 #include "picdoklabel.h"
-#include <QtGui>
+#include <QtWidgets>
 
 PicDokLabel::PicDokLabel(QWidget *parent) :
     QLabel(parent)

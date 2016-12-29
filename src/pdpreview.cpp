@@ -9,7 +9,7 @@ PdPreview::PdPreview(QWidget *parent, const QString &inFile) :
     ui(new Ui::PdPreview)
 {
     ui->setupUi(this);
-    ui->wvPreview->setUrl(QUrl(inFile));
+    ui->wvPreview->load(QUrl::fromLocalFile(inFile));
 }
 
 PdPreview::~PdPreview()

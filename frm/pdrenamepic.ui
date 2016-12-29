@@ -35,7 +35,7 @@
        </size>
       </property>
       <property name="text">
-       <string>&amp;Enter new name for the picture file.</string>
+       <string>Enter &amp;new name for the picture file.</string>
       </property>
       <property name="buddy">
        <cstring>txtName</cstring>

@@ -77,7 +77,7 @@ Compiling:
   Unpack the archive into its own directory, cd to that directory
   and then type:
 
-    qmake     ## Creates the required Makefile
+    qmake-qt5 ## Creates the required Makefile
     make      ## compiles the program running pre-processors first.
 
 Installation:

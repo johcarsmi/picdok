@@ -1,5 +1,5 @@
 #include "pdpiclabel.h"
-#include <QtGui>
+#include <QtWidgets>
 
 PdPicLabel::PdPicLabel(QWidget *parent) : QLabel(parent)
 {

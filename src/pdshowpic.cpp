@@ -17,7 +17,7 @@ PdShowPic::PdShowPic(QWidget *parent) :
     zoomFactor = 1;
     onTheMove = false;
     panPoint = new QPoint(0,0);
-    panPixels = 20;
+    panPixels = 20;         // 20 is an arbitrary amount.
 }
 
 PdShowPic::~PdShowPic()
@@ -73,7 +73,9 @@ void PdShowPic::pspZin()
     if (liveRect.height() == outHeight && liveRect.width() == outWidth) return;
     zoomFactor = zoomFactor * 1.25;     // 1.25 is an arbitrary amount.
     newW = (savedInPix.width() / zoomFactor);
+    // TODO: Adjust newW into a blank area if possible.
     newH = (savedInPix.height() / zoomFactor);
+    // TODO: Adjust newH into a blank area if possible.
     newX = ( (savedInPix.width() - newW) / 2);
     newY = ( (savedInPix.height() - newH) / 2);
     liveRect.setRect(newX, newY, newW, newH);
@@ -90,7 +92,9 @@ void PdShowPic::pspZout()
     liveCentre.setX( liveRect.x() + (liveRect.width() / 2) );
     liveCentre.setY( liveRect.y() + (liveRect.height() / 2) );
     newW = ( savedInPix.width() / zoomFactor );
+    // TODO: Adjust newW if to keep aspect ratio optimum for screen.
     newH = ( savedInPix.height() / zoomFactor );
+    // TODO: Adjust newH if to keep aspect ratio optimum for screen.
     newX = ( liveCentre.x() - (newW / 2) );
     if (newX < 0) newX = 0;
     if (newX + newW > savedInPix.width() ) newX = savedInPix.width() - newW;

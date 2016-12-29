@@ -1,4 +1,13 @@
 Change Log for picdok
+28/12/2016
+    Move the project to Qt5.
+    This involved substantial changes to the #includes and QT parameter
+    in the picdok.pro project file.
+    It now handles path names with accented characters.
+    QtWebkit replaced by QWebEngineView.
+    Version updated to 3.2
+14/11/2016
+    Clear information fields if Exif data not found.
 24/10/2016
     Automatic hiding of the cursor if it remains over the full-screen
     picture for more than 3 seconds.

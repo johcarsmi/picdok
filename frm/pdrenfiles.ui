@@ -58,7 +58,7 @@
           </size>
          </property>
          <property name="text">
-          <string>New Name &amp;Format String:</string>
+          <string>New Na&amp;me Format String:</string>
          </property>
          <property name="textFormat">
           <enum>Qt::AutoText</enum>
@@ -173,7 +173,7 @@ The files will be saved with a .jpg suffix.</string>
        <item>
         <widget class="QLabel" name="lblNumStep">
          <property name="text">
-          <string>Sequence No. &amp;step:</string>
+          <string>Se&amp;quence No. step:</string>
          </property>
          <property name="buddy">
           <cstring>cmbNumStep</cstring>

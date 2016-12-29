@@ -2,6 +2,9 @@
 <ui version="4.0">
  <class>PdPageGen</class>
  <widget class="QDialog" name="PdPageGen">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -36,7 +39,7 @@
           </size>
          </property>
          <property name="text">
-          <string>&amp;Title for Index:-</string>
+          <string>Title for I&amp;ndex:-</string>
          </property>
          <property name="buddy">
           <cstring>txtTitle</cstring>

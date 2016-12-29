@@ -1,4 +1,4 @@
-#include <QtGui/QApplication>
+#include <qt5/QtWidgets/QApplication>
 #include "picdok.h"
 
 int main(int argc, char *argv[])

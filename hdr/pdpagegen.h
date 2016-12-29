@@ -4,6 +4,7 @@
 #include <QDialog>
 #include <QSettings>
 #include <QStringListModel>
+#include <QTextStream>
 #include "picdokplaintextedit.h"
 #include "picdok.h"
 
