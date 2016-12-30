@@ -411,7 +411,6 @@ void Picdok::transformImage()  // Rotate the image according to EXIF data inform
 bool Picdok::getExifData(const QString & inFile, QString &retComm, QString &retOrtn, QString &retDate)
 // Get the UserComment, Orientation and DateTimeOriginal from the EXIF data.
 {
-//  Exiv2::Image::AutoPtr image = Exiv2::ImageFactory::open(inFile.toStdString().c_str());
     Exiv2::Image::AutoPtr image = Exiv2::ImageFactory::open(inFile.toUtf8().toStdString());
     image.get();
     image->readMetadata();
@@ -437,7 +436,7 @@ void Picdok::doSave()     // Save the revised UserComment data back to the sourc
     WaitPtr(true);
     try
     {
-        Exiv2::Image::AutoPtr image = Exiv2::ImageFactory::open(curFullFileName.toStdString());
+        Exiv2::Image::AutoPtr image = Exiv2::ImageFactory::open(curFullFileName.toUtf8().toStdString());
         image.get();
         image->readMetadata();
         Exiv2::ExifData &exifData = image->exifData();
