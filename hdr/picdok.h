@@ -10,11 +10,11 @@
 #define SETTINGS_FILE ".picdok.settings"
 #define ERROR_TITLE "Error"
 
-#include <QMainWindow>
-#include <QLabel>
-#include <QFileInfoList>
-#include <QSettings>
-#include <QDesktopWidget>
+#include <qt5/QtWidgets/QMainWindow>
+#include <qt5/QtWidgets/QLabel>
+#include <qt5/QtCore/QFileInfoList>
+#include <qt5/QtCore/QSettings>
+#include <qt5/QtWidgets/QDesktopWidget>
 
 #include "pdshowpic.h"
 

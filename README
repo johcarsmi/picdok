@@ -1,4 +1,4 @@
-This is the readme file for the picdok program version 0.2.2.
+This is the readme file for the picdok program version 0.3.2.
 
 Description: picdok is a simple program for helping the management and
 documentation of jpeg picture files. It works assuming that all the pictures of
@@ -41,7 +41,7 @@ Program options:
 4. Move to the next picture when the comment is saved.
 5. Supress warning if no EXIF data exists in a picture.
 
-  It is a QT 4 program using the libexiv2 library and was originally developed
+  It is now a Qt 5 program using the libexiv2 library and was originally developed
 using the QtCreator IDE v. 2.5.0 based on Qt version 4.8.1
 
 Parameters:

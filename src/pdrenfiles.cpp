@@ -4,12 +4,12 @@
 */
 #include "pdrenfiles.h"
 #include "ui_pdrenfiles.h"
-#include <QMessageBox>
-#include <QtAlgorithms>
-#include <QDir>
-#include <QDate>
-#include <QTime>
-#include <QDateTime>
+#include <qt5/QtWidgets/QMessageBox>
+#include <qt5/QtCore/QtAlgorithms>
+#include <qt5/QtCore/QDir>
+#include <qt5/QtCore/QDate>
+#include <qt5/QtCore/QTime>
+#include <qt5/QtCore/QDateTime>
 #include <exiv2/image.hpp>
 #include <cmath>
 #include "picdok.h"

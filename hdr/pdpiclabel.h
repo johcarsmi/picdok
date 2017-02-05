@@ -1,6 +1,6 @@
 #ifndef PDPICLABEL_H
 #define PDPICLABEL_H
-#include <QLabel>
+#include <qt5/QtWidgets/QLabel>
 
 class PdPicLabel : public QLabel
 {

@@ -68,7 +68,7 @@ FORMS    += \
 RESOURCES   = picdok.qrc
 
 # Added JCS to get it to link with libexiv2.so
-LIBS += -L/usr/lib -lexiv2
+    LIBS += -L/usr/lib64 -lexiv2
 
 # Static elements of html page referred to from RESOURCES file pikdoc.qrc etc.
 OTHER_FILES += \

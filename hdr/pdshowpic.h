@@ -1,9 +1,9 @@
 #ifndef PDSHOWPIC_H
 #define PDSHOWPIC_H
 
-#include <QDialog>
-#include <QShortcut>
-#include <QKeyEvent>
+#include <qt5/QtWidgets/QDialog>
+#include <qt5/QtWidgets/QShortcut>
+#include <qt5/QtGui/QKeyEvent>
 
 namespace Ui {
 class PdShowPic;

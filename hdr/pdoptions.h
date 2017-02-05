@@ -1,7 +1,7 @@
 #ifndef PdOptions_H
 #define PdOptions_H
 
-#include <QDialog>
+#include <qt5/QtWidgets/QDialog>
 
 namespace Ui {
     class PdOptions;

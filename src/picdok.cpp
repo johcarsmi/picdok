@@ -8,15 +8,15 @@
 */
 #include "picdok.h"
 #include "ui_picdok.h"
-#include <QMessageBox>
-#include <QFileDialog>
-#include <QTextStream>
-#include <QFile>
-#include <QImage>
-#include <QIODevice>
-#include <QLabel>
-#include <QPixmap>
-#include <QDir>
+#include <qt5/QtWidgets/QMessageBox>
+#include <qt5/QtWidgets/QFileDialog>
+#include <qt5/QtCore/QTextStream>
+#include <qt5/QtCore/QFile>
+#include <qt5/QtGui/QImage>
+#include <qt5/QtCore/QIODevice>
+#include <qt5/QtWidgets/QLabel>
+#include <qt5/QtGui/QPixmap>
+#include <qt5/QtCore/QDir>
 #include <QApplication>
 #include <cstdio>
 #include <iostream>

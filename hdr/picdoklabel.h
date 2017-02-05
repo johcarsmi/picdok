@@ -1,7 +1,7 @@
 #ifndef PICDOKLABEL_H
 #define PICDOKLABEL_H
 
-#include <QLabel>
+#include <qt5/QtWidgets/QLabel>
 
 class PicDokLabel :public QLabel
 {

@@ -1,7 +1,7 @@
 #ifndef PDCONFIRM_H
 #define PDCONFIRM_H
 
-#include <QDialog>
+#include <qt5/QtWidgets/QDialog>
 
 namespace Ui {
 class PdConfirm;

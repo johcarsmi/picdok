@@ -3,11 +3,11 @@
 */
 #include "pdpagegen.h"
 #include "ui_pdpagegen.h"
-#include <QDir>
-#include <QTextStream>
-#include <QFile>
-#include <QTemporaryFile>
-#include <QMessageBox>
+#include <qt5/QtCore/QDir>
+#include <qt5/QtCore/QTextStream>
+#include <qt5/QtCore/QFile>
+#include <qt5/QtCore/QTemporaryFile>
+#include <qt5/QtWidgets/QMessageBox>
 #include "pdpreview.h"
 
 PdPageGen::PdPageGen(QWidget *parent,const QString &inDir,const QStringList &inFiles, Picdok *inMain) :

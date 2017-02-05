@@ -1,7 +1,7 @@
 #ifndef PDPREVIEW_H
 #define PDPREVIEW_H
 
-#include <QDialog>
+#include <qt5/QtWidgets/QDialog>
 
 namespace Ui {
     class PdPreview;

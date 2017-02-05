@@ -1,10 +1,10 @@
 #ifndef PDRENFILES_H
 #define PDRENFILES_H
 
-#include <QDialog>
-#include <QDate>
-#include <QTime>
-#include <QDateTime>
+#include <qt5/QtWidgets/QDialog>
+#include <qt5/QtCore/QDate>
+#include <qt5/QtCore/QTime>
+#include <qt5/QtCore/QDateTime>
 #include "picdok.h"
 #include <exiv2/image.hpp>
 

@@ -1,7 +1,7 @@
 #ifndef PICDOKPLAINTEXTEDIT_H
 #define PICDOKPLAINTEXTEDIT_H
 
-#include <QPlainTextEdit>
+#include <qt5/QtWidgets/QPlainTextEdit>
 
 class PicDokPlainTextEdit : public QPlainTextEdit
 {

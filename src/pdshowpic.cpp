@@ -1,7 +1,7 @@
 #include "pdshowpic.h"
 #include "ui_pdshowpic.h"
-#include <QShortcut>
-#include <QKeyEvent>
+#include <qt5/QtWidgets/QShortcut>
+#include <qt5/QtGui/QKeyEvent>
 
 PdShowPic::PdShowPic(QWidget *parent) :
     QDialog(parent),

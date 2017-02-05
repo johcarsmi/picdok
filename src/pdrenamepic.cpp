@@ -3,8 +3,8 @@
  * A class to let the user rename the currently displayed file.
 */
 #include "ui_pdrenamepic.h"
-#include <QDir>
-#include <QMessageBox>
+#include <qt5/QtCore/QDir>
+#include <qt5/QtWidgets/QMessageBox>
 
 PdRenamePic::PdRenamePic(QWidget *parent, const QString &inFile, const QString &inDir) :
     QDialog(parent),

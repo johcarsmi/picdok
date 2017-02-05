@@ -5,8 +5,8 @@
 #define ERROR_TITLE "Error"
 #define BAD_NAME "The new name is too short\nand does not end in .jpg/.jpeg/.JPG/.JPEG"
 
-#include <QDialog>
-#include <QTextCursor>
+#include <qt5/QtWidgets/QDialog>
+#include <qt5/QtGui/QTextCursor>
 
 namespace Ui {
     class PdRenamePic;

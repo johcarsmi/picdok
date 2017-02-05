@@ -1,8 +1,8 @@
 #ifndef PicdokTextEdit_H
 #define PicdokTextEdit_H
 
-#include <QTextEdit>
-#include <QtGui>
+#include <qt5/QtWidgets/QTextEdit>
+#include <qt5/QtGui/QtGui>
 
 class PicdokTextEdit : public QTextEdit
 {

@@ -1,10 +1,10 @@
 #ifndef PDPAGEGEN_H
 #define PDPAGEGEN_H
 
-#include <QDialog>
-#include <QSettings>
-#include <QStringListModel>
-#include <QTextStream>
+#include <qt5/QtWidgets/QDialog>
+#include <qt5/QtCore/QSettings>
+#include <qt5/QtCore/QStringListModel>
+#include <qt5/QtCore/QTextStream>
 #include "picdokplaintextedit.h"
 #include "picdok.h"
 
