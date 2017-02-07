@@ -1,4 +1,9 @@
 Change Log for picdok
+07/02/2017
+    Change the title from "Quit" to "Cancel" on secondary forms on the 
+    button that closes the form without causing any action.
+    Document that Exiv2::ImageFactory::open() expects a std::string
+    file parameter according to the documentation.
 28/12/2016
     Move the project to Qt5.
     This involved substantial changes to the #includes and QT parameter
