@@ -157,7 +157,7 @@
         </size>
        </property>
        <property name="text">
-        <string>Quit</string>
+        <string>Cancel</string>
        </property>
        <property name="shortcut">
         <string>Esc</string>
@@ -186,7 +186,7 @@
         </size>
        </property>
        <property name="text">
-        <string>&amp;Save</string>
+        <string>&amp;OK</string>
        </property>
        <property name="shortcut">
         <string>Return</string>

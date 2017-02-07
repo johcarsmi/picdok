@@ -231,7 +231,7 @@ The files will be saved with a .jpg suffix.</string>
           <string>Click to abandon action.</string>
          </property>
          <property name="text">
-          <string>Quit</string>
+          <string>Cancel</string>
          </property>
         </widget>
        </item>
