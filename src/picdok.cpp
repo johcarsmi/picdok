@@ -206,7 +206,7 @@ void Picdok::doSetDirectory()   // Handle the menu entry to set the directory of
     newDir = QFileDialog::getExistingDirectory(this,
                                tr("Select Required Directory"),
                                curDir,
-                               QFileDialog::ShowDirsOnly&QFileDialog::ReadOnly&QFileDialog::DontResolveSymlinks);
+                               QFileDialog::ReadOnly);
     if (newDir != "" )
     {
         curDir = newDir;
