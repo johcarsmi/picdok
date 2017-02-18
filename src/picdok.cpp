@@ -445,7 +445,7 @@ void Picdok::doSave()     // Save the revised UserComment data back to the sourc
         image->setExifData(exifData);
         image->writeMetadata();
         ui->pbSave->setEnabled(false);
-        picUserComment = picUserCommentSave = ui->txtComment->toPlainText().trimmed();
+        picUserComment = picUserCommentSave = ui->txtComment->toPlainText().trimmed().toLocal8Bit();
         ui->pbNext->setFocus();     // To set form state so that keyboard action works.
         if (ui->pbNext->isEnabled() && autoMove && !noAutomove)
         {
