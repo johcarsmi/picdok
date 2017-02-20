@@ -31,7 +31,7 @@
   <property name="modal">
    <bool>true</bool>
   </property>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>5</x>
@@ -61,7 +61,7 @@
          </size>
         </property>
         <property name="toolTip">
-         <string>Press to close the form.</string>
+         <string>Press to close the form - &lt;Esc&gt;</string>
         </property>
         <property name="text">
          <string>&amp;Close</string>
@@ -71,6 +71,34 @@
         </property>
         <property name="default">
          <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="hiddenClose">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>0</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="focusPolicy">
+         <enum>Qt::NoFocus</enum>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="shortcut">
+         <string>Alt+C</string>
         </property>
        </widget>
       </item>
@@ -118,6 +146,22 @@
     <hint type="destinationlabel">
      <x>162</x>
      <y>583</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>hiddenClose</sender>
+   <signal>clicked()</signal>
+   <receiver>PdPreview</receiver>
+   <slot>doClose()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>128</x>
+     <y>570</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>234</x>
+     <y>565</y>
     </hint>
    </hints>
   </connection>
