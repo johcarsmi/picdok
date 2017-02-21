@@ -418,7 +418,7 @@ bool Picdok::getExifData(const QString & inFile, QString &retComm, QString &retO
     if (exifData.empty()) return false;
     Exiv2::Exifdatum &datum = exifData["Exif.Photo.UserComment"];
     retComm = datum.toString().c_str();
-    if (retComm.startsWith("charset="))
+    if (retComm.startsWith("charset="))     // This test is probably never true, but left in just in case.
     {
         int spos = retComm.indexOf(' ');
         retComm = retComm.remove(0,spos+1);
@@ -441,7 +441,7 @@ void Picdok::doSave()     // Save the revised UserComment data back to the sourc
         image->readMetadata();
         Exiv2::ExifData &exifData = image->exifData();
         //if (exifData.empty()) throw exifExcpt;    // Commented out as writing a key creates the exif data.
-        exifData["Exif.Photo.UserComment"] = "charset=\"Ascii\" " + ui->txtComment->toPlainText().trimmed().toStdString();
+        exifData["Exif.Photo.UserComment"] = ui->txtComment->toPlainText().trimmed().toStdString();
         image->setExifData(exifData);
         image->writeMetadata();
         ui->pbSave->setEnabled(false);
