@@ -61,6 +61,9 @@ void PdShowPic::setSize(bool fScr, QRect inRect)
 
 void PdShowPic::setPic(QPixmap *inPix)
 {
+    zoomFactor = 1;
+    panPoint->setX(0);
+    panPoint->setY(0);
     dispPix = inPix->copy();
     savedInPix = inPix->copy();
     liveRect = inPix->rect();

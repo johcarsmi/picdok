@@ -1,4 +1,6 @@
 Change Log for picdok
+21/05/2017
+    Reset zoomFactor and panPoint in pdshowpic.cpp on change of picture.
 21/02/2017
     Problem with resizing QWebEngineView as pdPreview is resized.
     Fixed the size of the form to hide the problem while a solution
