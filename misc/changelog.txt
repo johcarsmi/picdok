@@ -1,4 +1,8 @@
 Change Log for picdok
+03/08/2017
+    pdconfirm.cpp modified to use ->accept() and ->reject() methods
+    rather than close() to get correct result returned to calling
+    code.
 21/05/2017
     Reset zoomFactor and panPoint in pdshowpic.cpp on change of picture.
 21/02/2017
