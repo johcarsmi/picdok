@@ -16,13 +16,13 @@ PdConfirm::~PdConfirm()
 void PdConfirm::doNo()
 {
     this->setResult(QDialog::Rejected);
-    this->close();
+    this->reject();     /* The above did not set the return value. */
 }
 
 void PdConfirm::doYes()
 {
     this->setResult(QDialog::Accepted);
-    this->close();
+    this->accept();     /* The above did not set the return value. */
 }
 
 void PdConfirm::setPrompt(QString inStr)
