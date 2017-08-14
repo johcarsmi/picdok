@@ -1,4 +1,7 @@
 Change Log for picdok
+14/08/2017
+    pdpiclabel.cpp changed to shorten the time for which the cursor
+    is visible.
 03/08/2017
     pdconfirm.cpp modified to use ->accept() and ->reject() methods
     rather than close() to get correct result returned to calling

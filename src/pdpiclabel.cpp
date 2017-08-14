@@ -6,7 +6,7 @@ PdPicLabel::PdPicLabel(QWidget *parent) : QLabel(parent)
     nowPt = new QPoint;
     moving = false;
     tim = new QTimer(this);
-    tim->setInterval(3000);     // 3 seconds is an arbitrary period.
+    tim->setInterval(1000);     // 1 second is an arbitrary period.
     connect(tim, SIGNAL(timeout()), this, SLOT(TimExpire()));
     tim->start();
     this->setMouseTracking(true);
