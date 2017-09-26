@@ -1,4 +1,6 @@
 Change Log for picdok
+26/09/2017
+    Clear displayed date and text if no EXIF data found.
 14/08/2017
     pdpiclabel.cpp changed to shorten the time for which the cursor
     is visible.

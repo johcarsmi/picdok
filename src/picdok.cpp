@@ -369,11 +369,16 @@ void Picdok::doSetPicture()     // Display selected picture and EXIF data.
         if (!noWarnNoExif)
         {
             QMessageBox::information(this, ERROR_TITLE, tr("exif data not obtained"));
+            ui->lblPicDat->setText(picDatTimOri.left(10).replace(':',"/"));
+            ui->txtComment->setPlainText(picUserComment);
         }
     }
+    else
+    {
     // Set picture date and comment.
     ui->lblPicDat->setText(picDatTimOri.left(10).replace(':',"/"));
     ui->txtComment->setPlainText(picUserComment);
+    }
     picUserCommentSave = picUserComment;
     img->load(curDir + QDir::separator() + curFile);
     if (img->isNull()) { QMessageBox::information(this, ERROR_TITLE,  tr("Cannot open %1").arg(curFile)); return; }
