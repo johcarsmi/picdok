@@ -48,6 +48,12 @@ void PdShowPic::keyPressEvent(QKeyEvent *evt)
     if (evt->key() == Qt::Key_Down) { panPoint->setY(0 + panPixels); pspMovePic(panPoint); }
     if (evt->key() == Qt::Key_Left) { panPoint->setX(0 - panPixels); pspMovePic(panPoint); }
     if (evt->key() == Qt::Key_Right) { panPoint->setX(0 + panPixels); pspMovePic(panPoint); }
+    // Scaling to fill height.
+    if (evt->key() == Qt::Key_H) pspFillHeight();
+    // Scaling to fill width.
+    if (evt->key() == Qt::Key_W) pspFillWidth();
+    // Setting back to original state.
+    if (evt->key() == Qt::Key_N) pspSetNormal();
     QDialog::keyPressEvent(evt);
 }
 
@@ -78,30 +84,7 @@ void PdShowPic::pspZin()
     //qDebug("pspZin");
     if (liveRect.height() <= outHeight && liveRect.width() <= outWidth) return;     // Don't zoom beyond 1:1 pixel ratio.
     zoomFactor = zoomFactor * zoomIncrement;
-    newW = (savedInPix.width() / zoomFactor);   // Set the new output width by zoom factor
-    newH = (savedInPix.height() / zoomFactor);   // Set the new output height by zoom factor
-
-    if (inAspRat < outAspRat)   // Picture wider for height than output device.
-    {
-        if (outAspRat >= ((float)newH / (float)newW)) // Picture doesn't fill the vertical dimension of screen.
-        {
-            newH = (float)newW * outAspRat;
-            if (newH > savedInPix.height()) newH = savedInPix.height(); // Restrain maximum.
-        }
-    }
-    else    // Picture narrower for height than output device.
-    {
-        if (outAspRat < ((float)newH / (float)newW))
-        {
-            newW = (float)newH / outAspRat;
-            if (newW > savedInPix.width()) newW = savedInPix.width();   // Restrain maximum.
-        }
-    }
-    newX = ( (savedInPix.width() - newW) / 2);
-    newY = ( (savedInPix.height() - newH) / 2);
-    liveRect.setRect(newX, newY, newW, newH);
-    dispPix = savedInPix.copy(liveRect);
-    ui->lblImg->setPixmap(dispPix.scaled(ui->lblImg->width(),ui->lblImg->height(),Qt::KeepAspectRatio,Qt::SmoothTransformation));
+    pspDoZoomIn(zoomFactor);
 }
 
 void PdShowPic::pspZout()
@@ -158,4 +141,51 @@ void PdShowPic::pspMovePic(QPoint *moveBy)
     dispPix = savedInPix.copy(liveRect);
     ui->lblImg->setPixmap(dispPix.scaled(ui->lblImg->width(),ui->lblImg->height(),Qt::KeepAspectRatio,Qt::SmoothTransformation));
     onTheMove = false;
+}
+
+void PdShowPic::pspFillHeight()
+{
+    zoomFactor = outAspRat / inAspRat;
+    pspDoZoomIn(zoomFactor);
+}
+
+void PdShowPic::pspFillWidth()
+{
+    zoomFactor = inAspRat / outAspRat;
+    pspDoZoomIn(zoomFactor);
+}
+
+void PdShowPic::pspSetNormal()
+{
+    zoomFactor = 1.00;
+    pspDoZoomIn(zoomFactor);
+}
+
+void PdShowPic::pspDoZoomIn(float inZoomF)
+{
+    newW = (savedInPix.width() / inZoomF);   // Set the new output width by zoom factor
+    newH = (savedInPix.height() / inZoomF);   // Set the new output height by zoom factor
+
+    if (inAspRat < outAspRat)   // Picture wider for height than output device.
+    {
+        if (outAspRat >= ((float)newH / (float)newW)) // Picture doesn't fill the vertical dimension of screen.
+        {
+            newH = (float)newW * outAspRat;
+            if (newH > savedInPix.height()) newH = savedInPix.height(); // Restrain maximum.
+        }
+    }
+    else    // Picture narrower for height than output device.
+    {
+        if (outAspRat < ((float)newH / (float)newW))
+        {
+            newW = (float)newH / outAspRat;
+            if (newW > savedInPix.width()) newW = savedInPix.width();   // Restrain maximum.
+        }
+    }
+    newX = ( (savedInPix.width() - newW) / 2);
+    newY = ( (savedInPix.height() - newH) / 2);
+    liveRect.setRect(newX, newY, newW, newH);
+    dispPix = savedInPix.copy(liveRect);
+    ui->lblImg->setPixmap(dispPix.scaled(ui->lblImg->width(),ui->lblImg->height(),Qt::KeepAspectRatio,Qt::SmoothTransformation));
+
 }

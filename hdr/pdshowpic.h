@@ -38,6 +38,7 @@ private:
     float inAspRat;
     float outAspRat;
     float zoomIncrement;
+    void pspDoZoomIn(float);
 
 signals:
     void closeReq();
@@ -48,6 +49,9 @@ private slots:
     void pspZin();
     void pspZout();
     void pspMovePic(QPoint *);
+    void pspFillHeight();
+    void pspFillWidth();
+    void pspSetNormal();
 
 };
 

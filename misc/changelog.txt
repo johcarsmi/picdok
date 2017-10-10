@@ -1,4 +1,7 @@
 Change Log for picdok
+10/10/2017
+    Added functions to PdShowPic so that the picture may be set to
+    fill the display height, or width, or reset to normal.
 09/10/2017
     Modified zooming so that all the output device pixels are used
     when zooming letterbox or portrait style pictures.
