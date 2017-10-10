@@ -35,6 +35,9 @@ private:
     bool onTheMove;
     QPoint *panPoint;
     int panPixels;
+    float inAspRat;
+    float outAspRat;
+    float zoomIncrement;
 
 signals:
     void closeReq();

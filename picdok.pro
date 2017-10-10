@@ -21,7 +21,7 @@ menu.path = /usr/share/applications                 # freedesktop.org standard l
 menu.files = misc/picdok.desktop
 INSTALLS += menu
 
-VERSION  = 0.3.2
+VERSION  = 0.3.3
 
 APPVERSTR = '\\"$${VERSION}\\"'     # places quotes around the version string
 DEFINES += APPVER=\"$${APPVERSTR}\" # create an APPVER defines containing the version string

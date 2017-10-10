@@ -1,4 +1,8 @@
 Change Log for picdok
+09/10/2017
+    Modified zooming so that all the output device pixels are used
+    when zooming letterbox or portrait style pictures.
+    Update version to 0.3.3.
 07/10/2017
     Changed the shortcuts for add and delete line in pdpagegen.ui
     to <Ctrl> + , and <Ctrl> - .
