@@ -13,7 +13,7 @@ PdShowPic::PdShowPic(QWidget *parent) :
     ui->lblImg->setFocus(); // This with Focus Policy = Strong Focus enables the frameless form to respond to keyboard events.
     connect(ui->lblImg, SIGNAL(zoomIn()), this, SLOT(pspZin()));
     connect(ui->lblImg, SIGNAL(zoomOut()), this, SLOT(pspZout()));
-    connect(ui->lblImg, SIGNAL(movePic(QPoint*)), this, SLOT(pspMovePic(QPoint*)));
+    connect(ui->lblImg, SIGNAL(movePic(QPoint*, QString)), this, SLOT(pspMovePic(QPoint*, QString)));
     zoomFactor = 1;
     onTheMove = false;
     panPoint = new QPoint(0,0);
@@ -25,7 +25,7 @@ PdShowPic::~PdShowPic()
 {
     disconnect(ui->lblImg, SIGNAL(zoomIn()), this, SLOT(pspZin()));
     disconnect(ui->lblImg, SIGNAL(zoomOut()), this, SLOT(pspZout()));
-    disconnect(ui->lblImg, SIGNAL(movePic(QPoint*)), this, SLOT(pspMovePic(QPoint*)));
+    disconnect(ui->lblImg, SIGNAL(movePic(QPoint*, QString)), this, SLOT(pspMovePic(QPoint*, QString)));
     delete ui;
     delete panPoint;
 }
@@ -44,16 +44,20 @@ void PdShowPic::keyPressEvent(QKeyEvent *evt)
     // Panning a zoomed image.
     panPoint->setX(0);
     panPoint->setY(0);
-    if (evt->key() == Qt::Key_Up) { panPoint->setY(0 - panPixels); pspMovePic(panPoint); }
-    if (evt->key() == Qt::Key_Down) { panPoint->setY(0 + panPixels); pspMovePic(panPoint); }
-    if (evt->key() == Qt::Key_Left) { panPoint->setX(0 - panPixels); pspMovePic(panPoint); }
-    if (evt->key() == Qt::Key_Right) { panPoint->setX(0 + panPixels); pspMovePic(panPoint); }
+    if (evt->key() == Qt::Key_Up) { panPoint->setY(0 - panPixels); pspMovePic(panPoint, "Arrow"); }
+    if (evt->key() == Qt::Key_Down) { panPoint->setY(0 + panPixels); pspMovePic(panPoint, "Arrow"); }
+    if (evt->key() == Qt::Key_Left) { panPoint->setX(0 - panPixels); pspMovePic(panPoint, "Arrow"); }
+    if (evt->key() == Qt::Key_Right) { panPoint->setX(0 + panPixels); pspMovePic(panPoint, "Arrow"); }
     // Scaling to fill height.
     if (evt->key() == Qt::Key_H) pspFillHeight();
     // Scaling to fill width.
     if (evt->key() == Qt::Key_W) pspFillWidth();
     // Setting back to original state.
     if (evt->key() == Qt::Key_N) pspSetNormal();
+    // Moving to far left.
+    if (evt->key() == Qt::Key_L) { panPoint->setX(0 + panPixels); pspMovePic(panPoint, "Left"); }
+    // Moving to far right.
+    if (evt->key() == Qt::Key_R) { panPoint->setX(0 + panPixels); pspMovePic(panPoint, "Right"); }
     QDialog::keyPressEvent(evt);
 }
 
@@ -126,15 +130,21 @@ void PdShowPic::pspZout()
     ui->lblImg->setPixmap(dispPix.scaled(ui->lblImg->width(),ui->lblImg->height(),Qt::KeepAspectRatio,Qt::SmoothTransformation));
 }
 
-void PdShowPic::pspMovePic(QPoint *moveBy)
+void PdShowPic::pspMovePic(QPoint *moveBy, QString keyUsed)
 {
     //qDebug("pspMovePic: x = %d, y = %d", moveBy->x(), moveBy->y());
     if (onTheMove) return;
+    if (keyUsed == "Left") newX = 0;
+    else if (keyUsed == "Right") newX = savedInPix.width();
+    else if (keyUsed == "Arrow" || keyUsed == "Mouse")
+    {
+        newX = liveRect.x() - moveBy->x();
+        newY = liveRect.y() - moveBy->y();
+    }
+    else return;
     onTheMove = true;
-    newX = liveRect.x() - moveBy->x();
     if (newX < 0) newX = 0;
     if (newX + liveRect.width() > savedInPix.width() ) newX = savedInPix.width() - liveRect.width();
-    newY = liveRect.y() - moveBy->y();
     if (newY < 0) newY = 0;
     if (newY + liveRect.height() > savedInPix.height() ) newY = savedInPix.height() - liveRect.height();
     liveRect.setRect(newX,newY,newW, newH);

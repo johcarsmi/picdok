@@ -62,7 +62,7 @@ void PdPicLabel::mouseMoveEvent(QMouseEvent *evt)
         //qDebug("PdPicLabel: moveX = %d : moveY = %d", dX, dY);
         nowPt->setX(dX);
         nowPt->setY(dY);
-        emit movePic(nowPt);
+        emit movePic(nowPt, "Mouse");
         startX = evt->x();
         startY = evt->y();
         evt->accept();

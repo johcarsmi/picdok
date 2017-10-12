@@ -48,7 +48,7 @@ signals:
 private slots:
     void pspZin();
     void pspZout();
-    void pspMovePic(QPoint *);
+    void pspMovePic(QPoint *, QString);
     void pspFillHeight();
     void pspFillWidth();
     void pspSetNormal();

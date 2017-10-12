@@ -29,7 +29,7 @@ private:
 signals:
     void zoomIn();
     void zoomOut();
-    void movePic(QPoint *);
+    void movePic(QPoint *, QString);
 
 private slots:
     void TimExpire();
