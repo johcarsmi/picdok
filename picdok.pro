@@ -21,6 +21,10 @@ menu.path = /usr/share/applications                 # freedesktop.org standard l
 menu.files = misc/picdok.desktop
 INSTALLS += menu
 
+man.path = /usr/share/man/man1                      # Location for man pages in openSUSE
+man.files = misc/picdok.1.gz
+INSTALLS += man
+
 VERSION  = 0.3.3
 
 APPVERSTR = '\\"$${VERSION}\\"'     # places quotes around the version string
@@ -83,3 +87,6 @@ OTHER_FILES += \
     misc/changelog.txt \
     misc/picdok.desktop \
     README \
+
+DISTFILES += \
+    misc/picdok.1

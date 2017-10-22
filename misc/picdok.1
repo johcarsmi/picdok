@@ -1,0 +1,200 @@
+.TH picdok 1
+.SH NAME
+picdok \- document jpg pictures in UserComment EXIF field 
+and display pictures full screen with zoom and pan capabilities.
+.SH SYNOPSIS
+.B picdok
+.BR [ directory-name ]
+.SH OPTIONS
+The name of the directory whose contents are to be documented or shown.
+.SH MENU FEATURES
+The program is controlled by its menu items, many of which have
+keyboard shortcuts. These are documented in the menus themselves
+and are not separately documented here.
+.PP
+.B File
+.RS
+.TP
+.BR About
+Displays information about the program.
+.TP
+.BR Options
+Opens up a modal form where the program options may be set.
+These are all check-box options.
+.RS
+.IP "1. Set focus on Comment field if blank."
+.IP "2. Confirm image deletions."
+.IP "3. Confirm image deselections."
+.IP "4. Move to next image on Save action."
+.IP "5. Suppress warning if no Exif data."
+.RE
+.TP
+.BR Quit
+Closes the program.
+.RE
+.PP
+.B Directory
+.RS
+This menu controls actions which affect all files in the directory.
+.RE
+.RS
+.TP
+.BR Set\ Directory
+Opens up the standard "Open File" dialog enabling the user to select the
+directory to use with the program.
+Note that the file name is left blank once the required directory has been selected.
+.TP
+.BR Rename\ files
+Opens up a dialog which allows the user to rename the files in the
+directory based optionally on fixed strings, century, year, month, day,
+and a serial number which may be from 1 to 4 digits and may
+be incremented in steps of 1, 2, 3, or 5.
+.TP
+.BR Generate\ Index
+This opens up a dialog into which the user may enter a title for the html index page, a description of the collection of pictures in the directory, and a list of the main picture subjects in the collection of pictures.
+.IP
+The name  of the output file name may be altered from the default
+of
+"_picinfo.html"
+and if the option is selected a preview of the
+page is displayed. The file containing the index is located in 
+the same directory as the pictures.
+.TP
+.BR Refresh
+This will refresh the program's eye view of the picture files
+when changes have been made to the directory file names or
+when files have been added or deleted.
+The user is repositioned at the current picture if its
+file still exists at the refreshing. 
+Otherwise the first picture in the folder is shown.
+.TP
+.BR View\ Index
+This will display the contents of the index html file if one exists.
+.TP
+.BR Undo\ Deselect
+This allows the user to recover a picture from those that have 
+been "deselected". It is necessary to know the file name
+of the file to be brought back into the current directory.
+See the entry under Image -> Deselect.
+.PP
+.RE
+.B Image
+.RS
+Actions in this menu affect individual images.
+.RE
+.RS
+.TP
+.BR Next
+Move to the next file (by name) in the diretory.
+.TP
+.BR Next\ Empty
+Move to the next file which has no entry in the Comment field.
+A message is displayed if all files have entries and the 
+current picture file is not changed.
+.TP
+.BR Prior
+Move to the prior file (by name) in the directory.
+.TP
+.BR First
+Move to the first picture in the directory.
+.TP
+.BR Rename
+Opens a dialog to rename the file. 
+This is intended to be used to sequence
+the pictures in the directory.
+.TP
+.BR Move\ To
+Move the picture to another directory.
+It opens a standard dialog to do this.
+See the warning under Directory -> Select Directory.
+.TP
+.BR Deselect
+This action moves the current picture to the "deselected" directory
+which will be created if it does not exist.
+The user is prompted to confirm the action if the appropriate option is set.
+.TP
+.BR Delete
+Delete the current picture from the system.
+The user is prompted to confirm the action if the appropriate option is set.
+.TP
+.BR Edit\ Comment
+Moves the cursor to the Comment field.
+.TP
+.BR Save
+Saves the current comment data. 
+This is only available if the Comment data has been changed.
+The next picture will be shown on successful saving
+if that option has been selected.
+.TP
+.BR Show
+This opens up a borderless form with a black background
+which will fill the display device on which it is shown.
+If a second screen is attached to the computer
+on which the program is running it will
+always be shown on that device.
+This form responds to a number of different keyboard
+and mouse actions.
+The mouse pointer is hidden on this form after one second 
+since its last movement.
+.RS
+.TP
+.BR <space-bar>
+Move to the next image (if present).
+.TP
+.BR <backspace>
+Move to the prior image (if present).
+.TP
+.BR "q / <esc>"
+Close the full screen display.
+.TP
+.BR "+ / Scroll wheel forward."
+Zoom in on image. Zooming stops at 1:1 picture pixels to 
+output device pixels ratio.
+.TP
+.BR "- / Scroll wheel back."
+Zoom out on image. Zooming stops when the picture would
+be smaller that the output device in two directions.
+.TP
+.BR w
+Fit picture to width of output device.
+.TP
+.BR h
+Fit picture to height of output device.
+.TP
+.BR n
+Return picture to normal zoom. I.e. Fit picture so that
+it fills the output device in either height or width and
+no part of the picture is hidden.
+.TP
+.BR "l / r"
+Pan the picture so that the left / right edge of the picture is
+displayed at the left  / right edge of the output device. Works when 
+the picture is wider than the output device at current
+zoom level.
+.TP
+.BR "Arrow keys / mouse actions"
+The arrow keys pan the picture in the direction of the arrow.
+To move the picture with the mouse left-mouse click and drag
+in the required direction. The picture can only be dragged in
+a given direction if there is part of it which will be displayed
+on the output device by doing so. The mouse pointer appears as a
+hand which closes when the button is pressed. 
+.RE
+.RE
+.SH FILES
+The program stores the following files:-
+.TP
+.BR "~/.picdok.settings"
+This is where the program general settings are stored.
+.TP
+.BR ".picdok.data"
+This stores the additional information used in generating
+the index page. There will be one in each directory for
+which an index has been generated.
+.TP
+.BR deselected
+A directory of this name is created in the main directory
+of pictures when a picture is first deselected. It allows
+a set of pictures to be formed allowing for reconsideration.
+.SH AUTHOR
+John Carrick Smith.

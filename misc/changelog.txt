@@ -1,4 +1,7 @@
 Change Log for picdok
+22/10/2017
+    Added a man file for the program. Added the installation of this
+    file to the project file.
 12/10/2017
     Added more key actions to PdShowPic to jump to far left (L) or
     far right (R) of a panorama.

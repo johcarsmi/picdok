@@ -89,6 +89,7 @@ Installation:
   This will put the program into /usr/local/bin and
   a menu file (picdok.desktop) into /usr/share/applications and
   an icon file (picdok.png) into /usr/share/icons/hicolor/48x48/apps .
+  A man page is inserted into /usr/share/man/man1.
 
   The menu item should appear in the menu in the Graphics / Photography
   selection.

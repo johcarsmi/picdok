@@ -7,5 +7,5 @@
    to the icon name when moving it into the distribution folder.
    (This may be just a matter of restructuring the projects to
     match in terms of folder structure.)
-4. Allow the user to zoom an image displayed full-screen.
+//4. Allow the user to zoom an image displayed full-screen. done 10/2017
 5. Write a man page.
