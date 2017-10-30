@@ -169,6 +169,7 @@ void Picdok::doNextEmpty()  // Find the next picture file without a UserComment 
     WaitPtr(true);
     int ix = ui->cmbPicFile->currentIndex() + 1;
     int rows = ui->cmbPicFile->count();
+    int ignCt = 0;
     QString nfile;
     QString nComm;
     QString nOrtn;
@@ -178,9 +179,17 @@ void Picdok::doNextEmpty()  // Find the next picture file without a UserComment 
         nfile = curDir + QDir::separator() + ui->cmbPicFile->itemText(ix);
         if (!getExifData(nfile, nComm, nOrtn, nDtTm))
         {
-            WaitPtr(false);
-            QMessageBox::critical(this, ERROR_TITLE, tr("exif data not obtained for ") + nfile);
-            return;
+            if (!noWarnNoExif)
+            {
+                WaitPtr(false);
+                QMessageBox::critical(this, ERROR_TITLE, tr("EXIF data not obtained for ") + nfile);
+                return;
+            }
+            else
+            {
+                nComm = "***";        // an arbitrary string so that the following test fails.
+                ignCt++;
+            }
         }
         if (nComm.trimmed() == "")    // We have found a file without UserComment.
         {
@@ -192,7 +201,8 @@ void Picdok::doNextEmpty()  // Find the next picture file without a UserComment 
         ix++;
     }
     WaitPtr(false);
-    QMessageBox::information(this, tr("Information"), tr("All remaining pictures have user comment data."));
+    QMessageBox::information(this, tr("Information"),
+                             tr("All remaining pictures have user comment data.\n%1 files ignored (no EXIF data)").arg(ignCt));
 }
 
 void Picdok::doMoveFirst()
@@ -203,11 +213,12 @@ void Picdok::doMoveFirst()
 
 void Picdok::doSetDirectory()   // Handle the menu entry to set the directory of picture files to be used.
 {
-    newDir = QFileDialog::getExistingDirectory(this,
+   newDir = QFileDialog::getExistingDirectory(this,
                                tr("Select Required Directory"),
                                curDir,
-                               QFileDialog::ReadOnly);
-    if (newDir != "" )
+                               QFileDialog::ReadOnly );     // Doesn't show the directory in the entry field.
+ //                            QFileDialog::ReadOnly | QFileDialog::ShowDirsOnly ); // Doesn't show the current directory in the tree structure.
+   if (newDir != "" )
     {
         curDir = newDir;
         picUserComment = picUserCommentSave = "";

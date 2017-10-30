@@ -1,4 +1,11 @@
 Change Log for picdok
+30/10/2017
+    Count of ignored files (no exif data) displayed on the
+    result of "Find Next Empty".
+23/10/2017
+    Updated the man file with context menu information.
+    Updated Picdok::doNextEmpty() to ignore lack of EXIF data if
+    this option is set.
 22/10/2017
     Added a man file for the program. Added the installation of this
     file to the project file.

@@ -129,7 +129,7 @@
 These tokens must appear in the order above. 
 Other characters will be carried into the new file name unaltered.
 
-A sequence number will be appended controlled as below.&lt;/p&gt;
+A sequence number will be appended controlled as below.
 
 The files will be saved with a .jpg suffix.</string>
        </property>
