@@ -169,26 +169,19 @@ void Picdok::doNextEmpty()  // Find the next picture file without a UserComment 
     WaitPtr(true);
     int ix = ui->cmbPicFile->currentIndex() + 1;
     int rows = ui->cmbPicFile->count();
-    int ignCt = 0;
     QString nfile;
     QString nComm;
     QString nOrtn;
     QString nDtTm;
     while (ix < rows)
     {
-        nfile = curDir + QDir::separator() + ui->cmbPicFile->itemText(ix);
+        nfile = curDir + ui->cmbPicFile->itemText(ix);
         if (!getExifData(nfile, nComm, nOrtn, nDtTm))
         {
             if (!noWarnNoExif)
             {
                 WaitPtr(false);
-                QMessageBox::critical(this, ERROR_TITLE, tr("EXIF data not obtained for ") + nfile);
-                return;
-            }
-            else
-            {
-                nComm = "***";        // an arbitrary string so that the following test fails.
-                ignCt++;
+//               QMessageBox::critical(this, ERROR_TITLE, tr("EXIF data not obtained for ") + nfile);
             }
         }
         if (nComm.trimmed() == "")    // We have found a file without UserComment.
@@ -199,10 +192,11 @@ void Picdok::doNextEmpty()  // Find the next picture file without a UserComment 
             return;
         }
         ix++;
+        nComm = "";
     }
     WaitPtr(false);
     QMessageBox::information(this, tr("Information"),
-                             tr("All remaining pictures have user comment data.\n%1 files ignored (no EXIF data)").arg(ignCt));
+                                   tr("All remaining pictures have user comment data."));
 }
 
 void Picdok::doMoveFirst()
@@ -302,7 +296,7 @@ void Picdok::doComboChanged()   // Handle the signal when a new file is selected
     WaitPtr(true);
     curFile = ui->cmbPicFile->currentText();
     // Check that file still exists and find alternative if not
-    if (!QFile::exists(curDir + QDir::separator() + curFile))
+    if (!QFile::exists(curDir + curFile))
     {
         // File doesn't exist action.
         int curIx = ui->cmbPicFile->currentIndex();
@@ -347,7 +341,7 @@ void Picdok::doComboChanged()   // Handle the signal when a new file is selected
         ui->action_Rename->setEnabled(true);
         ui->action_Rename_Files->setEnabled(true);
     }
-    curFullFileName = curDir + QDir::separator() + curFile;
+    curFullFileName = curDir + curFile;
     if (curFile != "")
     {
         doSetPicture();
@@ -379,10 +373,12 @@ void Picdok::doSetPicture()     // Display selected picture and EXIF data.
     {
         if (!noWarnNoExif)
         {
-            QMessageBox::information(this, ERROR_TITLE, tr("exif data not obtained"));
-            ui->lblPicDat->setText(picDatTimOri.left(10).replace(':',"/"));
-            ui->txtComment->setPlainText(picUserComment);
+            WaitPtr(false);
+            QMessageBox::information(this, ERROR_TITLE, tr("exif data not obtained for %1").arg(curFullFileName));
         }
+        picUserComment = "";
+        ui->lblPicDat->setText(picDatTimOri.left(10).replace(':',"/"));
+        ui->txtComment->setPlainText(picUserComment);
     }
     else
     {
@@ -391,7 +387,7 @@ void Picdok::doSetPicture()     // Display selected picture and EXIF data.
     ui->txtComment->setPlainText(picUserComment);
     }
     picUserCommentSave = picUserComment;
-    img->load(curDir + QDir::separator() + curFile);
+    img->load(curDir + curFile);
     if (img->isNull()) { QMessageBox::information(this, ERROR_TITLE,  tr("Cannot open %1").arg(curFile)); return; }
     transformImage();
     *pixmDisp = QPixmap::fromImage(*imgDisp);
@@ -522,14 +518,14 @@ void Picdok::doDeselect()       // Move the image file to a 'deselected' directo
         }
     }
     delete dirCur;
-    if (QFile::exists(curDir + QDir::separator() + "deselected" + QDir::separator() + curFile))
+    if (QFile::exists(curDir + "deselected" + QDir::separator() + curFile))
     {
         QMessageBox::critical(this, tr("Error"), tr("A file with the same name has already been deselected.\nRename this one and try again."));
         return;
     }
     // Deselect action. Update the combobox and rename file to deselected directory.
-    QFile *qf = new QFile(curDir + QDir::separator() + curFile, this);
-    if (qf->rename(curDir + QDir::separator() + "deselected" + QDir::separator() + curFile))
+    QFile *qf = new QFile(curDir + curFile, this);
+    if (qf->rename(curDir + "deselected" + QDir::separator() + curFile))
     {
         deleteCurrentFromCombo();
     }
@@ -551,7 +547,7 @@ void Picdok::doDelete()     // Delete the current image file.
         if (rslt == QDialog::Rejected) return;
     }
     // Update the combobox, delete the file entry from the directory list and delete the file.
-    QFile *qf = new QFile(curDir + QDir::separator() + curFile, this);
+    QFile *qf = new QFile(curDir + curFile, this);
     if (qf->remove())
     {
         deleteCurrentFromCombo();
@@ -659,6 +655,7 @@ void Picdok::closeShowPic() // Close down the picture full screen and un-check m
         showPic = 0;
         ui->actionSho_w->setChecked(false);
         this->activateWindow();
+        QApplication::restoreOverrideCursor();
     }
 }
 
@@ -680,8 +677,8 @@ void Picdok::priorRequested()    // If a prior picture is available, show it.
 
 void Picdok::doViewIndex()      // View index file if found.
 {
-    datafile = new QSettings(curDir + QDir::separator() + DATA_FILE, QSettings::IniFormat, this);
-    QString oFile = curDir + QDir::separator() + datafile->value("ofile", "_picInfo.html").toString();
+    datafile = new QSettings(curDir + DATA_FILE, QSettings::IniFormat, this);
+    QString oFile = curDir + datafile->value("ofile", "_picInfo.html").toString();
     if (QFile::exists(oFile))
     {
         PdPreview *preview = new PdPreview(this, oFile);
@@ -703,8 +700,8 @@ void Picdok::doPicMove()    // Move the picture file to a new directory.
                                QFileDialog::ShowDirsOnly&QFileDialog::ReadOnly&QFileDialog::DontResolveSymlinks);
     if (newDir != "" )
     {
-        QFile *qf = new QFile(curDir + QDir::separator() + curFile, this);
-        if (qf->rename(newDir + QDir::separator() + curFile))
+        QFile *qf = new QFile(curDir + curFile, this);
+        if (qf->rename(newDir + curFile))
         {
             deleteCurrentFromCombo();
         }
@@ -718,7 +715,7 @@ void Picdok::doPicMove()    // Move the picture file to a new directory.
 
 void Picdok::doUndoDeselect()
 {
-    QString deselDir = curDir + QDir::separator() + "deselected";
+    QString deselDir = curDir + "deselected";
     //qDebug(deselDir.toAscii());
     QDir recoDir = QDir(deselDir);
     if (recoDir.exists())
@@ -730,7 +727,7 @@ void Picdok::doUndoDeselect()
         if (recoFile != "")
         {
             QFileInfo fi(recoFile);
-            if (!QFile::rename(deselDir + QDir::separator() + fi.fileName(), curDir + QDir::separator() + fi.fileName()))
+            if (!QFile::rename(deselDir + QDir::separator() + fi.fileName(), curDir + fi.fileName()))
             {
                 QMessageBox::critical(this,
                                     "Error",

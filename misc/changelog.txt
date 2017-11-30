@@ -1,4 +1,8 @@
 Change Log for picdok
+30/11/2017
+    Sorted out processing if no exif data found.
+21/11/2017
+    Removed un-necessary separators in file path names.
 30/10/2017
     Count of ignored files (no exif data) displayed on the
     result of "Find Next Empty".
