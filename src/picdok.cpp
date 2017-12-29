@@ -114,7 +114,7 @@ void Picdok::readSettings(const QString & inDir)    // Get the last used directo
     settings->endGroup();
     if (inDir != "") curDir = inDir;
     else curDir = settings->value("directory", "").toString();  // The default of "" gives program run directory.
-    if (!QDir(curDir).exists()) curDir = "";
+    if (!QDir(curDir).exists()) curDir = QDir::homePath();
     setDirFiles();
 }
 
@@ -273,7 +273,7 @@ void Picdok::populateCombo()    // List the files in the directory in the combo 
     delete qi;
     // Turn signal handler back on.
     QObject::connect(ui->cmbPicFile, SIGNAL(currentIndexChanged(int)), this, SLOT(doComboChanged()));
-    doComboChanged();
+    if (ui->cmbPicFile->count() > 0) doComboChanged();
     setDirCount();
 }
 

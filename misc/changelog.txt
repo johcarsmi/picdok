@@ -1,4 +1,8 @@
 Change Log for picdok
+29/12/2017
+    Made the program resilient if the directory held in the settings
+    file, or supplied as a parameter does not exist. The default 
+    directory is now the users home directory.
 30/11/2017
     Sorted out processing if no exif data found.
 21/11/2017
