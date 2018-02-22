@@ -92,6 +92,7 @@ QString Picdok::checkParams(QStringList *inP)   // Validate supplied command lin
     QString inD = inP->at(1);
     if (QDir(inD).exists())
     {
+        if (inD.right(1) != QDir::separator()) {inD += QDir::separator();}
         return inD;     // Directory found and valid.
     }
     else

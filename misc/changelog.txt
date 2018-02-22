@@ -1,4 +1,7 @@
 Change Log for picdok
+22/02/2018
+    Added path separator to input directory if not present to
+    stop dumping.
 29/12/2017
     Made the program resilient if the directory held in the settings
     file, or supplied as a parameter does not exist. The default 
