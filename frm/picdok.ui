@@ -33,7 +33,7 @@
    <bool>true</bool>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -392,6 +392,7 @@ Only enabled if the description has been changed.</string>
     <addaction name="actionNex_t_Empty"/>
     <addaction name="action_Prior"/>
     <addaction name="action_First"/>
+    <addaction name="actionFind"/>
     <addaction name="separator"/>
     <addaction name="action_Rename"/>
     <addaction name="action_Move"/>
@@ -606,6 +607,17 @@ Only enabled if the description has been changed.</string>
    </property>
    <property name="visible">
     <bool>true</bool>
+   </property>
+  </action>
+  <action name="actionFind">
+   <property name="text">
+    <string>Find ...</string>
+   </property>
+   <property name="toolTip">
+    <string>Find a picture with a specified string in the Comment.</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+F</string>
    </property>
   </action>
  </widget>
@@ -1065,6 +1077,22 @@ Only enabled if the description has been changed.</string>
     <hint type="destinationlabel">
      <x>191</x>
      <y>533</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionFind</sender>
+   <signal>triggered()</signal>
+   <receiver>Picdok</receiver>
+   <slot>doNextEmpty()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>367</x>
+     <y>320</y>
     </hint>
    </hints>
   </connection>

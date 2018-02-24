@@ -80,6 +80,7 @@ private:
     void setFocusOnCommentIfEmpty();
     void deleteCurrentFromCombo();
     void setDirCount();
+    void searchInComment(const bool searchForEmpty, const QString searchString);
 
 private slots:
     // Menu / Program

@@ -166,7 +166,12 @@ void Picdok::doNext()  // Move to the next picture file in the directory.
 
 void Picdok::doNextEmpty()  // Find the next picture file without a UserComment entry in the EXIF data.
 {
-    // Walk forwards through directory from current position and find the first file without a UserComment entry.
+    searchInComment(true, "");
+}
+
+void Picdok::searchInComment(const bool searchForEmpty, const QString searchString)
+{
+    // Walk forwards through directory from current position.
     WaitPtr(true);
     int ix = ui->cmbPicFile->currentIndex() + 1;
     int rows = ui->cmbPicFile->count();
@@ -174,6 +179,8 @@ void Picdok::doNextEmpty()  // Find the next picture file without a UserComment 
     QString nComm;
     QString nOrtn;
     QString nDtTm;
+    bool exitHere = false;
+    QString exitMessage;
     while (ix < rows)
     {
         nfile = curDir + ui->cmbPicFile->itemText(ix);
@@ -181,11 +188,20 @@ void Picdok::doNextEmpty()  // Find the next picture file without a UserComment 
         {
             if (!noWarnNoExif)
             {
-                WaitPtr(false);
+//              Think about this section of code.
+//                WaitPtr(false);
 //               QMessageBox::critical(this, ERROR_TITLE, tr("EXIF data not obtained for ") + nfile);
             }
         }
-        if (nComm.trimmed() == "")    // We have found a file without UserComment.
+        if (searchForEmpty)
+        {
+            if (nComm.trimmed() == "") exitHere = true;    // We have found a file without UserComment.
+        }
+        else
+        {
+            if (nComm.trimmed().contains(searchString), Qt::CaseInsensitive) exitHere = true;    // We have found a file with the search string.
+        }
+        if (exitHere)
         {
             ui->cmbPicFile->setCurrentIndex(ix);
             setFocusOnCommentIfEmpty();
@@ -196,8 +212,15 @@ void Picdok::doNextEmpty()  // Find the next picture file without a UserComment 
         nComm = "";
     }
     WaitPtr(false);
-    QMessageBox::information(this, tr("Information"),
-                                   tr("All remaining pictures have user comment data."));
+    if (searchForEmpty)
+    {
+        exitMessage = tr("All remaining pictures have user comment data.");
+    }
+    else
+    {
+        exitMessage = tr("Search string not found");
+    }
+    QMessageBox::information(this, tr("Information"), exitMessage);
 }
 
 void Picdok::doMoveFirst()
