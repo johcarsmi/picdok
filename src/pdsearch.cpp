@@ -26,6 +26,6 @@ void PdSearch::doSearch()
 
 QString PdSearch::getSearchStr()
 {
-    searchStr = ui->txtSearchStr->toPlainText();
+    searchStr = ui->txtSearchStr->text();
     return searchStr;
 }

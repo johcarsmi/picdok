@@ -1,4 +1,8 @@
 Change Log for picdok
+25/02/2018
+    Added facility to search for a text string in the picture
+    comment.
+    Made version 0.3.4
 22/02/2018
     Added path separator to input directory if not present to
     stop dumping.

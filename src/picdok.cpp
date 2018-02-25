@@ -209,7 +209,6 @@ void Picdok::searchInComment(const bool searchForEmpty, const QString searchStri
         else
         {
            if (nComm.trimmed().contains(searchString, Qt::CaseInsensitive))
-   //          if (nComm.contains(searchString, Qt::CaseInsensitive))
             {
                 exitHere = true;    // We have found a file with the search string.
             }
