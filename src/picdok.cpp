@@ -28,6 +28,7 @@
 #include "pdoptions.h"
 #include "pdconfirm.h"
 #include "pdpreview.h"
+#include "pdsearch.h"
 
 class exifEx: public std::exception     // For handling missing data exceptions.
 {
@@ -169,6 +170,14 @@ void Picdok::doNextEmpty()  // Find the next picture file without a UserComment 
     searchInComment(true, "");
 }
 
+void Picdok::doFind()
+{
+    PdSearch *findForm = new PdSearch();
+    findForm->exec();
+    QString txt = findForm->getSearchStr();
+    searchInComment(false, txt );
+}
+
 void Picdok::searchInComment(const bool searchForEmpty, const QString searchString)
 {
     // Walk forwards through directory from current position.
@@ -199,7 +208,11 @@ void Picdok::searchInComment(const bool searchForEmpty, const QString searchStri
         }
         else
         {
-            if (nComm.trimmed().contains(searchString), Qt::CaseInsensitive) exitHere = true;    // We have found a file with the search string.
+           if (nComm.trimmed().contains(searchString, Qt::CaseInsensitive))
+   //          if (nComm.contains(searchString, Qt::CaseInsensitive))
+            {
+                exitHere = true;    // We have found a file with the search string.
+            }
         }
         if (exitHere)
         {

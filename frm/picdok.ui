@@ -611,7 +611,7 @@ Only enabled if the description has been changed.</string>
   </action>
   <action name="actionFind">
    <property name="text">
-    <string>Find ...</string>
+    <string>F&amp;ind ...</string>
    </property>
    <property name="toolTip">
     <string>Find a picture with a specified string in the Comment.</string>
@@ -687,8 +687,8 @@ Only enabled if the description has been changed.</string>
    <slot>doClose()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>71</x>
-     <y>613</y>
+     <x>73</x>
+     <y>601</y>
     </hint>
     <hint type="destinationlabel">
      <x>242</x>
@@ -703,8 +703,8 @@ Only enabled if the description has been changed.</string>
    <slot>doPrior()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>283</x>
-     <y>613</y>
+     <x>275</x>
+     <y>601</y>
     </hint>
     <hint type="destinationlabel">
      <x>208</x>
@@ -719,8 +719,8 @@ Only enabled if the description has been changed.</string>
    <slot>doNext()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>630</x>
-     <y>608</y>
+     <x>628</x>
+     <y>601</y>
     </hint>
     <hint type="destinationlabel">
      <x>391</x>
@@ -735,8 +735,8 @@ Only enabled if the description has been changed.</string>
    <slot>doNextEmpty()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>730</x>
-     <y>608</y>
+     <x>720</x>
+     <y>601</y>
     </hint>
     <hint type="destinationlabel">
      <x>537</x>
@@ -1084,7 +1084,7 @@ Only enabled if the description has been changed.</string>
    <sender>actionFind</sender>
    <signal>triggered()</signal>
    <receiver>Picdok</receiver>
-   <slot>doNextEmpty()</slot>
+   <slot>doFind()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -1121,5 +1121,6 @@ Only enabled if the description has been changed.</string>
   <slot>doUndoDeselect()</slot>
   <slot>doRefresh()</slot>
   <slot>doMoveFirst()</slot>
+  <slot>doFind()</slot>
  </slots>
 </ui>
