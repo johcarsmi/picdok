@@ -1,4 +1,4 @@
-This is the readme file for the picdok program version 0.3.3.
+This is the readme file for the picdok program version 0.3.4.
 
 Description: picdok is a simple program for helping the management and
 documentation of jpeg picture files. It works assuming that all the pictures of
@@ -42,7 +42,7 @@ Program options:
 5. Supress warning if no EXIF data exists in a picture.
 
   It is now a Qt 5 program using the libexiv2 library and was originally developed
-using the QtCreator IDE v. 2.5.0 based on Qt version 4.8.1
+using the QtCreator IDE v. 4.3.0 based on Qt version 5.6.2.
 
 Parameters:
 
@@ -69,7 +69,7 @@ Dependencies.
 
   GNU C++ compiler (g++) and associated libraries.
   make
-  QT development libraries (including qmake, uic, rcc, and moc).
+  QT development libraries (including qmake-qt5, uic, rcc, and moc).
   libexiv2 library and development headers.
 
 Compiling:
