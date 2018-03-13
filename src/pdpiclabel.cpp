@@ -14,7 +14,8 @@ PdPicLabel::PdPicLabel(QWidget *parent) : QLabel(parent)
 
 PdPicLabel::~PdPicLabel()
 {
-    QApplication::setOverrideCursor(Qt::ArrowCursor);
+    //QApplication::setOverrideCursor(Qt::ArrowCursor);
+    this->unsetCursor();
     delete nowPt;
     delete tim;
 }
@@ -27,31 +28,36 @@ void PdPicLabel::mousePressEvent(QMouseEvent *evt)
     {
         tim->stop();
     }
+    /*
     if (QApplication::overrideCursor()->shape() == Qt::BlankCursor)
     {
         QApplication::restoreOverrideCursor();
     }
+    */
     //qDebug("PdPicLabel: downX = %d : downY = %d", startX, startY);
     if (evt->button() == Qt::LeftButton)
     {
         moving = true;
         startX = evt->x();
         startY = evt->y();
-        QApplication::setOverrideCursor(Qt::ClosedHandCursor);
+        this->setCursor(Qt::ClosedHandCursor);
+        //qDebug("PdPicLabel left button down -> closed hand");
         evt->accept();
     }
     else if (evt->button() == Qt::RightButton)
     {
-        QApplication::setOverrideCursor(Qt::ArrowCursor);
+        //qDebug("PdPicLabel right button down -> arrow");
+        this->setCursor(Qt::ArrowCursor);
     }
     else evt->ignore();
 }
 
 void PdPicLabel::mouseMoveEvent(QMouseEvent *evt)
 {
-    if (QApplication::overrideCursor()->shape() == Qt::BlankCursor)
+    if (this->cursor().shape() == Qt::BlankCursor)
     {
-        QApplication::restoreOverrideCursor();
+        this->setCursor(Qt::OpenHandCursor);
+        //qDebug("PdPicLabel mouse move -> open hand");
     }
     tim->start();       // Set or reset time period.
     if (moving)
@@ -75,12 +81,14 @@ void PdPicLabel::mouseReleaseEvent(QMouseEvent *evt)
     if (evt->button() == Qt::LeftButton)
     {
         moving = false;
-        QApplication::restoreOverrideCursor();
+        this->setCursor(Qt::OpenHandCursor);
+        //qDebug("PdPicLabel left mouse release -> open hand");
         evt->accept();
     }
     else if (evt->button() == Qt::RightButton)
     {
-        QApplication::restoreOverrideCursor();
+        this->setCursor(Qt::BlankCursor);
+        //qDebug("PdPicLabel right mouse release -> blank");
     }
     else evt->ignore();
 }
@@ -101,20 +109,23 @@ void PdPicLabel::wheelEvent(QWheelEvent *evt)
 
 void PdPicLabel::enterEvent(QEvent *evt)
 {
-    QApplication::setOverrideCursor(Qt::OpenHandCursor);
+    this->setCursor(Qt::OpenHandCursor);
+    //qDebug("PdPicLabel enter -> open hand");
     evt->accept();
     tim->start();
 }
 
 void PdPicLabel::leaveEvent(QEvent *evt)
 {
-    QApplication::setOverrideCursor(Qt::ArrowCursor);
+    this->unsetCursor();
+    //qDebug("PdPicLabel leave -> unset");
     evt->accept();
     tim->stop();
 }
 
 void PdPicLabel::TimExpire()
 {
-    QApplication::setOverrideCursor(Qt::BlankCursor);
+    this->setCursor(Qt::BlankCursor);
+    //qDebug("PdPicLabel timer expire -> blank");
     tim->stop();
 }

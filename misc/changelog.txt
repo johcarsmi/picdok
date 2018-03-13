@@ -1,4 +1,8 @@
 Change Log for picdok
+13/03/2018
+    Changed cursor changes on the show form to made by setting
+    values to the PicDokLabel.cursor . Stops the cursor disappearing
+    over the main window.
 25/02/2018
     Added facility to search for a text string in the picture
     comment.
