@@ -126,6 +126,7 @@ QString PdRenFiles::getPicDate(const QString &inFile)   // Get the DateTimeOrigi
     if (exifData.empty()) return "";
     Exiv2::Exifdatum &datum = exifData["Exif.Photo.DateTimeOriginal"];
     exifDate = datum.toString().c_str();
+    if (exifDate == "") return "";
     dateParts = exifDate.split(" ");
     eDate = QDate::fromString(dateParts[0], "yyyy:MM:dd");
     eTime = QTime::fromString(dateParts[1], "hh:mm:ss");

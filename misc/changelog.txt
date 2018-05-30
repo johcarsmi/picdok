@@ -1,4 +1,10 @@
 Change Log for picdok
+28/05/2018
+    Stop No EXIF data warning and setting focus on Comment
+    if in full-screen display mode.
+25/04/2018
+    Improved handling of lack of DateTimeOriginal datum in
+    renaming all files.
 13/03/2018
     Changed cursor changes on the show form to made by setting
     values to the PicDokLabel.cursor . Stops the cursor disappearing

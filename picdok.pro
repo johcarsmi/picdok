@@ -45,7 +45,8 @@ SOURCES += src/main.cpp\
     src/pdconfirm.cpp \
     src/pdshowpic.cpp \
     src/pdpiclabel.cpp \
-    src/pdsearch.cpp
+    src/pdsearch.cpp \
+    src/pdthumbsel.cpp
 
 HEADERS  += hdr/picdok.h \
     hdr/picdoktextedit.h \
@@ -59,7 +60,8 @@ HEADERS  += hdr/picdok.h \
     hdr/pdconfirm.h \
     hdr/pdshowpic.h \
     hdr/pdpiclabel.h \
-    hdr/pdsearch.h
+    hdr/pdsearch.h \
+    hdr/pdthumbsel.h
 
 FORMS    += \
     frm/pdrenfiles.ui \
@@ -70,7 +72,9 @@ FORMS    += \
     frm/pdconfirm.ui \
     frm/pdshowpic.ui \
     frm/picdok.ui \
-    frm/pdsearch.ui
+    frm/pdsearch.ui \
+    frm/pdthumb.ui \
+    frm/pdthumbsel.ui
 
 RESOURCES   = picdok.qrc
 

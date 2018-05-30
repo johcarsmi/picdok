@@ -342,7 +342,7 @@ void Picdok::doComboChanged()   // Handle the signal when a new file is selected
             curIx = ui->cmbPicFile->count() -1;
         }
         ui->cmbPicFile->setCurrentIndex(curIx);
-        QMessageBox::information(this, tr("Notification"), tr("Requested file no longer exists.\n\nShowing nearest."));
+        if (showPic == 0) QMessageBox::information(this, tr("Notification"), tr("Requested file no longer exists.\n\nShowing nearest."));
     }
     // Set Next and Next Empty button state, disable if at last else enable.
     if (ui->cmbPicFile->currentIndex() >= ui->cmbPicFile->count() - 1)
@@ -407,7 +407,7 @@ void Picdok::doSetPicture()     // Display selected picture and EXIF data.
 {
     if (!getExifData(curFullFileName, picUserComment, picOrientation, picDatTimOri))
     {
-        if (!noWarnNoExif)
+        if (!noWarnNoExif && showPic == 0)      // Stop warning if showing pictures full-screen.
         {
             WaitPtr(false);
             QMessageBox::information(this, ERROR_TITLE, tr("exif data not obtained for %1").arg(curFullFileName));
@@ -619,7 +619,7 @@ void Picdok::doEditComment()    // Sets focus on User Comment field. Action from
 
 void Picdok::setFocusOnCommentIfEmpty() // sets focus to Comment field on doNext() or doPrior() if option so set.
 {
-    if (focusEmpty)
+    if (focusEmpty && showPic == 0)     // Stop this working if showing pictures full-screen.
     {
     if (ui->txtComment->toPlainText() == "")
         ui->txtComment->setFocus();
