@@ -1,4 +1,7 @@
 Change Log for picdok
+28/08/2018
+    Corrected main form so that picture resizes with form.
+    Added "Move To..." context menu entry to picdoklabel.cpp.
 28/05/2018
     Stop No EXIF data warning and setting focus on Comment
     if in full-screen display mode.

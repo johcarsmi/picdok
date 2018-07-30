@@ -22,6 +22,7 @@ PicDokLabel::~PicDokLabel()
     delete delAct;
     delete renAct;
     delete deselAct;
+    delete movAct;
 }
 
 void PicDokLabel::contextMenuEvent(QContextMenuEvent *ev)
