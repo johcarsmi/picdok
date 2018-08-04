@@ -175,6 +175,7 @@ void Picdok::doFind()
     PdSearch *findForm = new PdSearch();
     findForm->exec();
     QString txt = findForm->getSearchStr();
+    if (txt == "") return;
     searchInComment(false, txt );
 }
 
