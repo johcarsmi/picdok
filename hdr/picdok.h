@@ -70,6 +70,7 @@ private:
     bool noWarnNoExif;
     PdShowPic *showPic;
     QDesktopWidget *desk;
+    QStringList deselFiles;
     // Functions
     QString checkParams(QStringList *);
     void readSettings(const QString &);
@@ -95,6 +96,7 @@ private slots:
     void doRefresh();
     void doViewIndex();
     void doUndoDeselect();
+    void doBrowse();
     // Menu / Image
     void doPicRename();
     void doDelete();

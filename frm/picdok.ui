@@ -392,6 +392,8 @@ Only enabled if the description has been changed.</string>
     <addaction name="action_View_Index"/>
     <addaction name="separator"/>
     <addaction name="action_Undo_Deselect"/>
+    <addaction name="separator"/>
+    <addaction name="actionBrowse_Thumbnails"/>
    </widget>
    <widget class="QMenu" name="menu_Image">
     <property name="title">
@@ -627,6 +629,14 @@ Only enabled if the description has been changed.</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+F</string>
+   </property>
+  </action>
+  <action name="actionBrowse_Thumbnails">
+   <property name="text">
+    <string>&amp;Browse Thumbnails</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+B</string>
    </property>
   </action>
  </widget>
@@ -1105,6 +1115,22 @@ Only enabled if the description has been changed.</string>
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionBrowse_Thumbnails</sender>
+   <signal>triggered()</signal>
+   <receiver>Picdok</receiver>
+   <slot>doBrowse()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>367</x>
+     <y>319</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>doClose()</slot>
@@ -1131,5 +1157,6 @@ Only enabled if the description has been changed.</string>
   <slot>doRefresh()</slot>
   <slot>doMoveFirst()</slot>
   <slot>doFind()</slot>
+  <slot>doBrowse()</slot>
  </slots>
 </ui>

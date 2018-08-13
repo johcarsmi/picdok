@@ -29,6 +29,7 @@
 #include "pdconfirm.h"
 #include "pdpreview.h"
 #include "pdsearch.h"
+#include "pdthumbsel.h"
 
 class exifEx: public std::exception     // For handling missing data exceptions.
 {
@@ -752,26 +753,45 @@ void Picdok::doPicMove()    // Move the picture file to a new directory.
 
 void Picdok::doUndoDeselect()
 {
-    QString deselDir = curDir + "deselected";
+    QString deselDirName = curDir + "deselected/";
     //qDebug(deselDir.toAscii());
-    QDir recoDir = QDir(deselDir);
-    if (recoDir.exists())
+    QDir *deselDir = new QDir(deselDirName);
+    if (deselDir->exists())
     {
-        recoFile = QFileDialog::getOpenFileName(this,
-                                   tr("Choose file to recover"),
-                                   deselDir,
-                                   QFileDialog::ExistingFile&QFileDialog::ReadOnly);
-        if (recoFile != "")
+        if (1 == 1)     // testing.
         {
-            QFileInfo fi(recoFile);
-            if (!QFile::rename(deselDir + QDir::separator() + fi.fileName(), curDir + fi.fileName()))
+            WaitPtr(true);
+            QStringList filtB;
+            filtB << "*.jpg" << "*.jpeg" << "*.JPG" << "*.JPEG";
+            deselDir->setNameFilters(filtB);
+            deselDir->setSorting(QDir::Name);
+            deselFiles = deselDir->entryList();
+            PdThumbSel *pdts = new PdThumbSel(this, this);
+            pdts->setFiles(deselFiles, deselDirName);
+            WaitPtr(false);
+            pdts->exec();
+            recoFile = pdts->getResult();
+            delete pdts;
+        }
+        else
+        {
+            recoFile = QFileDialog::getOpenFileName(this,
+                                                    tr("Choose file to recover"),
+                                                    deselDirName,
+                                                    QFileDialog::ExistingFile&QFileDialog::ReadOnly);
+        }
+        if (recoFile != "")
             {
-                QMessageBox::critical(this,
-                                    "Error",
-                                    "A file of the same name already exists." + QString("\n") +
-                                    "Action aborted.");
-                return;
-            }
+                QFileInfo fi(recoFile);
+                if (!QFile::rename(deselDirName + QDir::separator() + fi.fileName(), curDir + fi.fileName()))
+                {
+                    QMessageBox::critical(this,
+                                          "Error",
+                                          "A file of the same name already exists." + QString("\n") +
+                                          "Action aborted.");
+                    return;
+                }
+
             // Need to scan list of items and insert into the correct place in the file order.
             int pix = 0;
             while (ui->cmbPicFile->itemText(pix) < fi.fileName() && pix < ui->cmbPicFile->count())
@@ -779,6 +799,7 @@ void Picdok::doUndoDeselect()
                 pix++;
             }
             ui->cmbPicFile->insertItem(pix,fi.fileName());
+            ui->cmbPicFile->setCurrentIndex(pix);
         }
     }
     else
@@ -787,6 +808,7 @@ void Picdok::doUndoDeselect()
                             "Notification",
                             "No deselected files exist.");
     }
+
 }
 
 void Picdok::doRefresh()    // Refresh the view of the current directory and reset picture if possible.
@@ -804,4 +826,22 @@ void Picdok::doRefresh()    // Refresh the view of the current directory and res
                                  tr("Information"),
                                  tr("Current file changed/deleted by another program.\nSet to start of directory"));
     }
+}
+
+void Picdok::doBrowse()
+{
+    WaitPtr(true);
+    PdThumbSel *pdts = new PdThumbSel(this, this);
+    pdts->setFiles(dirFiles, curDir);
+    WaitPtr(false);
+    pdts->exec();
+    QString selFile = pdts->getResult();
+    delete pdts;
+    qDebug() << selFile;
+    int pix = 0;
+    while (ui->cmbPicFile->itemText(pix) < selFile && pix < ui->cmbPicFile->count())
+    {
+        pix++;
+    }
+    ui->cmbPicFile->setCurrentIndex(pix);
 }
