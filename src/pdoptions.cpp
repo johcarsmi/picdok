@@ -38,6 +38,16 @@ void PdOptions::setNoWarnNoExif(bool &inNoWarnNoExif)
     ui->cbNoWarnNoExif->setChecked(inNoWarnNoExif);
 }
 
+void PdOptions::setRbBowse(bool &inRbBrowse)
+{
+    ui->rbBrowse->setChecked(inRbBrowse);
+}
+
+void PdOptions::setRbFileSel(bool &inRbFileSel)
+{
+    ui->rbFileSel->setChecked(inRbFileSel);
+}
+
 bool PdOptions::getFocusEmpty()
 {
     return ui->cbFocusEmpty->isChecked();
@@ -61,6 +71,16 @@ bool PdOptions::getAutoMove()
 bool PdOptions::getNoWarnNoExif()
 {
     return ui->cbNoWarnNoExif->isChecked();
+}
+
+bool PdOptions::getRbBrowse()
+{
+    return ui->rbBrowse->isChecked();
+}
+
+bool PdOptions::getRbFileSel()
+{
+    return ui->rbFileSel->isChecked();
 }
 
 void PdOptions::doSave()

@@ -1,4 +1,8 @@
 Change Log for picdok
+15/08/2018
+    implemented the facility to browse the pictures in the main
+    directory and optionally use the browser to view the deselected
+    directory to enable "Undo Deselect."
 04/08/2018
     Corrected error in Picdok::doFind() so that it returns if no
     search string is entered.

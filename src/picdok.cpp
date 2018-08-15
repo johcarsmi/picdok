@@ -114,6 +114,8 @@ void Picdok::readSettings(const QString & inDir)    // Get the last used directo
     delConf = settings->value("delConf","false").toBool();
     focusEmpty = settings->value("focusEmpty","false").toBool();
     noWarnNoExif = settings->value("noWarnNoExif", "false").toBool();
+    rbBrowse = settings->value("rbBrowse", "false").toBool();
+    rbFileSel = settings->value("rbFileSel", "true").toBool();
     settings->endGroup();
     if (inDir != "") curDir = inDir;
     else curDir = settings->value("directory", "").toString();  // The default of "" gives program run directory.
@@ -636,6 +638,8 @@ void Picdok::doOptions()    // Present the program options form.
     OptionForm->setDelConf(delConf);
     OptionForm->setFocusOnEmpty(focusEmpty);
     OptionForm->setNoWarnNoExif(noWarnNoExif);
+    OptionForm->setRbBowse(rbBrowse);
+    OptionForm->setRbFileSel(rbFileSel);
     OptionForm->exec();
     if (OptionForm->getGoodExit())  // User pressed Save button on form.
     {   // Move set values to local variables.
@@ -644,6 +648,8 @@ void Picdok::doOptions()    // Present the program options form.
         delConf = OptionForm->getDelConf();
         focusEmpty = OptionForm->getFocusEmpty();
         noWarnNoExif = OptionForm->getNoWarnNoExif();
+        rbBrowse = OptionForm->getRbBrowse();
+        rbFileSel = OptionForm->getRbFileSel();
         // Save in settings file.
         settings->beginGroup("options");
         settings->setValue("autoMove", autoMove);
@@ -651,6 +657,8 @@ void Picdok::doOptions()    // Present the program options form.
         settings->setValue("delConf", delConf);
         settings->setValue("focusEmpty", focusEmpty);
         settings->setValue("noWarnNoExif", noWarnNoExif);
+        settings->setValue("rbBrowse", rbBrowse);
+        settings->setValue("rbFileSel", rbFileSel);
         settings->endGroup();
         settings->sync();
     }
@@ -758,7 +766,7 @@ void Picdok::doUndoDeselect()
     QDir *deselDir = new QDir(deselDirName);
     if (deselDir->exists())
     {
-        if (1 == 1)     // testing.
+        if (rbBrowse)
         {
             WaitPtr(true);
             QStringList filtB;
@@ -773,13 +781,14 @@ void Picdok::doUndoDeselect()
             recoFile = pdts->getResult();
             delete pdts;
         }
-        else
+        else if (rbFileSel)
         {
             recoFile = QFileDialog::getOpenFileName(this,
                                                     tr("Choose file to recover"),
                                                     deselDirName,
                                                     QFileDialog::ExistingFile&QFileDialog::ReadOnly);
         }
+        else return;
         if (recoFile != "")
             {
                 QFileInfo fi(recoFile);

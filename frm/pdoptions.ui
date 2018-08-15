@@ -13,7 +13,7 @@
     <x>0</x>
     <y>0</y>
     <width>334</width>
-    <height>355</height>
+    <height>394</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -34,35 +34,35 @@
   <property name="modal">
    <bool>true</bool>
   </property>
-  <layout class="QFormLayout" name="formLayout">
-   <item row="0" column="0" colspan="2">
-    <widget class="QLabel" name="lblOptionHdg">
-     <property name="minimumSize">
-      <size>
-       <width>290</width>
-       <height>28</height>
-      </size>
-     </property>
-     <property name="text">
-      <string>Set the required options for program operation.</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="0" colspan="2">
-    <spacer name="verticalSpacer_2">
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>20</width>
-       <height>23</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
-   <item row="2" column="0" colspan="2">
+  <layout class="QVBoxLayout" name="verticalLayout_2">
+   <item>
     <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QLabel" name="lblOptionHdg">
+       <property name="minimumSize">
+        <size>
+         <width>290</width>
+         <height>28</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Set the required options for program operation.</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="verticalSpacer_2">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>20</width>
+         <height>23</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
      <item>
       <widget class="QCheckBox" name="cbFocusEmpty">
        <property name="minimumSize">
@@ -128,10 +128,91 @@
        </property>
       </widget>
      </item>
+     <item>
+      <widget class="QLabel" name="lblUndoChoice">
+       <property name="text">
+        <string>Select picture for &quot;Undo Deselect:-</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="hlRadioButtons">
+       <item>
+        <widget class="QRadioButton" name="rbBrowse">
+         <property name="text">
+          <string>b&amp;y Browse</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="hsForRadioButtons">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Fixed</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>21</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="rbFileSel">
+         <property name="text">
+          <string>by File Selectio&amp;n</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </item>
     </layout>
    </item>
-   <item row="6" column="1">
-    <layout class="QHBoxLayout" name="horizontalLayout">
+   <item>
+    <widget class="QLabel" name="lblEnforce1">
+     <property name="text">
+      <string>* This option disabled in full-screen mode</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="lblEnforce2">
+     <property name="text">
+      <string>+ This option enforced in full-screen mode.</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>22</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="hlPushButtons">
      <property name="sizeConstraint">
       <enum>QLayout::SetDefaultConstraint</enum>
      </property>
@@ -152,7 +233,7 @@
       </widget>
      </item>
      <item>
-      <spacer name="horizontalSpacer">
+      <spacer name="hsForPushButtons">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
@@ -184,33 +265,6 @@
       </widget>
      </item>
     </layout>
-   </item>
-   <item row="3" column="1">
-    <widget class="QLabel" name="label">
-     <property name="text">
-      <string>* This option disabled in full-screen mode</string>
-     </property>
-    </widget>
-   </item>
-   <item row="4" column="1">
-    <widget class="QLabel" name="label_2">
-     <property name="text">
-      <string>+ This option enforced in full-screen mode.</string>
-     </property>
-    </widget>
-   </item>
-   <item row="5" column="1">
-    <spacer name="verticalSpacer">
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>20</width>
-       <height>22</height>
-      </size>
-     </property>
-    </spacer>
    </item>
   </layout>
  </widget>

@@ -19,11 +19,15 @@ public:
     void setDeselConf(bool &);
     void setAutoMove(bool &);
     void setNoWarnNoExif(bool &);
+    void setRbBowse(bool &);
+    void setRbFileSel(bool &);
     bool getFocusEmpty();
     bool getDelConf();
     bool getDeselConf();
     bool getAutoMove();
     bool getNoWarnNoExif();
+    bool getRbBrowse();
+    bool getRbFileSel();
     bool getGoodExit();
     
 private:

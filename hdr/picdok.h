@@ -68,6 +68,8 @@ private:
     bool deselConf;
     bool focusEmpty;
     bool noWarnNoExif;
+    bool rbBrowse;
+    bool rbFileSel;
     PdShowPic *showPic;
     QDesktopWidget *desk;
     QStringList deselFiles;

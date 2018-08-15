@@ -23,13 +23,16 @@ Displays information about the program.
 .TP
 .BR Options
 Opens up a modal form where the program options may be set.
-These are all check-box options.
+There are five check-box options.
 .RS
 .IP "1. Set focus on Comment field if blank."
 .IP "2. Confirm image deletions."
 .IP "3. Confirm image deselections."
 .IP "4. Move to next image on Save action."
 .IP "5. Suppress warning if no Exif data."
+.PP
+There is a radio button choice on how "Undo Deselect" 
+will operate.
 .RE
 .TP
 .BR Quit
@@ -79,6 +82,11 @@ This allows the user to recover a picture from those that have
 been "deselected". It is necessary to know the file name
 of the file to be brought back into the current directory.
 See the entry under Image -> Deselect.
+.TP
+.BR Browse\ Thumbnails
+This presents the user with a form with four thumbnails per
+row. Double-clicking on a thumbnail will make that picture
+the current picture. Shortcut Ctrl + b.
 .PP
 .RE
 .B Image
