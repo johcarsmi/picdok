@@ -70,7 +70,7 @@ void PdThumbSel::SetUpTable()
         matx->rotate(rotAngle);
         *imgRot = img->transformed(*matx, Qt::SmoothTransformation);
         *pixmDisp = QPixmap::fromImage(*imgRot);
-        *pixmScaled = pixmDisp->scaled(160,160, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+        *pixmScaled = pixmDisp->scaled(130, 130, Qt::KeepAspectRatio, Qt::SmoothTransformation);
         newItem->setPixmap(pixmScaled);
         ui->tblThumbs->setCellWidget(rIx, cIx, newItem);
         cIx++;
