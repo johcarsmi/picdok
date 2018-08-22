@@ -1,4 +1,7 @@
 Change Log for picdok
+21/08/2018
+    Set version number to 0.4.0
+    Corrected error on thumbnail resizing.
 15/08/2018
     implemented the facility to browse the pictures in the main
     directory and optionally use the browser to view the deselected
