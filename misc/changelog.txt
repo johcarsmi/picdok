@@ -1,4 +1,6 @@
 Change Log for picdok
+03/09/2018
+    Title of thumbnail selection screen changed to include usage info.
 21/08/2018
     Set version number to 0.4.0
     Corrected error on thumbnail resizing.

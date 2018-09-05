@@ -81,7 +81,7 @@
    </palette>
   </property>
   <property name="windowTitle">
-   <string>Select Picture</string>
+   <string>Double-Click on thumbnail to Select Picture</string>
   </property>
   <widget class="QTableWidget" name="tblThumbs">
    <property name="geometry">
