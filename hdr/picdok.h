@@ -108,6 +108,7 @@ private slots:
     void doShowPic(bool Chkd);
     void doMoveFirst();
     void doFind();
+    void doShortLink();
     // ShowPic communication
     void closeShowPic();
     void nextRequested();

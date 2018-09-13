@@ -414,6 +414,7 @@ Only enabled if the description has been changed.</string>
     <addaction name="action_Save"/>
     <addaction name="separator"/>
     <addaction name="actionSho_w"/>
+    <addaction name="actionAdd_to_Short_Show"/>
    </widget>
    <addaction name="menu_Program"/>
    <addaction name="menu_Directory"/>
@@ -639,6 +640,17 @@ Only enabled if the description has been changed.</string>
     <string>Ctrl+B</string>
    </property>
   </action>
+  <action name="actionAdd_to_Short_Show">
+   <property name="text">
+    <string>&amp;Add to Short Show</string>
+   </property>
+   <property name="toolTip">
+    <string>Add to Short Show &lt;Alt + s&gt;</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+S</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="3" margin="11"/>
  <customwidgets>
@@ -706,8 +718,8 @@ Only enabled if the description has been changed.</string>
    <slot>doClose()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>73</x>
-     <y>601</y>
+     <x>81</x>
+     <y>599</y>
     </hint>
     <hint type="destinationlabel">
      <x>242</x>
@@ -722,8 +734,8 @@ Only enabled if the description has been changed.</string>
    <slot>doPrior()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>275</x>
-     <y>601</y>
+     <x>271</x>
+     <y>599</y>
     </hint>
     <hint type="destinationlabel">
      <x>208</x>
@@ -738,8 +750,8 @@ Only enabled if the description has been changed.</string>
    <slot>doNext()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>628</x>
-     <y>601</y>
+     <x>624</x>
+     <y>599</y>
     </hint>
     <hint type="destinationlabel">
      <x>391</x>
@@ -754,8 +766,8 @@ Only enabled if the description has been changed.</string>
    <slot>doNextEmpty()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>720</x>
-     <y>601</y>
+     <x>716</x>
+     <y>599</y>
     </hint>
     <hint type="destinationlabel">
      <x>537</x>
@@ -1090,8 +1102,8 @@ Only enabled if the description has been changed.</string>
    <slot>doEnableSave()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>512</x>
-     <y>561</y>
+     <x>697</x>
+     <y>560</y>
     </hint>
     <hint type="destinationlabel">
      <x>191</x>
@@ -1131,6 +1143,22 @@ Only enabled if the description has been changed.</string>
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionAdd_to_Short_Show</sender>
+   <signal>triggered()</signal>
+   <receiver>Picdok</receiver>
+   <slot>doShortLink()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>367</x>
+     <y>319</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>doClose()</slot>
@@ -1158,5 +1186,6 @@ Only enabled if the description has been changed.</string>
   <slot>doMoveFirst()</slot>
   <slot>doFind()</slot>
   <slot>doBrowse()</slot>
+  <slot>doShortLink()</slot>
  </slots>
 </ui>

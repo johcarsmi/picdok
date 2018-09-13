@@ -854,3 +854,27 @@ void Picdok::doBrowse()
     }
     ui->cmbPicFile->setCurrentIndex(pix);
 }
+
+void Picdok::doShortLink()  // Creates links to files in the main directory in a sub-directory "ShortShow".
+{
+    QDir *dirCur = new QDir(curDir);
+    if (!dirCur->exists("ShortShow"))      // Check 'deselected' sub-directory exists and create if not.
+    {
+        if (!dirCur->mkdir("ShortShow"))
+        {
+            QMessageBox::critical(this, ERROR_TITLE, tr("Unable to create 'ShortShow' sub-directory"));
+            return;
+        }
+    }
+    delete dirCur;
+    if (QFile::exists(curDir + "ShortShow" + QDir::separator() + curFile))
+    {
+        QMessageBox::critical(this, tr("Error"), tr("A file with the same name has already been added to the short show."));
+        return;
+    }
+    if (!QFile::link(curDir + curFile, curDir + "ShortShow" + QDir::separator() + curFile))
+    {
+        QMessageBox::critical(this, tr("Error"), tr("A failure has occurred creating a link to the short show."));
+    }
+    // It must have worked!
+}

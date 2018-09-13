@@ -1,4 +1,9 @@
 Change Log for picdok
+13/09/2018
+    Added the facility to put links to the pictures in the main
+    directory into a sub-directory named "ShortShow" to allow a subset
+    of the pictures to be chosen for presentation.
+    Version now 0.4.1
 03/09/2018
     Title of thumbnail selection screen changed to include usage info.
 21/08/2018
