@@ -1,4 +1,4 @@
-This is the readme file for the picdok program version 0.3.4.
+This is the readme file for the picdok program version 0.4.1.
 
 Description: picdok is a simple program for helping the management and
 documentation of jpeg picture files. It works assuming that all the pictures of
@@ -33,6 +33,14 @@ It can:-
 8. Show pictures full screen using left/right arrows, space/backspace to move
    forward and backward through the directory and "Q" or <Esc> to close the
    show. If a second screen is attached the output is directed to that screen.
+9. A facility to browse thumbnails of the pictures in a directory has been
+   added. At present it takes longer than desirable to present the screen but
+   it is intended to make this process multi-threaded.
+10.When a subset of the pictures are wanted for presentation using picdok a
+   new facility has been added to create a sub-directory named "ShortShow" 
+   and populate it with links to the main picture source. Removal of this
+   new sub-directory and its contents has been left to standard file system
+   tools.
 
 Program options:
 1. Set the cursor in the UserComment field if it is empty.
