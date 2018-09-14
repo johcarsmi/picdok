@@ -17,6 +17,7 @@
 #include <qt5/QtWidgets/QDesktopWidget>
 
 #include "pdshowpic.h"
+#include "pdflashmsg.h"
 
 namespace Ui {
     class Picdok;
@@ -73,6 +74,7 @@ private:
     PdShowPic *showPic;
     QDesktopWidget *desk;
     QStringList deselFiles;
+    pdFlashMsg *pdFl;
     // Functions
     QString checkParams(QStringList *);
     void readSettings(const QString &);
@@ -84,6 +86,7 @@ private:
     void deleteCurrentFromCombo();
     void setDirCount();
     void searchInComment(const bool searchForEmpty, const QString searchString);
+    void flashMessage(const QString);
 
 private slots:
     // Menu / Program
@@ -122,6 +125,8 @@ private slots:
     void doSave();
     void doEnableSave();
     void doResize();
+    // Timer
+    void doCloseFlash();
 };
 
 #endif // PICDOK_H

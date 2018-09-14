@@ -18,6 +18,7 @@
 #include <qt5/QtGui/QPixmap>
 #include <qt5/QtCore/QDir>
 #include <QApplication>
+#include <unistd.h>
 #include <cstdio>
 #include <iostream>
 #include <exception>
@@ -30,6 +31,7 @@
 #include "pdpreview.h"
 #include "pdsearch.h"
 #include "pdthumbsel.h"
+#include "pdflashmsg.h"
 
 class exifEx: public std::exception     // For handling missing data exceptions.
 {
@@ -876,5 +878,21 @@ void Picdok::doShortLink()  // Creates links to files in the main directory in a
     {
         QMessageBox::critical(this, tr("Error"), tr("A failure has occurred creating a link to the short show."));
     }
-    // It must have worked!
+    flashMessage(tr("Picture added to short show"));
+}
+
+void Picdok::flashMessage(const QString inFlash)
+{
+    WaitPtr(true);
+    pdFl = new pdFlashMsg(this);
+    pdFl->setMsg(inFlash);
+    pdFl->show();
+    QTimer::singleShot(1500, this, SLOT(doCloseFlash()));
+}
+
+void Picdok::doCloseFlash()
+{
+    pdFl->close();
+    delete pdFl;
+    WaitPtr(false);
 }

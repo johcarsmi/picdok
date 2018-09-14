@@ -1,4 +1,7 @@
 Change Log for picdok
+14/09/2018
+    Added a flash message to indicate successful addition to
+    Short Show.
 13/09/2018
     Added the facility to put links to the pictures in the main
     directory into a sub-directory named "ShortShow" to allow a subset
