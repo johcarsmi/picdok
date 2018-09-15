@@ -570,6 +570,7 @@ void Picdok::doDeselect()       // Move the image file to a 'deselected' directo
     if (qf->rename(curDir + "deselected" + QDir::separator() + curFile))
     {
         deleteCurrentFromCombo();
+        flashMessage(tr("Picture deselected"));
     }
     else
     {
@@ -593,6 +594,7 @@ void Picdok::doDelete()     // Delete the current image file.
     if (qf->remove())
     {
         deleteCurrentFromCombo();
+        flashMessage(tr("Picture deleted"));
     }
     else
     {

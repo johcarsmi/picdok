@@ -1,4 +1,6 @@
 Change Log for picdok
+15/09/2018
+    Added flash Message to delete and deselect processes.
 14/09/2018
     Added a flash message to indicate successful addition to
     Short Show.
