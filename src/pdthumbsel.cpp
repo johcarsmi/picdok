@@ -2,7 +2,7 @@
 #include "ui_pdthumbsel.h"
 #include "pdthumb.h"
 #include "picdok.h"
-#include <QtDebug>
+//#include <QtDebug>
 #include <QWidgetItem>
 
 PdThumbSel::PdThumbSel(QWidget *parent, Picdok *inMain) :

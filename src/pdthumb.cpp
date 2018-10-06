@@ -1,6 +1,6 @@
 #include "pdthumb.h"
 #include "ui_pdthumb.h"
-#include <QtDebug>
+//#include <QtDebug>
 
 pdthumb::pdthumb(QWidget *parent) :
     QWidget(parent), QTableWidgetItem(Qt::UserRole),

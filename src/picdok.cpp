@@ -747,7 +747,7 @@ void Picdok::doPicMove()    // Move the picture file to a new directory.
     newDir = QFileDialog::getExistingDirectory(this,
                                tr("Select Required Directory"),
                                curDir,
-                               QFileDialog::ShowDirsOnly&QFileDialog::ReadOnly&QFileDialog::DontResolveSymlinks);
+                               QFileDialog::ShowDirsOnly|QFileDialog::ReadOnly|QFileDialog::DontResolveSymlinks);
     if (newDir != "" )
     {
         QFile *qf = new QFile(curDir + curFile, this);
@@ -787,10 +787,12 @@ void Picdok::doUndoDeselect()
         }
         else if (rbFileSel)
         {
+            QString * nuffink = new QString("");
             recoFile = QFileDialog::getOpenFileName(this,
                                                     tr("Choose file to recover"),
                                                     deselDirName,
-                                                    QFileDialog::ExistingFile&QFileDialog::ReadOnly);
+                                                    tr("Images (*.JPG *.jpg)"), nuffink,
+                                                    QFileDialog::ReadOnly);
         }
         else return;
         if (recoFile != "")

@@ -119,7 +119,7 @@ void PdRenFiles::doRenGo()  // Do the file renaming according to the entered pat
 
 QString PdRenFiles::getPicDate(const QString &inFile)   // Get the DateTimeOriginal from the EXIF data.
 {
-    Exiv2::Image::AutoPtr rimage = Exiv2::ImageFactory::open(inFile.toStdString().c_str());
+    Exiv2::Image::AutoPtr rimage = Exiv2::ImageFactory::open(inFile.toUtf8().toStdString());
     rimage.get();
     rimage->readMetadata();
     Exiv2::ExifData &exifData = rimage->exifData();
@@ -192,7 +192,7 @@ bool PdRenFiles::validateFormatStr(const QString &inStr, QStringList *outParms) 
         else if(inStr[ix] == '%')   // Start of token-like element. Note this but don't output '%'.
         {
             if (pcentLast) outParms->append(inStr[ix]);   // Handles two consecutive '%' characters.
-            else outParms->append(wrkStr); wrkStr = "";   // Output string accumulated so far and go for next char.
+            else { outParms->append(wrkStr); wrkStr = ""; }  // Output string accumulated so far and go for next char.
             pcentLast = true;
         }
         else    // Handles all characters not following a '%'.

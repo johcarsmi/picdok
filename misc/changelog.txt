@@ -1,4 +1,6 @@
 Change Log for picdok
+06/10/2018
+    Changed a few bits to get it to compile under opensuse 15.0.
 15/09/2018
     Added flash Message to delete and deselect processes.
 14/09/2018
