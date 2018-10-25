@@ -778,7 +778,7 @@ void Picdok::doUndoDeselect()
             deselDir->setNameFilters(filtB);
             deselDir->setSorting(QDir::Name);
             deselFiles = deselDir->entryList();
-            PdThumbSel *pdts = new PdThumbSel(this, this);
+            PdThumbSel *pdts = new PdThumbSel(this);
             pdts->setFiles(deselFiles, deselDirName);
             WaitPtr(false);
             pdts->exec();
@@ -846,7 +846,7 @@ void Picdok::doRefresh()    // Refresh the view of the current directory and res
 void Picdok::doBrowse()
 {
     WaitPtr(true);
-    PdThumbSel *pdts = new PdThumbSel(this, this);
+    PdThumbSel *pdts = new PdThumbSel(this);
     pdts->setFiles(dirFiles, curDir);
     WaitPtr(false);
     pdts->exec();
@@ -854,10 +854,7 @@ void Picdok::doBrowse()
     delete pdts;
     qDebug() << selFile;
     int pix = 0;
-    while (ui->cmbPicFile->itemText(pix) < selFile && pix < ui->cmbPicFile->count())
-    {
-        pix++;
-    }
+    pix = ui->cmbPicFile->findText(selFile);
     ui->cmbPicFile->setCurrentIndex(pix);
 }
 

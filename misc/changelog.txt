@@ -1,4 +1,7 @@
 Change Log for picdok
+25/10/2018
+    Removed redundant code from thumbnail browsing and simplified
+    code.
 06/10/2018
     Changed a few bits to get it to compile under opensuse 15.0.
 15/09/2018

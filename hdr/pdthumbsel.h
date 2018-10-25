@@ -10,7 +10,6 @@
 
 #include <QDialog>
 #include <QDir>
-#include "picdok.h"
 
 namespace Ui {
 class PdThumbSel;
@@ -21,25 +20,16 @@ class PdThumbSel : public QDialog
     Q_OBJECT
 
 public:
-    explicit PdThumbSel(QWidget *parent = 0, Picdok *inMain = 0);
+    explicit PdThumbSel(QWidget *parent = 0);
     ~PdThumbSel();
 
 private:
     Ui::PdThumbSel *ui;
-    Picdok *pdMain;
     QStringList srcFiles;
     QString srcDir;
     QString srcFullFileName;
     QImage *img;
-    QImage *imgRot;
-    QPixmap *pixmDisp;
     QPixmap *pixmScaled;
-    QTransform *matx;
-    QString picOrientation;
-    QString picUserComment;
-    QString picUserCommentSave;
-    QString picDatTimOri;
-    qreal rotAngle;
     QString retName;
 
     // methods
