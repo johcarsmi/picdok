@@ -81,7 +81,6 @@ private:
     void setDirFiles();
     void populateCombo();
     void doSetPicture();
-    void transformImage();
     void setFocusOnCommentIfEmpty();
     void deleteCurrentFromCombo();
     void setDirCount();

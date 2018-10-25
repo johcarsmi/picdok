@@ -1,4 +1,6 @@
 Change Log for picdok
+25/102018
+    Removed redundant code to rotate pictures. Already done by Qt.
 25/10/2018
     Removed redundant code from thumbnail browsing and simplified
     code.
