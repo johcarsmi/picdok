@@ -29,3 +29,8 @@ QString PdSearch::getSearchStr()
     searchStr = ui->txtSearchStr->text();
     return searchStr;
 }
+
+void PdSearch::setLastSearch(const QString inStr)
+{
+    ui->txtSearchStr->setText(inStr);
+}

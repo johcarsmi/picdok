@@ -75,12 +75,14 @@ private:
     QDesktopWidget *desk;
     QStringList deselFiles;
     pdFlashMsg *pdFl;
+    QString lastSearch;
     // Functions
     QString checkParams(QStringList *);
     void readSettings(const QString &);
     void setDirFiles();
     void populateCombo();
     void doSetPicture();
+    void transformImage();
     void setFocusOnCommentIfEmpty();
     void deleteCurrentFromCombo();
     void setDirCount();

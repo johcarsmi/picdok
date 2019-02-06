@@ -1,4 +1,8 @@
 Change Log for picdok
+06/02/2019
+    Reinstated code removed below. Not always done by Qt!
+    Search in comment now retains the last used search string to allow
+    easy re-use.
 25/102018
     Removed redundant code to rotate pictures. Already done by Qt.
 25/10/2018

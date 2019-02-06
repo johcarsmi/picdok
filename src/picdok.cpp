@@ -178,9 +178,11 @@ void Picdok::doNextEmpty()  // Find the next picture file without a UserComment 
 void Picdok::doFind()
 {
     PdSearch *findForm = new PdSearch();
+    findForm->setLastSearch(lastSearch);
     findForm->exec();
     QString txt = findForm->getSearchStr();
     if (txt == "") return;
+    lastSearch = txt;
     searchInComment(false, txt );
 }
 
@@ -431,11 +433,28 @@ void Picdok::doSetPicture()     // Display selected picture and EXIF data.
     picUserCommentSave = picUserComment;
     img->load(curDir + curFile);
     if (img->isNull()) { QMessageBox::information(this, ERROR_TITLE,  tr("Cannot open %1").arg(curFile)); return; }
-    *pixmDisp = QPixmap::fromImage(*img);
+    transformImage();
+    *pixmDisp = QPixmap::fromImage(*imgDisp);
     fHt = ui->lblPic->height();
     fWdth = ui->lblPic->width();
     ui->lblPic->setPixmap(pixmDisp->scaled(fWdth,fHt,Qt::KeepAspectRatio,Qt::SmoothTransformation));
     if (showPic != 0) showPic->setPic(pixmDisp);    // Output image onto full-screen form if present.
+}
+
+void Picdok::transformImage()  // Rotate the image according to EXIF data information.
+{
+    matx->reset();                          // Clear any existing rotation settings.
+    if (picOrientation == PIC_LAND)
+        rotAngle = PIC_ROT_NONE;
+    else if (picOrientation == PIC_PORT_L)
+        rotAngle = PIC_ROT_L;
+    else if (picOrientation == PIC_PORT_R)
+        rotAngle = PIC_ROT_R;
+    else
+        rotAngle = PIC_ROT_NONE;
+    // Having set the angle, now set the Qmatrix and create the display pixel map.
+    matx->rotate(rotAngle);
+    *imgDisp = img->transformed(*matx, Qt::SmoothTransformation);
 }
 
 void Picdok::doResize()     // Resize QPixMap to match the size of the label so all picture is visible.

@@ -15,6 +15,7 @@ public:
     explicit PdSearch(QWidget *parent = 0);
     ~PdSearch();
     QString getSearchStr();
+    void setLastSearch(QString inStr);
 
 private:
     Ui::PdSearch *ui;

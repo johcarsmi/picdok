@@ -31,7 +31,7 @@
      <x>29</x>
      <y>15</y>
      <width>188</width>
-     <height>49</height>
+     <height>61</height>
     </rect>
    </property>
    <property name="frameShape">
@@ -57,7 +57,7 @@
      <x>11</x>
      <y>131</y>
      <width>241</width>
-     <height>33</height>
+     <height>36</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout">
