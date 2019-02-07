@@ -854,7 +854,8 @@ void Picdok::doBrowse()
     pdts->exec();
     QString selFile = pdts->getResult();
     delete pdts;
-    qDebug() << selFile;
+    //qDebug() << selFile;
+    if (selFile == "") return;
     int pix = 0;
     pix = ui->cmbPicFile->findText(selFile);
     ui->cmbPicFile->setCurrentIndex(pix);

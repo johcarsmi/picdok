@@ -1,4 +1,8 @@
 Change Log for picdok
+07/02/2019
+    Reinstated code to rotate pictures in thumbnail browsing.
+    Now keeps current picture if thumbnail screen closed without
+    any selection being made.
 06/02/2019
     Reinstated code removed below. Not always done by Qt!
     Search in comment now retains the last used search string to allow
