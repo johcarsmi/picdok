@@ -66,10 +66,17 @@ void PdThumbSel::SetUpTable()
             rotAngle = PIC_ROT_R;
         else
             rotAngle = PIC_ROT_NONE;
-        // Having set the angle, now set the Qmatrix and create the display pixel map.
-        matx->rotate(rotAngle);
-        *imgRot = img->transformed(*matx, Qt::SmoothTransformation);
-        *pixmDisp = QPixmap::fromImage(*imgRot);
+        // Having set the angle, now set the Qmatrix, rotate if required, and create the display pixel map.
+        if (rotAngle != PIC_ROT_NONE)
+        {
+            matx->rotate(rotAngle);
+            *imgRot = img->transformed(*matx, Qt::SmoothTransformation);
+            *pixmDisp = QPixmap::fromImage(*imgRot);
+        }
+        else
+        {
+            *pixmDisp = QPixmap::fromImage(*img);
+        }
         *pixmScaled = pixmDisp->scaled(130, 130, Qt::KeepAspectRatio, Qt::SmoothTransformation);
         newItem->setPixmap(pixmScaled);
         ui->tblThumbs->setCellWidget(rIx, cIx, newItem);

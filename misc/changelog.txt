@@ -1,4 +1,6 @@
 Change Log for picdok
+22/03/2019
+    Only rotate picture for thumbnail if needed.
 07/02/2019
     Reinstated code to rotate pictures in thumbnail browsing.
     Now keeps current picture if thumbnail screen closed without
