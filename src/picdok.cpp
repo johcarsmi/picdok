@@ -453,6 +453,11 @@ void Picdok::transformImage()  // Rotate the image according to EXIF data inform
     else
         rotAngle = PIC_ROT_NONE;
     // Having set the angle, now set the Qmatrix and create the display pixel map.
+    if (rotAngle == PIC_ROT_NONE)
+    {
+        *imgDisp = img->copy();
+        return;
+    }
     matx->rotate(rotAngle);
     *imgDisp = img->transformed(*matx, Qt::SmoothTransformation);
 }
