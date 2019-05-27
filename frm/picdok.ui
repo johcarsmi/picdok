@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>735</width>
+    <width>753</width>
     <height>643</height>
    </rect>
   </property>
@@ -49,7 +49,7 @@
     <item row="0" column="0">
      <layout class="QVBoxLayout" name="verticalLayout">
       <property name="sizeConstraint">
-       <enum>QLayout::SetNoConstraint</enum>
+       <enum>QLayout::SetMinimumSize</enum>
       </property>
       <item>
        <widget class="PicDokLabel" name="lblPic">
@@ -84,6 +84,9 @@
       </item>
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout">
+        <property name="sizeConstraint">
+         <enum>QLayout::SetMinimumSize</enum>
+        </property>
         <item>
          <widget class="QLabel" name="lblPicDatLbl">
           <property name="sizePolicy">
@@ -189,6 +192,9 @@ taken:</string>
       </item>
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <property name="sizeConstraint">
+         <enum>QLayout::SetMinimumSize</enum>
+        </property>
         <item>
          <widget class="QPushButton" name="pbCloseMain">
           <property name="sizePolicy">
@@ -367,7 +373,7 @@ Only enabled if the description has been changed.</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>735</width>
+     <width>753</width>
      <height>30</height>
     </rect>
    </property>

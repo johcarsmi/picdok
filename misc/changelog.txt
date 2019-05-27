@@ -1,4 +1,8 @@
 Change Log for picdok
+27/05/2019
+    Fixed bug where a 'undo deselect' action didn't add the file
+    concerned back into the QstringList of files in the directory
+    only the comobox list.
 22/03/2019
     Only rotate picture for thumbnail if needed.
     Only rotate picture for display if needed.

@@ -813,7 +813,6 @@ void Picdok::doUndoDeselect()
                                           "Action aborted.");
                     return;
                 }
-
             // Need to scan list of items and insert into the correct place in the file order.
             int pix = 0;
             while (ui->cmbPicFile->itemText(pix) < fi.fileName() && pix < ui->cmbPicFile->count())
@@ -822,6 +821,8 @@ void Picdok::doUndoDeselect()
             }
             ui->cmbPicFile->insertItem(pix,fi.fileName());
             ui->cmbPicFile->setCurrentIndex(pix);
+            // Re-add to list of files in directory.
+            dirFiles.insert(pix,fi.fileName());
         }
     }
     else
