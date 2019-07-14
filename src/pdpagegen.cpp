@@ -28,6 +28,7 @@ PdPageGen::PdPageGen(QWidget *parent,const QString &inDir,const QStringList &inF
     ui->txtOfile->setText(datafile->value("ofile", "_picInfo.html").toString());
     modl->setStringList(datafile->value("subjects", "Enter subject list").toStringList());
     dataTable = new DTAB;
+    connect (ui->lstSubject, SIGNAL( EditReq() ), this, SLOT( SetEdit() ) );
 }
 
 PdPageGen::~PdPageGen()
@@ -227,4 +228,9 @@ void PdPageGen::lstSelChange(const QModelIndex, const QModelIndex &deselected)  
     {
         modl->removeRow(deselected.row());
     }
+}
+
+void PdPageGen::SetEdit()
+{
+    ui->lstSubject->edit(ui->lstSubject->currentIndex());
 }

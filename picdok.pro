@@ -25,7 +25,7 @@ man.path = /usr/local/man/man1                      # Location for man pages in 
 man.files = misc/picdok.1.gz
 INSTALLS += man
 
-VERSION  = 0.4.1
+VERSION  = 0.4.2
 
 APPVERSTR = '\\"$${VERSION}\\"'     # places quotes around the version string
 DEFINES += APPVER=\"$${APPVERSTR}\" # create an APPVER defines containing the version string
@@ -48,7 +48,8 @@ SOURCES += src/main.cpp\
     src/pdsearch.cpp \
     src/pdthumbsel.cpp \
     src/pdthumb.cpp \
-    src/pdflashmsg.cpp
+    src/pdflashmsg.cpp \
+    src/picdoklistview.cpp
 
 HEADERS  += hdr/picdok.h \
     hdr/picdoktextedit.h \
@@ -65,7 +66,8 @@ HEADERS  += hdr/picdok.h \
     hdr/pdsearch.h \
     hdr/pdthumbsel.h \
     hdr/pdthumb.h \
-    hdr/pdflashmsg.h
+    hdr/pdflashmsg.h \
+    hdr/picdoklistview.h
 
 FORMS    += \
     frm/pdrenfiles.ui \

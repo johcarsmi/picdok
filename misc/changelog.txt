@@ -1,4 +1,8 @@
 Change Log for picdok
+14/07/2019
+    Subclassed QListView as PicDokListView to allow keyboard action
+    to enable editting of the subject list.
+    Version set at 0.4.2.
 27/05/2019
     Fixed bug where a 'undo deselect' action didn't add the file
     concerned back into the QstringList of files in the directory

@@ -52,6 +52,7 @@ private slots:
     void doQuit();
     void doSave();
     void lstSelChange(const QModelIndex, const QModelIndex &);
+    void SetEdit();
 };
 
 #endif // PDPAGEGEN_H

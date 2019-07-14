@@ -72,7 +72,7 @@
           </size>
          </property>
          <property name="text">
-          <string>&amp;Description of directory content:-</string>
+          <string>Descriptio&amp;n of directory content:-</string>
          </property>
          <property name="buddy">
           <cstring>txtDesc</cstring>
@@ -113,7 +113,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QListView" name="lstSubject">
+        <widget class="PicDokListView" name="lstSubject">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
            <horstretch>1</horstretch>
@@ -511,6 +511,11 @@
    <class>PicDokPlainTextEdit</class>
    <extends>QPlainTextEdit</extends>
    <header>picdokplaintextedit.h</header>
+  </customwidget>
+  <customwidget>
+   <class>PicDokListView</class>
+   <extends>QListView</extends>
+   <header>picdoklistview.h</header>
   </customwidget>
  </customwidgets>
  <tabstops>
