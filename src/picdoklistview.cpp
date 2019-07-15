@@ -5,6 +5,10 @@
 
 //#include <QDebug>
 
+/* A class derived from QListView so that the editting of a list view entry
+ * may be initiated by using the key combination 'Ctrl' and 'e'
+ * */
+
 PicDokListView::PicDokListView(QWidget *parent) :
     QListView(parent)
 {
@@ -21,7 +25,7 @@ PicDokListView::~PicDokListView()
 
 bool PicDokListView::event(QEvent *event)
 {
-    if (event->type() == QEvent::KeyPress)
+    if (event->type() == QEvent::KeyPress)          // Note Key presses as they are made and set flags.
     {
 //        qDebug() << "KeyPress event caught";
         QKeyEvent *ke = static_cast<QKeyEvent *>(event);
@@ -34,7 +38,7 @@ bool PicDokListView::event(QEvent *event)
             EEE = true;
         };
     }
-    if (event->type() == QEvent::KeyRelease)
+    if (event->type() == QEvent::KeyRelease)          // Note Key releases as they are made and clear flags.
     {
 //        qDebug() << "KeyRelease event caught";
         QKeyEvent *ke = static_cast<QKeyEvent *>(event);
@@ -47,13 +51,12 @@ bool PicDokListView::event(QEvent *event)
             EEE = false;
         };
     }
-    if (Ctrl && EEE)
+    if (Ctrl && EEE)    // If both Ctrl and E keys pressed then we want to edit so tell PdPageGen.
     {
         emit EditReq();
     }
-    else
+    else                // Pass onto root class.
     {
-        event->setAccepted(false);
         QListView::event(event);
     }
     return true;
