@@ -66,7 +66,9 @@ Picdok::Picdok(QWidget *parent) :
     connect(ui->lblPic, SIGNAL(pdlSigDel()), this, SLOT(doDelete()));
     connect(ui->lblPic, SIGNAL(pdlSigRen()), this, SLOT(doPicRename()));
     connect(ui->lblPic, SIGNAL(pdlSigMov()), this, SLOT(doPicMove()));
+    connect(this, SIGNAL(firstLoad()), this, SLOT(doInitialLoad()));
     desk = QApplication::desktop();
+    emit firstLoad();
     setFocusOnCommentIfEmpty();
     WaitPtr(false);
 }
@@ -122,7 +124,7 @@ void Picdok::readSettings(const QString & inDir)    // Get the last used directo
     if (inDir != "") curDir = inDir;
     else curDir = settings->value("directory", "").toString();  // The default of "" gives program run directory.
     if (!QDir(curDir).exists()) curDir = QDir::homePath();
-    setDirFiles();
+    //setDirFiles();
 }
 
 void Picdok::setupStatusBar()   // put current directory into the status bar.
@@ -905,4 +907,9 @@ void Picdok::doCloseFlash()
     pdFl->close();
     delete pdFl;
     WaitPtr(false);
+}
+
+void Picdok::doInitialLoad()
+{
+    setDirFiles();
 }

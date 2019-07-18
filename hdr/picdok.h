@@ -89,6 +89,9 @@ private:
     void searchInComment(const bool searchForEmpty, const QString searchString);
     void flashMessage(const QString);
 
+signals:
+    void firstLoad();
+
 private slots:
     // Menu / Program
     void doAbout();
@@ -128,6 +131,7 @@ private slots:
     void doResize();
     // Timer
     void doCloseFlash();
+    void doInitialLoad();
 };
 
 #endif // PICDOK_H

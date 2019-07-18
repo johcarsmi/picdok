@@ -1,4 +1,8 @@
 Change Log for picdok
+18/07/2019
+    Moved the loading from the initial directory out of the constructor
+    so that if a messsage needs to be presented for the first file on
+    program load it doesn't hang.
 14/07/2019
     Subclassed QListView as PicDokListView to allow keyboard action
     to enable editting of the subject list.
