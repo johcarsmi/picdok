@@ -18,6 +18,7 @@
 #include <qt5/QtGui/QPixmap>
 #include <qt5/QtCore/QDir>
 #include <QApplication>
+#include <QTimer>
 #include <unistd.h>
 #include <cstdio>
 #include <iostream>
@@ -68,7 +69,8 @@ Picdok::Picdok(QWidget *parent) :
     connect(ui->lblPic, SIGNAL(pdlSigMov()), this, SLOT(doPicMove()));
     connect(this, SIGNAL(firstLoad()), this, SLOT(doInitialLoad()));
     desk = QApplication::desktop();
-    emit firstLoad();
+    QTimer::singleShot(100,this, SLOT(doInitialLoad())); // Data Load outside of constructor to allow messages from picture load.
+                                                          // Delay added to allow basic form to be displayed before message.
     setFocusOnCommentIfEmpty();
     WaitPtr(false);
 }
@@ -124,7 +126,6 @@ void Picdok::readSettings(const QString & inDir)    // Get the last used directo
     if (inDir != "") curDir = inDir;
     else curDir = settings->value("directory", "").toString();  // The default of "" gives program run directory.
     if (!QDir(curDir).exists()) curDir = QDir::homePath();
-    //setDirFiles();
 }
 
 void Picdok::setupStatusBar()   // put current directory into the status bar.
@@ -415,24 +416,6 @@ void Picdok::doEnableSave()     // Enable the Save button - triggered when the U
 
 void Picdok::doSetPicture()     // Display selected picture and EXIF data.
 {
-    if (!getExifData(curFullFileName, picUserComment, picOrientation, picDatTimOri))
-    {
-        if (!noWarnNoExif && showPic == 0)      // Stop warning if showing pictures full-screen.
-        {
-            WaitPtr(false);
-            QMessageBox::information(this, ERROR_TITLE, tr("exif data not obtained for %1").arg(curFullFileName));
-        }
-        picUserComment = "";
-        ui->lblPicDat->setText(picDatTimOri.left(10).replace(':',"/"));
-        ui->txtComment->setPlainText(picUserComment);
-    }
-    else
-    {
-        // Set picture date and comment.
-        ui->lblPicDat->setText(picDatTimOri.left(10).replace(':',"/"));
-        ui->txtComment->setPlainText(picUserComment);
-    }
-    picUserCommentSave = picUserComment;
     img->load(curDir + curFile);
     if (img->isNull()) { QMessageBox::information(this, ERROR_TITLE,  tr("Cannot open %1").arg(curFile)); return; }
     transformImage();
@@ -441,6 +424,24 @@ void Picdok::doSetPicture()     // Display selected picture and EXIF data.
     fWdth = ui->lblPic->width();
     ui->lblPic->setPixmap(pixmDisp->scaled(fWdth,fHt,Qt::KeepAspectRatio,Qt::SmoothTransformation));
     if (showPic != 0) showPic->setPic(pixmDisp);    // Output image onto full-screen form if present.
+    if (!getExifData(curFullFileName, picUserComment, picOrientation, picDatTimOri))
+    {
+        if (!noWarnNoExif && showPic == 0)      // Stop warning if showing pictures full-screen.
+        {
+            WaitPtr(false);
+            QMessageBox::information(this, ERROR_TITLE, tr("exif data not obtained for %1").arg(curFullFileName));
+        }
+        picUserComment = "";
+        ui->lblPicDat->setText("");
+        ui->txtComment->setPlainText("");
+    }
+    else
+    {
+        // Set picture date and comment.
+        ui->lblPicDat->setText(picDatTimOri.left(10).replace(':',"/"));
+        ui->txtComment->setPlainText(picUserComment);
+    }
+    picUserCommentSave = picUserComment;
 }
 
 void Picdok::transformImage()  // Rotate the image according to EXIF data information.

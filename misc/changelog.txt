@@ -1,4 +1,6 @@
 Change Log for picdok
+21/07/2019
+    Initial load delayed 100mS so that base form is displayed first
 18/07/2019
     Moved the loading from the initial directory out of the constructor
     so that if a messsage needs to be presented for the first file on
