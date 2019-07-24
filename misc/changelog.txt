@@ -1,4 +1,6 @@
 Change Log for picdok
+24/07/2019
+    Removed redundant connect statement. Set initial delay to 50mS.
 21/07/2019
     Initial load delayed 100mS so that base form is displayed first
 18/07/2019
