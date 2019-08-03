@@ -1,4 +1,6 @@
 Change Log for picdok
+03/08/2019
+    Simplified the code in picdoklistview.
 24/07/2019
     Removed redundant connect statement. Set initial delay to 50mS.
 21/07/2019

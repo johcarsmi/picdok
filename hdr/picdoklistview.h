@@ -17,9 +17,6 @@ protected:
 signals:
     void EditReq();
 
-private:
-    bool Ctrl;
-    bool EEE;
 };
 
 #endif // PICDOKLISTVIEW_H
