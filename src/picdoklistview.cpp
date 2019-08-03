@@ -27,6 +27,10 @@ bool PicDokListView::event(QEvent *event)
         {
             emit EditReq();
         }
+        if (ke->key() == Qt::Key_Tab)
+        {
+            focusNextChild();
+        }
     }
     else                // Pass onto root class.
     {
