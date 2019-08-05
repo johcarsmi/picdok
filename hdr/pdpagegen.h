@@ -6,7 +6,6 @@
 #include <qt5/QtCore/QStringListModel>
 #include <qt5/QtCore/QTextStream>
 #include "picdokplaintextedit.h"
-#include "picdok.h"
 
 #define DATA_FILE ".picdok.data"
 
@@ -28,7 +27,7 @@ class PdPageGen : public QDialog
 
 public:
     explicit PdPageGen(QWidget *parent = 0,
-                       const QString &inDir = "", const QStringList &inFiles = QStringList(), Picdok *inMain = 0);
+                       const QString &inDir = "", const QStringList &inFiles = QStringList() );
     ~PdPageGen();
 
 private:
@@ -37,7 +36,6 @@ private:
     QStringListModel *modl;
     QString picDir;
     QStringList picFiles;
-    Picdok *pdMain;
     DTAB *dataTable;
     void setFiles(DTAB *);
     QString addPicInfo(DTAB *);

@@ -33,7 +33,6 @@ protected:
 public:
     explicit Picdok(QWidget *parent = 0);
     ~Picdok();
-    bool getExifData(const QString &, QString &, QString &, QString &);
     static void WaitPtr(const bool &);
 
 private:

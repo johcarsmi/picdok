@@ -10,7 +10,6 @@
 
 #include <QDialog>
 #include <QDir>
-#include "picdok.h"
 
 namespace Ui {
 class PdThumbSel;
@@ -21,7 +20,7 @@ class PdThumbSel : public QDialog
     Q_OBJECT
 
 public:
-    explicit PdThumbSel(QWidget *parent = 0, Picdok *inMain = 0);
+    explicit PdThumbSel(QWidget *parent = 0);
     ~PdThumbSel();
 
 private:
@@ -32,7 +31,6 @@ private:
     QImage *img;
     QPixmap *pixmScaled;
     QString retName;
-    Picdok *pdMain;
     QImage *imgRot;
     QPixmap *pixmDisp;
     QTransform *matx;

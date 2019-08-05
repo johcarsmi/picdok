@@ -1,4 +1,9 @@
 Change Log for picdok
+05/08/2019
+    Created branch mthread to hold code for multithreading thumbnail 
+    generation.
+    Moved function getExifData() to be a public function and made the
+    changes to avoid passing a pointer to Picdok to called methods.
 03/08/2019
     Simplified the code in picdoklistview. Added tab handling to set
     focus on next child.

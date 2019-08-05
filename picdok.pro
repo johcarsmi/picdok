@@ -49,7 +49,8 @@ SOURCES += src/main.cpp\
     src/pdthumbsel.cpp \
     src/pdthumb.cpp \
     src/pdflashmsg.cpp \
-    src/picdoklistview.cpp
+    src/picdoklistview.cpp \
+    src/getexifdata.cpp
 
 HEADERS  += hdr/picdok.h \
     hdr/picdoktextedit.h \
@@ -67,7 +68,8 @@ HEADERS  += hdr/picdok.h \
     hdr/pdthumbsel.h \
     hdr/pdthumb.h \
     hdr/pdflashmsg.h \
-    hdr/picdoklistview.h
+    hdr/picdoklistview.h \
+    hdr/getexifdata.h
 
 FORMS    += \
     frm/pdrenfiles.ui \

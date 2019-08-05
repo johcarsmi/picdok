@@ -9,15 +9,16 @@
 #include <qt5/QtCore/QTemporaryFile>
 #include <qt5/QtWidgets/QMessageBox>
 #include "pdpreview.h"
+#include "picdok.h"
+#include "getexifdata.h"
 
-PdPageGen::PdPageGen(QWidget *parent,const QString &inDir,const QStringList &inFiles, Picdok *inMain) :
+PdPageGen::PdPageGen(QWidget *parent, const QString &inDir, const QStringList &inFiles) :
     QDialog(parent),
     ui(new Ui::PdPageGen)
 {
     ui->setupUi(this);
     picDir = inDir;
     picFiles = inFiles;
-    pdMain = inMain;
     modl = new QStringListModel(this);
     ui->lstSubject->setModel(modl);
     connect (ui->lstSubject->selectionModel(), SIGNAL( currentRowChanged ( const QModelIndex &, const QModelIndex &)),
@@ -100,7 +101,7 @@ QString PdPageGen::addPicInfo(DTAB *pTab)   // Add the date and comment to the d
     for (int i = 0; i < pTab->length(); i++)
     {
         wFile = picDir + QDir::separator() + pTab->at(i).sFile;
-        if (pdMain->getExifData(wFile, wText, wOrtn, wDate))    // Use method in main window class.
+        if (getExifData(wFile, wText, wOrtn, wDate))    // Use method in main window class.
         {
             if (wDate.length() >= 10)
                 pTab->operator [](i).sDate = wDate.mid(8,2) + "/" + wDate.mid(5,2) + "/" + wDate.left(4);

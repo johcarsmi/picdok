@@ -2,14 +2,47 @@
 #include "ui_pdthumbsel.h"
 #include "pdthumb.h"
 //#include <QtDebug>
-#include "picdok.h"
 #include <QWidgetItem>
+#include "getexifdata.h"
 
-PdThumbSel::PdThumbSel(QWidget *parent, Picdok *inMain) :
+QPixmap scale(const QString &imageFileName)     // A public function that will be called
+{
+    const int thmbSize = 130;   // 130 is chosen to fit the QTableWidgetItems.
+    QImage *img = new QImage(imageFileName);
+    QPixmap *pixmDisp = new QPixmap();
+    QMatrix *matx = new QMatrix();
+    int rotAngle;
+    QString picUserComment;
+    QString picOrientation;
+    QString picDatTimOri;
+    getExifData(imageFileName, picUserComment, picOrientation, picDatTimOri);
+    matx->reset();                          // Clear any existing rotation settings.
+    if (picOrientation == PIC_LAND)
+        rotAngle = PIC_ROT_NONE;
+    else if (picOrientation == PIC_PORT_L)
+        rotAngle = PIC_ROT_L;
+    else if (picOrientation == PIC_PORT_R)
+        rotAngle = PIC_ROT_R;
+    else
+        rotAngle = 0;
+    // Having set the angle, now set the Qmatrix, rotate if required, and create the display pixel map.
+    if (rotAngle != 0)
+    {
+        matx->rotate(rotAngle);
+        QImage imgRot = img->transformed(*matx, Qt::SmoothTransformation);
+        *pixmDisp = QPixmap::fromImage(imgRot);
+    }
+    else
+    {
+        *pixmDisp = QPixmap::fromImage(*img);
+    }
+    return pixmDisp->scaled(thmbSize, thmbSize, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+}
+
+PdThumbSel::PdThumbSel(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::PdThumbSel)
 {
-    pdMain = inMain;
     ui->setupUi(this);
     ui->tblThumbs->setColumnCount(4);
     img = new QImage();
@@ -55,29 +88,7 @@ void PdThumbSel::SetUpTable()
         pdthumb *newItem = new pdthumb(this);
         newItem->setFileName(srcFiles.at(fIx));
         srcFullFileName =srcDir + srcFiles.at(fIx);
-        img->load(srcFullFileName);
-        pdMain->getExifData(srcFullFileName, picUserComment, picOrientation, picDatTimOri);
-        matx->reset();                          // Clear any existing rotation settings.
-        if (picOrientation == PIC_LAND)
-            rotAngle = PIC_ROT_NONE;
-        else if (picOrientation == PIC_PORT_L)
-            rotAngle = PIC_ROT_L;
-        else if (picOrientation == PIC_PORT_R)
-            rotAngle = PIC_ROT_R;
-        else
-            rotAngle = PIC_ROT_NONE;
-        // Having set the angle, now set the Qmatrix, rotate if required, and create the display pixel map.
-        if (rotAngle != PIC_ROT_NONE)
-        {
-            matx->rotate(rotAngle);
-            *imgRot = img->transformed(*matx, Qt::SmoothTransformation);
-            *pixmDisp = QPixmap::fromImage(*imgRot);
-        }
-        else
-        {
-            *pixmDisp = QPixmap::fromImage(*img);
-        }
-        *pixmScaled = pixmDisp->scaled(130, 130, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+        *pixmScaled = scale(srcFullFileName);
         newItem->setPixmap(pixmScaled);
         ui->tblThumbs->setCellWidget(rIx, cIx, newItem);
         cIx++;

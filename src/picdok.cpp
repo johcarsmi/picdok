@@ -33,6 +33,7 @@
 #include "pdsearch.h"
 #include "pdthumbsel.h"
 #include "pdflashmsg.h"
+#include "getexifdata.h"
 
 class exifEx: public std::exception     // For handling missing data exceptions.
 {
@@ -470,7 +471,7 @@ void Picdok::doResize()     // Resize QPixMap to match the size of the label so 
     fWdth = ui->lblPic->width();
     ui->lblPic->setPixmap(pixmDisp->scaled(fWdth,fHt,Qt::KeepAspectRatio,Qt::SmoothTransformation));
 }
-
+/*
 bool Picdok::getExifData(const QString & inFile, QString &retComm, QString &retOrtn, QString &retDate)
 // Get the UserComment, Orientation and DateTimeOriginal from the EXIF data.
 {
@@ -493,7 +494,7 @@ bool Picdok::getExifData(const QString & inFile, QString &retComm, QString &retO
     retOrtn = datum.toString().c_str();
     return true;
 }
-
+*/
 void Picdok::doSave()     // Save the revised UserComment data back to the source file.
 {
     WaitPtr(true);
@@ -624,7 +625,7 @@ void Picdok::deleteCurrentFromCombo()
 
 void Picdok::doGeneratePage()   // Opens a form to process index
 {
-    PdPageGen *PageGen = new PdPageGen(this, curDir, dirFiles, this);
+    PdPageGen *PageGen = new PdPageGen(this, curDir, dirFiles);
     PageGen->exec();
     delete PageGen;
 }
