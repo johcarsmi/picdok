@@ -5,7 +5,7 @@
 #include <QWidgetItem>
 #include "getexifdata.h"
 
-QPixmap scale(const QString &imageFileName)     // A public function that will be called
+QPixmap pdScale(const QString &imageFileName)     // A public function that will be called
 {
     const int thmbSize = 130;   // 130 is chosen to fit the QTableWidgetItems.
     QImage *img = new QImage(imageFileName);
@@ -88,7 +88,7 @@ void PdThumbSel::SetUpTable()
         pdthumb *newItem = new pdthumb(this);
         newItem->setFileName(srcFiles.at(fIx));
         srcFullFileName =srcDir + srcFiles.at(fIx);
-        *pixmScaled = scale(srcFullFileName);
+        *pixmScaled = pdScale(srcFullFileName);
         newItem->setPixmap(pixmScaled);
         ui->tblThumbs->setCellWidget(rIx, cIx, newItem);
         cIx++;
