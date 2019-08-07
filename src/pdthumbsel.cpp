@@ -37,7 +37,11 @@ QPixmap pdScale(const QString &imageFileName)     // A public function that will
     {
         *pixmDisp = QPixmap::fromImage(*img);
     }
-    return pixmDisp->scaled(thmbSize, thmbSize, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    delete img;
+    delete matx;
+    QPixmap retPixm = pixmDisp->scaled(thmbSize, thmbSize, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    delete pixmDisp;
+    return retPixm;
 }
 
 PdThumbSel::PdThumbSel(QWidget *parent) :
