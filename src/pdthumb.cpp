@@ -19,9 +19,9 @@ void pdthumb::setFileName(QString inFname)
     ui->lblText->setText(inFname);
 }
 
-void pdthumb::setPixmap(QPixmap *inPx)
+void pdthumb::setPixmap(QPixmap inPx)
 {
-    ui->lblPic->setPixmap(*inPx);
+    ui->lblPic->setPixmap(inPx);
 }
 
 QString pdthumb::getFileName()

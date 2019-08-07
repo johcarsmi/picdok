@@ -4,6 +4,7 @@
 //#include <QtDebug>
 #include <QWidgetItem>
 #include "getexifdata.h"
+#include "picdok.h"
 
 QPixmap pdScale(const QString &imageFileName)     // A public function that will be called
 {
@@ -47,18 +48,23 @@ PdThumbSel::PdThumbSel(QWidget *parent) :
     ui->tblThumbs->setColumnCount(4);
     img = new QImage();
     pixmScaled = new QPixmap();
-    matx = new QTransform();
-    imgRot = new QImage();
     pixmDisp = new QPixmap();
     ui->tblThumbs->setColumnWidth(0,160);
     ui->tblThumbs->setColumnWidth(1,160);
     ui->tblThumbs->setColumnWidth(2,160);
     ui->tblThumbs->setColumnWidth(3,160);
     ui->tblThumbs->setRowHeight(0,180);
+    qDeleteAll(thumbList);
+    thumbList.clear();
+    pdFutWat = new QFutureWatcher<QPixmap>(this);
+    connect(pdFutWat, SIGNAL(resultReadyAt(int)), SLOT(addImageToGrid(int)));
+    connect(pdFutWat, SIGNAL(finished()), SLOT(allDone()));
 }
 
 PdThumbSel::~PdThumbSel()
 {
+    pdFutWat->cancel();
+    pdFutWat->waitForFinished();
     delete ui;
 }
 
@@ -86,10 +92,12 @@ void PdThumbSel::SetUpTable()
     while (fIx < srcFiles.length())
     {
         pdthumb *newItem = new pdthumb(this);
+        thumbList.append(newItem);                      // add this pdthumb to the list of pdthumbs to receive scaled images.
         newItem->setFileName(srcFiles.at(fIx));
         srcFullFileName =srcDir + srcFiles.at(fIx);
-        *pixmScaled = pdScale(srcFullFileName);
-        newItem->setPixmap(pixmScaled);
+        sourceFiles.append(srcFullFileName);            // add the file name for this pdthumb to the list to be scaled.
+        //*pixmScaled = pdScale(srcFullFileName);
+        //newItem->setPixmap(pixmScaled);
         ui->tblThumbs->setCellWidget(rIx, cIx, newItem);
         cIx++;
         if (cIx % ui->tblThumbs->columnCount() == 0)
@@ -104,7 +112,19 @@ void PdThumbSel::SetUpTable()
         }
         fIx++;
     }
+    pdFutWat->setFuture(QtConcurrent::mapped(sourceFiles, pdScale));
+    Picdok::WaitPtr(true);
     return;
+}
+
+void PdThumbSel::addImageToGrid(int num)
+{
+    thumbList[num]->setPixmap(pdFutWat->resultAt(num));
+}
+
+void PdThumbSel::allDone()
+{
+    Picdok::WaitPtr(false);
 }
 
 void PdThumbSel::on_tblThumbs_doubleClicked(const QModelIndex &index)

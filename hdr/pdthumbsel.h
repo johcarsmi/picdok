@@ -10,6 +10,8 @@
 
 #include <QDialog>
 #include <QDir>
+#include <QtConcurrent/QtConcurrent>
+#include "pdthumb.h"
 
 namespace Ui {
 class PdThumbSel;
@@ -23,6 +25,14 @@ public:
     explicit PdThumbSel(QWidget *parent = 0);
     ~PdThumbSel();
 
+public:
+    void setFiles(QStringList, QString);
+    QString getResult();
+
+public slots:
+    void addImageToGrid(int num);
+    void allDone();
+
 private:
     Ui::PdThumbSel *ui;
     QStringList srcFiles;
@@ -31,21 +41,13 @@ private:
     QImage *img;
     QPixmap *pixmScaled;
     QString retName;
-    QImage *imgRot;
     QPixmap *pixmDisp;
-    QTransform *matx;
-    QString picOrientation;
-    QString picUserComment;
-    QString picUserCommentSave;
-    QString picDatTimOri;
-    qreal rotAngle;
+    QStringList sourceFiles;
+    QList<pdthumb *> thumbList;
+    QFutureWatcher<QPixmap> *pdFutWat;
 
     // methods
     void SetUpTable();
-
-public:
-    void setFiles(QStringList, QString);
-    QString getResult();
 
 private slots:
     void on_tblThumbs_doubleClicked(const QModelIndex &index);

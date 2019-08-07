@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui widgets webenginewidgets
+QT       += core gui widgets webenginewidgets concurrent
 
 TARGET   = picdok
 
@@ -25,7 +25,7 @@ man.path = /usr/local/man/man1                      # Location for man pages in 
 man.files = misc/picdok.1.gz
 INSTALLS += man
 
-VERSION  = 0.4.2
+VERSION  = 0.4.3
 
 APPVERSTR = '\\"$${VERSION}\\"'     # places quotes around the version string
 DEFINES += APPVER=\"$${APPVERSTR}\" # create an APPVER defines containing the version string

@@ -16,7 +16,7 @@ public:
     explicit pdthumb(QWidget *parent = 0);
     ~pdthumb();
     void setFileName(QString);
-    void setPixmap(QPixmap *);
+    void setPixmap(QPixmap);
     QString getFileName();
 
 private:
