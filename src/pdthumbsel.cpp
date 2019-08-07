@@ -69,6 +69,7 @@ PdThumbSel::~PdThumbSel()
 {
     pdFutWat->cancel();
     pdFutWat->waitForFinished();
+    Picdok::WaitPtr(false);
     delete ui;
 }
 
@@ -80,6 +81,8 @@ void PdThumbSel::setFiles(QStringList inFiles, QString inDir)
     if ( (srcFiles.length() % ui->tblThumbs->columnCount() ) != 0) rowsReqd++;
     ui->tblThumbs->setRowCount(rowsReqd);
     SetUpTable();
+    ui->barProg->setRange(0, srcFiles.length());
+    ui->barProg->setValue(0);
 }
 
 QString PdThumbSel::getResult()
@@ -124,6 +127,7 @@ void PdThumbSel::SetUpTable()
 void PdThumbSel::addImageToGrid(int num)
 {
     thumbList[num]->setPixmap(pdFutWat->resultAt(num));
+    ui->barProg->setValue(ui->barProg->value() + 1);
 }
 
 void PdThumbSel::allDone()
