@@ -103,8 +103,6 @@ void PdThumbSel::SetUpTable()
         newItem->setFileName(srcFiles.at(fIx));
         srcFullFileName =srcDir + srcFiles.at(fIx);
         sourceFiles.append(srcFullFileName);            // add the file name for this pdthumb to the list to be scaled.
-        //*pixmScaled = pdScale(srcFullFileName);
-        //newItem->setPixmap(pixmScaled);
         ui->tblThumbs->setCellWidget(rIx, cIx, newItem);
         cIx++;
         if (cIx % ui->tblThumbs->columnCount() == 0)

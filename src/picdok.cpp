@@ -264,6 +264,8 @@ void Picdok::doSetDirectory()   // Handle the menu entry to set the directory of
         curDir = newDir;
         picUserComment = picUserCommentSave = "";
         ui->txtComment->setText("");
+        ui->lblPic->clear();
+        ui->lblPicNum->clear();
         setDirFiles();
         curDirLabel->setText(curDir);
         curDirLabel->repaint();
@@ -429,7 +431,7 @@ void Picdok::doSetPicture()     // Display selected picture and EXIF data.
         if (!noWarnNoExif && showPic == 0)      // Stop warning if showing pictures full-screen.
         {
             WaitPtr(false);
-            QMessageBox::information(this, ERROR_TITLE, tr("exif data not obtained for %1").arg(curFullFileName));
+            QMessageBox::information(this, ERROR_TITLE, tr("Exif data not obtained for %1").arg(curFullFileName));
         }
         picUserComment = "";
         ui->lblPicDat->setText("");

@@ -2,6 +2,7 @@ Change Log for picdok
 10/08/2019
     Increased the delay before initial load to allow more time
     for the main application window to be displayed.
+    Improved handling of selecting an empty directory.
 08/08/2019
     Resized PdThumbSel so that the grid fits within the dialog.
 07/08/2019
