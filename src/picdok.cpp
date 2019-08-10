@@ -69,7 +69,7 @@ Picdok::Picdok(QWidget *parent) :
     connect(ui->lblPic, SIGNAL(pdlSigRen()), this, SLOT(doPicRename()));
     connect(ui->lblPic, SIGNAL(pdlSigMov()), this, SLOT(doPicMove()));
     desk = QApplication::desktop();
-    QTimer::singleShot(50,this, SLOT(doInitialLoad())); // Data Load outside of constructor to allow messages from picture load.
+    QTimer::singleShot(200,this, SLOT(doInitialLoad())); // Data Load outside of constructor to allow messages from picture load.
                                                           // Delay added to allow basic form to be displayed before message.
     setFocusOnCommentIfEmpty();
     WaitPtr(false);
