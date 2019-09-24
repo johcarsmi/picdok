@@ -211,7 +211,7 @@
             <enum>Qt::ClickFocus</enum>
            </property>
            <property name="toolTip">
-            <string>Add line (Ctrl + )</string>
+            <string>Insert line below (Ctrl + )</string>
            </property>
            <property name="text">
             <string>+</string>
