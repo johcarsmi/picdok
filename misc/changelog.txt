@@ -1,4 +1,6 @@
 Change Log for picdok
+26/09/2019
+    Corrected processing of events in PicdokListView.
 23/09/2019
     Changed tool-tip on Generate Index form.
 10/08/2019

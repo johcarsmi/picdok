@@ -20,19 +20,22 @@ PicDokListView::~PicDokListView()
 
 bool PicDokListView::event(QEvent *event)
 {
+    bool actioned = false;
     if (event->type() == QEvent::KeyPress)          // Handle Ctrl + E to edit entry.
     {
         QKeyEvent *ke = static_cast<QKeyEvent *>(event);
         if (ke->key() == Qt::Key_E && ke->modifiers() == Qt::ControlModifier)
         {
             emit EditReq();
+            actioned = true;
         }
         if (ke->key() == Qt::Key_Tab)
         {
             focusNextChild();
+            actioned = true;
         }
     }
-    else                // Pass onto root class.
+    if (!actioned)                // Pass onto root class.
     {
         QListView::event(event);
     }
