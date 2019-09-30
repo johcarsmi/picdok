@@ -1,4 +1,6 @@
 Change Log for picdok
+30/09/2019
+    Correction for when remembered directory no longer exists.
 26/09/2019
     Corrected processing of events in PicdokListView.
 23/09/2019

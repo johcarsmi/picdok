@@ -125,7 +125,7 @@ void Picdok::readSettings(const QString & inDir)    // Get the last used directo
     settings->endGroup();
     if (inDir != "") curDir = inDir;
     else curDir = settings->value("directory", "").toString();  // The default of "" gives program run directory.
-    if (!QDir(curDir).exists()) curDir = QDir::homePath();
+    if (!QDir(curDir).exists()) curDir = QDir::homePath() + QDir::separator();
 }
 
 void Picdok::setupStatusBar()   // put current directory into the status bar.
