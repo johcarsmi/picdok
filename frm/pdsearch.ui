@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>274</width>
-    <height>189</height>
+    <height>231</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -54,8 +54,8 @@
   <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>11</x>
-     <y>131</y>
+     <x>20</x>
+     <y>170</y>
      <width>241</width>
      <height>36</height>
     </rect>
@@ -115,9 +115,26 @@
     <string>Enter search term here</string>
    </property>
   </widget>
+  <widget class="QCheckBox" name="cbCaseSens">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>130</y>
+     <width>121</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&amp;Case Sensitive</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+C</string>
+   </property>
+  </widget>
  </widget>
  <tabstops>
   <tabstop>txtSearchStr</tabstop>
+  <tabstop>cbCaseSens</tabstop>
   <tabstop>pbSearch</tabstop>
   <tabstop>pbQuit</tabstop>
  </tabstops>

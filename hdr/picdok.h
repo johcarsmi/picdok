@@ -75,6 +75,7 @@ private:
     QStringList deselFiles;
     pdFlashMsg *pdFl;
     QString lastSearch;
+    Qt::CheckState lastCaseSens;
     // Functions
     QString checkParams(QStringList *);
     void readSettings(const QString &);
@@ -85,7 +86,7 @@ private:
     void setFocusOnCommentIfEmpty();
     void deleteCurrentFromCombo();
     void setDirCount();
-    void searchInComment(const bool searchForEmpty, const QString searchString);
+    void searchInComment(const bool searchForEmpty, const QString searchString, Qt::CheckState);
     void flashMessage(const QString);
 
 private slots:

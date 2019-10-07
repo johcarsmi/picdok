@@ -1,4 +1,6 @@
 Change Log for picdok
+07/10/2019
+    Added case-sensitive search capability.
 30/09/2019
     Correction for when remembered directory no longer exists.
 26/09/2019

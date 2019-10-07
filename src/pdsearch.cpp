@@ -29,8 +29,17 @@ QString PdSearch::getSearchStr()
     searchStr = ui->txtSearchStr->text();
     return searchStr;
 }
+Qt::CheckState PdSearch::getCaseSens()
+{
+    return ui->cbCaseSens->checkState();
+}
 
 void PdSearch::setLastSearch(const QString inStr)
 {
     ui->txtSearchStr->setText(inStr);
+}
+
+void PdSearch::setCaseSens(Qt::CheckState isChecked)
+{
+    ui->cbCaseSens->setCheckState(isChecked);
 }

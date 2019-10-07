@@ -175,21 +175,25 @@ void Picdok::doNext()  // Move to the next picture file in the directory.
 
 void Picdok::doNextEmpty()  // Find the next picture file without a UserComment entry in the EXIF data.
 {
-    searchInComment(true, "");
+    searchInComment(true, "", Qt::Unchecked);
 }
 
 void Picdok::doFind()
 {
     PdSearch *findForm = new PdSearch();
     findForm->setLastSearch(lastSearch);
+    findForm->setCaseSens(lastCaseSens);
     findForm->exec();
     QString txt = findForm->getSearchStr();
+    Qt::CheckState retCheck = findForm->getCaseSens();
     if (txt == "") return;
     lastSearch = txt;
-    searchInComment(false, txt );
+    lastCaseSens = retCheck;
+    searchInComment(false, txt, retCheck);
+    delete findForm;
 }
 
-void Picdok::searchInComment(const bool searchForEmpty, const QString searchString)
+void Picdok::searchInComment(const bool searchForEmpty, const QString searchString, Qt::CheckState inCheck)
 {
     // Walk forwards through directory from current position.
     WaitPtr(true);
@@ -219,7 +223,8 @@ void Picdok::searchInComment(const bool searchForEmpty, const QString searchStri
         }
         else
         {
-           if (nComm.trimmed().contains(searchString, Qt::CaseInsensitive))
+            Qt::CaseSensitivity cs = (inCheck == Qt::Checked) ? Qt::CaseSensitive :Qt::CaseInsensitive;
+           if (nComm.trimmed().contains(searchString, cs))
             {
                 exitHere = true;    // We have found a file with the search string.
             }
