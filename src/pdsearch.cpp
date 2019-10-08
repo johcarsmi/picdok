@@ -21,14 +21,15 @@ void PdSearch::doQuit()
 
 void PdSearch::doSearch()
 {
+    searchStr = ui->txtSearchStr->text();
     this->close();
 }
 
 QString PdSearch::getSearchStr()
 {
-    searchStr = ui->txtSearchStr->text();
     return searchStr;
 }
+
 Qt::CheckState PdSearch::getCaseSens()
 {
     return ui->cbCaseSens->checkState();
