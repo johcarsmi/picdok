@@ -31,7 +31,7 @@ protected:
     void resizeEvent(QResizeEvent *);
 
 public:
-    explicit Picdok(QWidget *parent = 0);
+    explicit Picdok(QWidget *parent);
     ~Picdok();
     static void WaitPtr(const bool &);
 

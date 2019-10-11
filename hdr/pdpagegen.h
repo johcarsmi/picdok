@@ -26,7 +26,7 @@ class PdPageGen : public QDialog
     Q_OBJECT
 
 public:
-    explicit PdPageGen(QWidget *parent = 0,
+    explicit PdPageGen(QWidget *parent,
                        const QString &inDir = "", const QStringList &inFiles = QStringList() );
     ~PdPageGen();
 

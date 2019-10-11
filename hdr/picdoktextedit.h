@@ -8,7 +8,7 @@ class PicdokTextEdit : public QTextEdit
 {
     Q_OBJECT
 public:
-    explicit PicdokTextEdit(QWidget *parent = 0);
+    explicit PicdokTextEdit(QWidget *parent);
 
 protected:
     void keyPressEvent(QKeyEvent *event);

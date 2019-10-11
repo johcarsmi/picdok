@@ -34,10 +34,10 @@ class PdRenFiles : public QDialog
     Q_OBJECT
 
 public:
-    explicit PdRenFiles(QWidget *parent = 0,
+    explicit PdRenFiles(QWidget *parent,
                         const QStringList &inFiles = QStringList(),
                         const QString &inDir = "",
-                        QSettings *inSettings = 0);
+                        QSettings *inSettings = nullptr);
     ~PdRenFiles();
 
 signals:

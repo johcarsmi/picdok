@@ -6,7 +6,7 @@ class PdPicLabel : public QLabel
 {
     Q_OBJECT
 public:
-    explicit PdPicLabel(QWidget *parent = 0);
+    explicit PdPicLabel(QWidget *parent);
     ~PdPicLabel();
 
 protected:

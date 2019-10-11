@@ -13,7 +13,7 @@ class pdthumb : public QWidget, public QTableWidgetItem
     Q_OBJECT
 
 public:
-    explicit pdthumb(QWidget *parent = 0);
+    explicit pdthumb(QWidget *parent);
     ~pdthumb();
     void setFileName(QString);
     void setPixmap(QPixmap);

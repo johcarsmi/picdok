@@ -12,7 +12,7 @@ class PdConfirm : public QDialog
     Q_OBJECT
     
 public:
-    explicit PdConfirm(QWidget *parent = 0);
+    explicit PdConfirm(QWidget *parent);
     ~PdConfirm();
     void setPrompt(QString);
     

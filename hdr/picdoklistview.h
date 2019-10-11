@@ -8,7 +8,7 @@ class PicDokListView : public QListView
     Q_OBJECT
 
 public:
-    explicit PicDokListView(QWidget *parent = 0);
+    explicit PicDokListView(QWidget *parent);
     ~PicDokListView();
 
 protected:

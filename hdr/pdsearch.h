@@ -12,7 +12,7 @@ class PdSearch : public QDialog
     Q_OBJECT
 
 public:
-    explicit PdSearch(QWidget *parent = 0);
+    explicit PdSearch(QWidget *parent);
     ~PdSearch();
     QString getSearchStr();
     Qt::CheckState getCaseSens();

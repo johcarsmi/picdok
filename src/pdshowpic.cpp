@@ -67,7 +67,7 @@ void PdShowPic::setSize(bool fScr, QRect inRect)
     this->setGeometry(inRect);
     outWidth = inRect.width();
     outHeight = inRect.height();
-    outAspRat = (float)outHeight / (float)outWidth;
+    outAspRat = static_cast<float>(outHeight) / static_cast<float>(outWidth);
     ui->lblImg->setGeometry(0,0,outWidth, outHeight);   // Sets the display widget to the size of the screen.
 }
 
@@ -79,7 +79,7 @@ void PdShowPic::setPic(QPixmap *inPix)
     dispPix = inPix->copy();
     savedInPix = inPix->copy();
     liveRect = inPix->rect();
-    inAspRat = (float)inPix->height() / (float)inPix->width();
+    inAspRat = static_cast<float>(inPix->height()) / static_cast<float>(inPix->width());
     ui->lblImg->setPixmap(dispPix.scaled(ui->lblImg->width(),ui->lblImg->height(),Qt::KeepAspectRatio,Qt::SmoothTransformation));
 }
 
@@ -94,27 +94,27 @@ void PdShowPic::pspZin()
 void PdShowPic::pspZout()
 {
     //qDebug("pspZout");
-    if (zoomFactor == 1) return;
+    if (zoomFactor == 1.0f) return;
     zoomFactor = zoomFactor / zoomIncrement;
     if (zoomFactor < 1) zoomFactor = 1;
     liveCentre.setX( liveRect.x() + (liveRect.width() / 2) );
     liveCentre.setY( liveRect.y() + (liveRect.height() / 2) );
-    newW = ( savedInPix.width() / zoomFactor );
-    newH = ( savedInPix.height() / zoomFactor );
+    newW = static_cast<int>(( static_cast<float>(savedInPix.width()) / zoomFactor ));
+    newH = static_cast<int>(( static_cast<float>(savedInPix.height()) / zoomFactor ));
 
     if (inAspRat < outAspRat)   // Picture wider for height than output device.
     {
-        if (outAspRat >= ((float)newH / (float)newW)) // Picture doesn't fill the vertical dimension of screen.
+        if (outAspRat >= (static_cast<float>(newH) / static_cast<float>(newW))) // Picture doesn't fill the vertical dimension of screen.
         {
-            newH = (float)newW * outAspRat;
+            newH = static_cast<int>(static_cast<float>(newW) * outAspRat);
             if (newH > savedInPix.height()) newH = savedInPix.height(); // Restrain maximum.
         }
     }
     else    // Picture narrower for height than output device.
     {
-        if (outAspRat < ((float)newH / (float)newW))
+        if (outAspRat < (static_cast<float>(newH) / static_cast<float>(newW)))
         {
-            newW = (float)newH / outAspRat;
+            newW = static_cast<int>(static_cast<float>(newH) / outAspRat);
             if (newW > savedInPix.width()) newW = savedInPix.width();   // Restrain maximum.
         }
     }
@@ -173,22 +173,22 @@ void PdShowPic::pspSetNormal()
 
 void PdShowPic::pspDoZoomIn(float inZoomF)
 {
-    newW = (savedInPix.width() / inZoomF);   // Set the new output width by zoom factor
-    newH = (savedInPix.height() / inZoomF);   // Set the new output height by zoom factor
+    newW = static_cast<int>((savedInPix.width() / inZoomF));   // Set the new output width by zoom factor
+    newH = static_cast<int>((savedInPix.height() / inZoomF));   // Set the new output height by zoom factor
 
     if (inAspRat < outAspRat)   // Picture wider for height than output device.
     {
-        if (outAspRat >= ((float)newH / (float)newW)) // Picture doesn't fill the vertical dimension of screen.
+        if (outAspRat >= (static_cast<float>(newH) / static_cast<float>(newW))) // Picture doesn't fill the vertical dimension of screen.
         {
-            newH = (float)newW * outAspRat;
+            newH = static_cast<int>(static_cast<float>(newW) * outAspRat);
             if (newH > savedInPix.height()) newH = savedInPix.height(); // Restrain maximum.
         }
     }
     else    // Picture narrower for height than output device.
     {
-        if (outAspRat < ((float)newH / (float)newW))
+        if (outAspRat < (static_cast<float>(newH) / static_cast<float>(newW)))
         {
-            newW = (float)newH / outAspRat;
+            newW = static_cast<int>(static_cast<float>(newH) / outAspRat);
             if (newW > savedInPix.width()) newW = savedInPix.width();   // Restrain maximum.
         }
     }

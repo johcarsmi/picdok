@@ -12,7 +12,7 @@ class PdPreview : public QDialog
     Q_OBJECT
 
 public:
-    explicit PdPreview(QWidget *parent = 0, const QString &inFile = "");
+    explicit PdPreview(QWidget *parent, const QString &inFile = "");
     ~PdPreview();
 
 private:

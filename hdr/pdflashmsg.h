@@ -12,7 +12,7 @@ class pdFlashMsg : public QWidget
     Q_OBJECT
 
 public:
-    explicit pdFlashMsg(QWidget *parent = 0);
+    explicit pdFlashMsg(QWidget *parent);
     ~pdFlashMsg();
     void setMsg(const QString);
 

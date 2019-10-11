@@ -17,12 +17,12 @@ class PdRenamePic : public QDialog
     Q_OBJECT
 
 public:
-    explicit PdRenamePic(QWidget *parent = 0, const QString &inFile = "", const QString &inDir = "");
+    explicit PdRenamePic(QWidget *parent, const QString &inFile = "", const QString &inDir = "");
     ~PdRenamePic();
     QString getNewName();   // Accessor function.
     void setInDir(const QString& = "");
     void setInFile(const QString& = "");
-    void setRenamePicParent(QWidget* = 0);
+    void setRenamePicParent(QWidget*);
 
 private:
     Ui::PdRenamePic *ui;

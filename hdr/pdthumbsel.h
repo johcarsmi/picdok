@@ -22,7 +22,7 @@ class PdThumbSel : public QDialog
     Q_OBJECT
 
 public:
-    explicit PdThumbSel(QWidget *parent = 0);
+    explicit PdThumbSel(QWidget *parent);
     ~PdThumbSel();
 
 public:

@@ -12,7 +12,7 @@ class PdOptions : public QDialog
     Q_OBJECT
     
 public:
-    explicit PdOptions(QWidget *parent = 0);
+    explicit PdOptions(QWidget *parent);
     ~PdOptions();
     void setFocusOnEmpty(bool &);
     void setDelConf(bool &);

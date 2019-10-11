@@ -37,18 +37,18 @@
 
 class exifEx: public std::exception     // For handling missing data exceptions.
 {
-  virtual const char* what() const throw()
+  virtual const char* what() const noexcept
   {
     return "Exif Data Missing";
   }
-} exifExcpt;
+} ;
 
 Picdok::Picdok(QWidget *parent) :
     QMainWindow(parent), ui(new Ui::Picdok)     // Set up form.
 {
     WaitPtr(true);
     ui->setupUi(this);
-    showPic = 0;
+    showPic = nullptr;
     inParams = new QStringList(QApplication::arguments());
     curDir = "";
     curDirHdg = new QLabel;
@@ -85,7 +85,7 @@ Picdok::~Picdok()
     delete matx;
     delete settings;
     delete inParams;
-    if (showPic != 0) delete showPic;
+    if (showPic != nullptr) delete showPic;
 }
 
 void Picdok::resizeEvent(QResizeEvent *e)   // Trap the form resize event to allow the picture to be resized to match.
@@ -180,7 +180,7 @@ void Picdok::doNextEmpty()  // Find the next picture file without a UserComment 
 
 void Picdok::doFind()
 {
-    PdSearch *findForm = new PdSearch();
+    PdSearch *findForm = new PdSearch(this);
     findForm->setLastSearch(lastSearch);
     findForm->setCaseSens(lastCaseSens);
     findForm->exec();
@@ -360,7 +360,7 @@ void Picdok::doComboChanged()   // Handle the signal when a new file is selected
             curIx = ui->cmbPicFile->count() -1;
         }
         ui->cmbPicFile->setCurrentIndex(curIx);
-        if (showPic == 0) QMessageBox::information(this, tr("Notification"), tr("Requested file no longer exists.\n\nShowing nearest."));
+        if (showPic == nullptr) QMessageBox::information(this, tr("Notification"), tr("Requested file no longer exists.\n\nShowing nearest."));
     }
     // Set Next and Next Empty button state, disable if at last else enable.
     if (ui->cmbPicFile->currentIndex() >= ui->cmbPicFile->count() - 1)
@@ -430,10 +430,10 @@ void Picdok::doSetPicture()     // Display selected picture and EXIF data.
     fHt = ui->lblPic->height();
     fWdth = ui->lblPic->width();
     ui->lblPic->setPixmap(pixmDisp->scaled(fWdth,fHt,Qt::KeepAspectRatio,Qt::SmoothTransformation));
-    if (showPic != 0) showPic->setPic(pixmDisp);    // Output image onto full-screen form if present.
+    if (showPic != nullptr) showPic->setPic(pixmDisp);    // Output image onto full-screen form if present.
     if (!getExifData(curFullFileName, picUserComment, picOrientation, picDatTimOri))
     {
-        if (!noWarnNoExif && showPic == 0)      // Stop warning if showing pictures full-screen.
+        if (!noWarnNoExif && showPic == nullptr)      // Stop warning if showing pictures full-screen.
         {
             WaitPtr(false);
             QMessageBox::information(this, ERROR_TITLE, tr("Exif data not obtained for %1").arg(curFullFileName));
@@ -463,7 +463,7 @@ void Picdok::transformImage()  // Rotate the image according to EXIF data inform
     else
         rotAngle = PIC_ROT_NONE;
     // Having set the angle, now set the Qmatrix and create the display pixel map.
-    if (rotAngle == PIC_ROT_NONE)
+    if (static_cast<int>(rotAngle) == PIC_ROT_NONE)
     {
         *imgDisp = img->copy();
         return;
@@ -621,7 +621,7 @@ void Picdok::doEditComment()    // Sets focus on User Comment field. Action from
 
 void Picdok::setFocusOnCommentIfEmpty() // sets focus to Comment field on doNext() or doPrior() if option so set.
 {
-    if (focusEmpty && showPic == 0)     // Stop this working if showing pictures full-screen.
+    if (focusEmpty && showPic == nullptr)     // Stop this working if showing pictures full-screen.
     {
     if (ui->txtComment->toPlainText() == "")
         ui->txtComment->setFocus();
@@ -668,7 +668,7 @@ void Picdok::doShowPic(bool Chkd)   // Start showing the picture full screen (on
 {
     if (Chkd)   // If menu item has been checked then create form, else close it.
     {
-        if (showPic == 0) showPic = new PdShowPic(this);
+        if (showPic == nullptr) showPic = new PdShowPic(this);
         connect(showPic, SIGNAL(closeReq()), this, SLOT(closeShowPic()));
         connect(showPic, SIGNAL(nextPic()), this, SLOT(nextRequested()));
         connect(showPic, SIGNAL(priorPic()), this, SLOT(priorRequested()));
@@ -689,14 +689,14 @@ void Picdok::doShowPic(bool Chkd)   // Start showing the picture full screen (on
 
 void Picdok::closeShowPic() // Close down the picture full screen and un-check menu.
 {
-    if (showPic != 0)
+    if (showPic != nullptr)
     {
         showPic->close();
         disconnect(showPic, SIGNAL(closeReq()), this, SLOT(closeShowPic()));
         disconnect(showPic, SIGNAL(nextPic()), this, SLOT(nextRequested()));
         disconnect(showPic, SIGNAL(priorPic()), this, SLOT(priorRequested()));
         delete showPic;
-        showPic = 0;
+        showPic = nullptr;
         ui->actionSho_w->setChecked(false);
         this->activateWindow();
         QApplication::restoreOverrideCursor();

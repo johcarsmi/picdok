@@ -7,7 +7,7 @@ class PicDokLabel :public QLabel
 {
     Q_OBJECT
 public:
-    explicit PicDokLabel(QWidget *parent = 0);
+    explicit PicDokLabel(QWidget *parent);
     ~PicDokLabel();
 
 protected:

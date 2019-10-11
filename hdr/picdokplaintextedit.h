@@ -7,7 +7,7 @@ class PicDokPlainTextEdit : public QPlainTextEdit
 {
     Q_OBJECT
 public:
-    explicit PicDokPlainTextEdit(QWidget *parent = 0);
+    explicit PicDokPlainTextEdit(QWidget *parent);
 
 protected:
     void keyPressEvent(QKeyEvent *event);

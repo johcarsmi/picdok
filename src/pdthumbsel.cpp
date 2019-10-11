@@ -137,9 +137,9 @@ void PdThumbSel::on_tblThumbs_doubleClicked(const QModelIndex &index)
 {
     //qDebug("row %d", index.row());
     //qDebug("column %d", index.column());
-    pdthumb * selItem = (pdthumb *)ui->tblThumbs->cellWidget(index.row(), index.column());
+    pdthumb * selItem = static_cast<pdthumb *>(ui->tblThumbs->cellWidget(index.row(), index.column()));
     //qDebug() << selItem->type() << selItem->getFileName();
-    if (selItem == 0) return;   // Clicked on empty cell.
+    if (selItem == nullptr) return;   // Clicked on empty cell.
     retName = selItem->getFileName();
     this->close();
     return;

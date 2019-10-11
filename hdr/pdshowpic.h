@@ -17,7 +17,7 @@ protected:
     void keyPressEvent(QKeyEvent *);
 
 public:
-    explicit PdShowPic(QWidget *parent = 0);
+    explicit PdShowPic(QWidget *parent);
     ~PdShowPic();
     void setSize(bool, QRect);
     void setPic(QPixmap *);
