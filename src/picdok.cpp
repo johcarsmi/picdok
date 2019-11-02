@@ -34,6 +34,7 @@
 #include "pdthumbsel.h"
 #include "pdflashmsg.h"
 #include "getexifdata.h"
+// #include <QDebug>
 
 class exifEx: public std::exception     // For handling missing data exceptions.
 {
@@ -790,7 +791,7 @@ void Picdok::doUndoDeselect()
         }
         else return;
         if (recoFile != "")
-            {
+        {
                 QFileInfo fi(recoFile);
                 if (!QFile::rename(deselDirName + QDir::separator() + fi.fileName(), curDir + fi.fileName()))
                 {
@@ -810,6 +811,7 @@ void Picdok::doUndoDeselect()
             ui->cmbPicFile->setCurrentIndex(pix);
             // Re-add to list of files in directory.
             dirFiles.insert(pix,fi.fileName());
+            setDirCount();
         }
     }
     else

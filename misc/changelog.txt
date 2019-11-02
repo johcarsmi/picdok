@@ -1,4 +1,7 @@
 Change Log for picdok
+02/11/2019
+    Corrected error where number of live files in a directory was
+    not being updated on a successful "Undo Deselect" action.
 11/10/2019
     Old style casts removed.
     Version updated to 0.4.4
