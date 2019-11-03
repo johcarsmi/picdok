@@ -34,8 +34,8 @@
 #include "pdthumbsel.h"
 #include "pdflashmsg.h"
 #include "getexifdata.h"
-// #include <QDebug>
-
+//#include <qt5/QtCore/QDebug>
+//#include <QtDebug>
 class exifEx: public std::exception     // For handling missing data exceptions.
 {
   virtual const char* what() const noexcept
@@ -49,6 +49,7 @@ Picdok::Picdok(QWidget *parent) :
 {
     WaitPtr(true);
     ui->setupUi(this);
+    //qDebug() << "start";
     showPic = nullptr;
     inParams = new QStringList(QApplication::arguments());
     curDir = "";
@@ -59,6 +60,7 @@ Picdok::Picdok(QWidget *parent) :
     imgDisp = new QImage;
     pixmDisp = new QPixmap;
     matx = new QTransform;
+    msgUp = false;
     settings = new QSettings(QDir::homePath() + QDir::separator() + SETTINGS_FILE, QSettings::IniFormat, this);
     // Check command line parameter and use supplied directory if valid, else use saved settings,or current directory if none.
     readSettings(checkParams(inParams));
@@ -426,12 +428,6 @@ void Picdok::doSetPicture()     // Display selected picture and EXIF data.
 {
     img->load(curDir + curFile);
     if (img->isNull()) { QMessageBox::information(this, ERROR_TITLE,  tr("Cannot open %1").arg(curFile)); return; }
-    transformImage();
-    *pixmDisp = QPixmap::fromImage(*imgDisp);
-    fHt = ui->lblPic->height();
-    fWdth = ui->lblPic->width();
-    ui->lblPic->setPixmap(pixmDisp->scaled(fWdth,fHt,Qt::KeepAspectRatio,Qt::SmoothTransformation));
-    if (showPic != nullptr) showPic->setPic(pixmDisp);    // Output image onto full-screen form if present.
     if (!getExifData(curFullFileName, picUserComment, picOrientation, picDatTimOri))
     {
         if (!noWarnNoExif && showPic == nullptr)      // Stop warning if showing pictures full-screen.
@@ -448,6 +444,12 @@ void Picdok::doSetPicture()     // Display selected picture and EXIF data.
         // Set picture date and comment.
         ui->lblPicDat->setText(picDatTimOri.left(10).replace(':',"/"));
         ui->txtComment->setPlainText(picUserComment);
+    transformImage();
+    *pixmDisp = QPixmap::fromImage(*imgDisp);
+    fHt = ui->lblPic->height();
+    fWdth = ui->lblPic->width();
+    ui->lblPic->setPixmap(pixmDisp->scaled(fWdth,fHt,Qt::KeepAspectRatio,Qt::SmoothTransformation));
+    if (showPic != nullptr) showPic->setPic(pixmDisp);    // Output image onto full-screen form if present.
     }
     picUserCommentSave = picUserComment;
 }
@@ -537,6 +539,7 @@ void Picdok::doPicRename()      // Rename the current image file.
 
 void Picdok::doDeselect()       // Move the image file to a 'deselected' directory.
 {
+    if (msgUp) return;
     if (deselConf)
     {   // Confirm deselection.
         PdConfirm *pdc = new PdConfirm(this);
@@ -576,6 +579,7 @@ void Picdok::doDeselect()       // Move the image file to a 'deselected' directo
 
 void Picdok::doDelete()     // Delete the current image file.
 {
+    if (msgUp) return;
     if (delConf)
     {   // Confirm deletion.
         PdConfirm *pdc = new PdConfirm(this);
@@ -883,16 +887,18 @@ void Picdok::doShortLink()  // Creates links to files in the main directory in a
 void Picdok::flashMessage(const QString inFlash)
 {
     WaitPtr(true);
+    msgUp = true;
     pdFl = new pdFlashMsg(this);
     pdFl->setMsg(inFlash);
     pdFl->show();
-    QTimer::singleShot(1500, this, SLOT(doCloseFlash()));
+    QTimer::singleShot(1000, this, SLOT(doCloseFlash()));
 }
 
 void Picdok::doCloseFlash()
 {
     pdFl->close();
     delete pdFl;
+    msgUp = false;
     WaitPtr(false);
 }
 

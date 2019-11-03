@@ -15,7 +15,7 @@
 #include <qt5/QtCore/QFileInfoList>
 #include <qt5/QtCore/QSettings>
 #include <qt5/QtWidgets/QDesktopWidget>
-
+#include <qt5/QtCore/QMutex>
 #include "pdshowpic.h"
 #include "pdflashmsg.h"
 
@@ -70,6 +70,7 @@ private:
     bool noWarnNoExif;
     bool rbBrowse;
     bool rbFileSel;
+    bool msgUp;
     PdShowPic *showPic;
     QDesktopWidget *desk;
     QStringList deselFiles;
@@ -78,6 +79,7 @@ private:
     Qt::CheckState lastCaseSens;
     // Functions
     QString checkParams(QStringList *);
+    QMutex *mtx;
     void readSettings(const QString &);
     void setDirFiles();
     void populateCombo();

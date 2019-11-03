@@ -1,4 +1,8 @@
 Change Log for picdok
+03/11/2019
+    Corrected error where pictures were not being rotated correctly.
+    Stopped Delete or Deselect action if the message from one of these
+    is still active.
 02/11/2019
     Corrected error where number of live files in a directory was
     not being updated on a successful "Undo Deselect" action.
