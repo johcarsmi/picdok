@@ -71,6 +71,8 @@ Picdok::Picdok(QWidget *parent) :
     connect(ui->lblPic, SIGNAL(pdlSigDel()), this, SLOT(doDelete()));
     connect(ui->lblPic, SIGNAL(pdlSigRen()), this, SLOT(doPicRename()));
     connect(ui->lblPic, SIGNAL(pdlSigMov()), this, SLOT(doPicMove()));
+    connect(qApp,SIGNAL(aboutToQuit()),this,SLOT(doClose())); // To ensure a change of directory is remembered if appl. closed
+                                                              // from the menu bar "X". (Copied from StackOverflow.)
     desk = QApplication::desktop();
     QTimer::singleShot(200,this, SLOT(doInitialLoad())); // Data Load outside of constructor to allow messages from picture load.
                                                           // Delay added to allow basic form to be displayed before message.

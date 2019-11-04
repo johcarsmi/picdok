@@ -1,4 +1,8 @@
 Change Log for picdok
+04/11/2019
+    Handled the aboutToQuit() signal of QApplication to make sure that
+    the current directory name is saved if the application is closed 
+    from the "X" in the title bar.
 03/11/2019
     Corrected error where pictures were not being rotated correctly.
     Stopped Delete or Deselect action if the message from one of these
