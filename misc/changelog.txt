@@ -1,4 +1,7 @@
 Change Log for picdok
+09/11/2019
+    Fixed regression bug where picture was not being shown if it had
+    no EXIF data.
 04/11/2019
     Handled the aboutToQuit() signal of QApplication to make sure that
     the current directory name is saved if the application is closed 

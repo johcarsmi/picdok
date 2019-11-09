@@ -446,13 +446,13 @@ void Picdok::doSetPicture()     // Display selected picture and EXIF data.
         // Set picture date and comment.
         ui->lblPicDat->setText(picDatTimOri.left(10).replace(':',"/"));
         ui->txtComment->setPlainText(picUserComment);
+    }
     transformImage();
     *pixmDisp = QPixmap::fromImage(*imgDisp);
     fHt = ui->lblPic->height();
     fWdth = ui->lblPic->width();
     ui->lblPic->setPixmap(pixmDisp->scaled(fWdth,fHt,Qt::KeepAspectRatio,Qt::SmoothTransformation));
     if (showPic != nullptr) showPic->setPic(pixmDisp);    // Output image onto full-screen form if present.
-    }
     picUserCommentSave = picUserComment;
 }
 
