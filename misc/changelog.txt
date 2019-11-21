@@ -1,4 +1,9 @@
 Change Log for picdok
+21/11/2019
+    Fixed bug where picture date was not being cleared when changing
+    to an empty directory.
+    Now sets focus on Comment field when no more pictures in folder as
+    the default was to go to the Close button.
 09/11/2019
     Fixed regression bug where picture was not being shown if it had
     no EXIF data.
