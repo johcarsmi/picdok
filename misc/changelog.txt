@@ -1,4 +1,7 @@
 Change Log for picdok
+23/01/2020
+    Fixed bug where moving an image to a sub-directory renamed it by
+    prepending the sub-directory name.
 21/11/2019
     Fixed bug where picture date was not being cleared when changing
     to an empty directory.

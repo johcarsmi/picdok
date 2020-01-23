@@ -752,7 +752,7 @@ void Picdok::doPicMove()    // Move the picture file to a new directory.
     if (newDir != "" )
     {
         QFile *qf = new QFile(curDir + curFile, this);
-        if (qf->rename(newDir + curFile))
+        if (qf->rename(newDir + QDir::separator() + curFile))
         {
             deleteCurrentFromCombo();
         }
