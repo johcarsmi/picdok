@@ -1,4 +1,8 @@
 Change Log for picdok
+29/12/2020
+    Fixed bug when saving and moving to the next picture which caused
+    an invalid error message if the picture comment had been entered
+    with a trailing space.
 23/01/2020
     Fixed bug where moving an image to a sub-directory renamed it by
     prepending the sub-directory name.

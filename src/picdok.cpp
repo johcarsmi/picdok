@@ -339,7 +339,7 @@ void Picdok::populateCombo()    // List the files in the directory in the combo 
 void Picdok::doComboChanged()   // Handle the signal when a new file is selected.
 {
     // Check to see if UserComment has been changed and prompt user if so.
-    picUserComment = ui->txtComment->toPlainText();
+    picUserComment = ui->txtComment->toPlainText().trimmed();
     if (picUserComment != picUserCommentSave)
     {
         WaitPtr(false);     // To be certain!
