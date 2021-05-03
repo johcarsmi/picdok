@@ -1,4 +1,6 @@
 Change Log for picdok
+03/05/2021
+    Forced keyboard focus on search string entry control on pdsearch.ui.
 29/12/2020
     Fixed bug when saving and moving to the next picture which caused
     an invalid error message if the picture comment had been entered

@@ -6,6 +6,7 @@ PdSearch::PdSearch(QWidget *parent) :
     ui(new Ui::PdSearch)
 {
     ui->setupUi(this);
+    ui->txtSearchStr->setFocus();
 }
 
 PdSearch::~PdSearch()
