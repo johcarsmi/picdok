@@ -24,6 +24,17 @@ void PicdokTextEdit::keyPressEvent(QKeyEvent *event)
         case Qt::Key_Greater:
             event->accept();
             break;
+        case Qt::Key_Delete:    // To allow user to use the Delete key to deselect and image if there is no text in txtComment.
+            if (this->toPlainText() == "")
+            {
+                emit pdlSigDesel();
+                event->accept();
+                break;
+            }
+            else
+            {
+                [[fallthrough]];
+            }
         default:
             QTextEdit::keyPressEvent(event);
             break;

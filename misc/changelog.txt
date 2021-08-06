@@ -1,4 +1,7 @@
 Change Log for picdok
+06/08/2021
+    Enabled the Delete key to deselect an image if the cursor is in 
+    the data entry field but there is no text in it.
 03/05/2021
     Forced keyboard focus on search string entry control on pdsearch.ui.
 29/12/2020

@@ -71,6 +71,7 @@ Picdok::Picdok(QWidget *parent) :
     connect(ui->lblPic, SIGNAL(pdlSigDel()), this, SLOT(doDelete()));
     connect(ui->lblPic, SIGNAL(pdlSigRen()), this, SLOT(doPicRename()));
     connect(ui->lblPic, SIGNAL(pdlSigMov()), this, SLOT(doPicMove()));
+    connect(ui->txtComment, SIGNAL(pdlSigDesel()), this, SLOT(doDeselect()));   // Allow Deselection if cursor is in txtComment and ts=xtComment is =="".
     connect(qApp,SIGNAL(aboutToQuit()),this,SLOT(doClose())); // To ensure a change of directory is remembered if appl. closed
                                                               // from the menu bar "X". (Copied from StackOverflow.)
     desk = QApplication::desktop();

@@ -13,6 +13,9 @@ public:
 protected:
     void keyPressEvent(QKeyEvent *event);
 
+signals:
+    void pdlSigDesel();
+
 };
 
 #endif // PicdokTextEdit_H
