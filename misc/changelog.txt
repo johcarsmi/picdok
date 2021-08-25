@@ -1,4 +1,6 @@
 Change Log for picdok
+25/08/2021
+    Changed the shortcut to move to the first picture to Shift-Home.
 06/08/2021
     Enabled the Delete key to deselect an image if the cursor is in 
     the data entry field but there is no text in it.
