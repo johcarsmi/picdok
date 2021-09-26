@@ -45,11 +45,14 @@
      <height>601</height>
     </size>
    </property>
-   <layout class="QFormLayout" name="formLayout">
+   <layout class="QGridLayout" name="gridLayout">
+    <property name="sizeConstraint">
+     <enum>QLayout::SetNoConstraint</enum>
+    </property>
     <item row="0" column="0">
      <layout class="QVBoxLayout" name="verticalLayout">
       <property name="sizeConstraint">
-       <enum>QLayout::SetMinimumSize</enum>
+       <enum>QLayout::SetNoConstraint</enum>
       </property>
       <item>
        <widget class="PicDokLabel" name="lblPic">
