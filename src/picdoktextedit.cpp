@@ -35,6 +35,19 @@ void PicdokTextEdit::keyPressEvent(QKeyEvent *event)
             {
                 [[fallthrough]];
             }
+        case Qt::Key_Home:
+        {
+            if(event->modifiers() & Qt::ShiftModifier)
+            {
+                emit pdlSigHome();
+                event->accept();
+                break;
+            }
+                else
+            {
+                [[fallthrough]];
+            }
+        }
         default:
             QTextEdit::keyPressEvent(event);
             break;

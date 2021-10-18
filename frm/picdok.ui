@@ -621,7 +621,7 @@ Only enabled if the description has been changed.</string>
     <string>&amp;First</string>
    </property>
    <property name="toolTip">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Go to first picture in directory. (Shift-Home)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string>Go to first picture in directory. (Shift-Home)</string>
    </property>
    <property name="shortcut">
     <string>Shift+Home</string>

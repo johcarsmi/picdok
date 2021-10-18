@@ -15,6 +15,7 @@ protected:
 
 signals:
     void pdlSigDesel();
+    void pdlSigHome();
 
 };
 
