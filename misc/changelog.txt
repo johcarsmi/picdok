@@ -1,4 +1,7 @@
 Change Log for picdok
+18/10/2021
+    Added handling of Shift+Home to PicdokTextEdit to move to the
+    first picture in the directory.
 26/09/2021
     Added boxLayout to main form to get widgets to resize as wanted.
 25/08/2021
