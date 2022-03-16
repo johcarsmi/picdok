@@ -269,11 +269,13 @@ void Picdok::doSetDirectory()   // Handle the menu entry to set the directory of
    newDir = QFileDialog::getExistingDirectory(this,
                                tr("Select Required Directory"),
                                curDir,
-                               QFileDialog::ReadOnly );     // Doesn't show the directory in the entry field.
- //                            QFileDialog::ReadOnly | QFileDialog::ShowDirsOnly ); // Doesn't show the current directory in the tree structure.
+ //                               QFileDialog::ReadOnly );
+                            QFileDialog::ReadOnly | QFileDialog::ShowDirsOnly );
    if (newDir != "" )
     {
         curDir = newDir;
+        if (curDir.back() != "/")   // Found to be necessary as something changed which dropped the trailing "/".
+            curDir = curDir + "/";
         picUserComment = picUserCommentSave = "";
         ui->txtComment->setText("");
         ui->lblPic->clear();

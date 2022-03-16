@@ -1,4 +1,7 @@
 Change Log for picdok
+16/03/2022
+    Found that I needed to add a trailing slash to the directory
+    name returned by QFileDialog.
 18/10/2021
     Added handling of Shift+Home to PicdokTextEdit to move to the
     first picture in the directory.
