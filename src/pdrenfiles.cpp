@@ -13,6 +13,7 @@
 #include <exiv2/image.hpp>
 #include <cmath>
 #include "picdok.h"
+#include <algorithm>
 
 PdRenFiles::PdRenFiles(QWidget *parent, const QStringList &inFiles, const QString &inDir, QSettings *inSettings) :
     QDialog(parent),
@@ -96,7 +97,8 @@ void PdRenFiles::doRenGo()  // Do the file renaming according to the entered pat
         return;
     }
     // Sort the list of files on DateTimeOriginal.
-    qStableSort(renDat->begin(), renDat->end(), PrSortImageOnDate);
+    std::stable_sort(renDat->begin(), renDat->end(), PrSortImageOnDate);
+    //qStableSort(renDat->begin(), renDat->end(), PrSortImageOnDate);
     // Generate new names for pictures
     if (!generateNewNames(renDat, nParams))
     {
@@ -119,7 +121,8 @@ void PdRenFiles::doRenGo()  // Do the file renaming according to the entered pat
 
 QString PdRenFiles::getPicDate(const QString &inFile)   // Get the DateTimeOriginal from the EXIF data.
 {
-    Exiv2::Image::AutoPtr rimage = Exiv2::ImageFactory::open(inFile.toUtf8().toStdString());
+    std::unique_ptr<Exiv2::Image> rimage = Exiv2::ImageFactory::open(inFile.toUtf8().toStdString());
+//    Exiv2::Image::AutoPtr rimage = Exiv2::ImageFactory::open(inFile.toUtf8().toStdString());
     rimage.get();
     rimage->readMetadata();
     Exiv2::ExifData &exifData = rimage->exifData();

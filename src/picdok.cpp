@@ -75,7 +75,7 @@ Picdok::Picdok(QWidget *parent) :
     connect(ui->txtComment, SIGNAL(pdlSigHome()), this, SLOT(doMoveFirst()));
     connect(qApp,SIGNAL(aboutToQuit()),this,SLOT(doClose())); // To ensure a change of directory is remembered if appl. closed
                                                               // from the menu bar "X". (Copied from StackOverflow.)
-    desk = QApplication::desktop();
+    // desk = QApplication::desktop();
     QTimer::singleShot(200,this, SLOT(doInitialLoad())); // Data Load outside of constructor to allow messages from picture load.
                                                           // Delay added to allow basic form to be displayed before message.
     setFocusOnCommentIfEmpty();
@@ -493,7 +493,7 @@ void Picdok::doSave()     // Save the revised UserComment data back to the sourc
     WaitPtr(true);
     try
     {
-        Exiv2::Image::AutoPtr image = Exiv2::ImageFactory::open(curFullFileName.toUtf8().toStdString());
+        std::unique_ptr<Exiv2::Image> image = Exiv2::ImageFactory::open(curFullFileName.toUtf8().toStdString());
         image.get();
         image->readMetadata();
         Exiv2::ExifData &exifData = image->exifData();
@@ -683,10 +683,13 @@ void Picdok::doShowPic(bool Chkd)   // Start showing the picture full screen (on
         connect(showPic, SIGNAL(closeReq()), this, SLOT(closeShowPic()));
         connect(showPic, SIGNAL(nextPic()), this, SLOT(nextRequested()));
         connect(showPic, SIGNAL(priorPic()), this, SLOT(priorRequested()));
-        int scrCt = desk->screenCount();    // Check the number of screens in the desktop and load the form onto the second
+        QList<QScreen *> slist = QGuiApplication::screens();
+        int scrCt = slist.count();
+        //int scrCt = desk->screenCount();    // Check the number of screens in the desktop and load the form onto the second
         int dest; bool fullScr;             // screen if more than one. If using only one screen make the form cover the taskbar.
         if (scrCt > 1) {dest = 1; fullScr = false; } else {dest = 0; fullScr = true;}
-        showPic->setSize(fullScr, desk->screenGeometry(dest));
+        showPic->setSize(fullScr, slist.at(dest)->geometry());
+        //showPic->setSize(fullScr, desk->screenGeometry(dest));
         showPic->show();
         showPic->setPic(pixmDisp);
         showPic->setFocus();

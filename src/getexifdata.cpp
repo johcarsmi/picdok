@@ -4,7 +4,7 @@
 bool getExifData(const QString & inFile, QString &retComm, QString &retOrtn, QString &retDate)
 // Get the UserComment, Orientation and DateTimeOriginal from the EXIF data.
 {
-    Exiv2::Image::AutoPtr image = Exiv2::ImageFactory::open(inFile.toUtf8().toStdString()); // ImageFactory::open() expects a std::string() value.
+    std::unique_ptr<Exiv2::Image> image = Exiv2::ImageFactory::open(inFile.toUtf8().toStdString()); // ImageFactory::open() expects a std::string() value.
     image.get();
     image->readMetadata();
     Exiv2::ExifData &exifData = image->exifData();

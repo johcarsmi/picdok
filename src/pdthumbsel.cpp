@@ -11,7 +11,7 @@ QPixmap pdScale(const QString &imageFileName)     // A public function that will
     const int thmbSize = 130;   // 130 is chosen to fit the QTableWidgetItems.
     QImage *img = new QImage(imageFileName);
     QPixmap *pixmDisp = new QPixmap();
-    QMatrix *matx = new QMatrix();
+    QTransform *matx = new QTransform();
     int rotAngle;
     QString picUserComment;
     QString picOrientation;

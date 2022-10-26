@@ -1,4 +1,17 @@
 Change Log for picdok
+26/10/2022
+    To remove warning message in getExifData() (missed in June).
+    Changed Exiv2::Image::AutoPtr to std::unique_Ptr<Exiv::Image>
+06/07/2022
+    To remove deprecation warnings:-
+    QDesktopWidget desk in picdok.cpp/h replaced using QGuiApplication.
+    qStableSort in pdRenFiles replaced with std::qStableSort.
+29/06/2022
+    To remove warning messages:-
+    Changed Exiv2::Image::AutoPtr to std::unique_Ptr<Exiv::Image>
+    Changed endl to Qt::endl
+    In wheelEvent handling changed evt->delta() to evt->angleDelta().y()
+    Replaced QMatrix with QTransform
 16/03/2022
     Found that I needed to add a trailing slash to the directory
     name returned by QFileDialog.

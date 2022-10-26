@@ -95,7 +95,7 @@ void PdPicLabel::mouseReleaseEvent(QMouseEvent *evt)
 
 void PdPicLabel::wheelEvent(QWheelEvent *evt)
 {
-    int movemt = evt->delta();
+    int movemt = evt->angleDelta().y();
     //qDebug("wheel move %d", movemt);
     if (movemt == 0)
     {
