@@ -1,4 +1,8 @@
 Change Log for picdok
+11/12/2022
+    Change the modifier for moving to the first picture from
+    ShiftModifier to ControlModifier to allow Shift+Home to be 
+    used to select text.
 26/10/2022
     To remove warning message in getExifData() (missed in June).
     Changed Exiv2::Image::AutoPtr to std::unique_Ptr<Exiv::Image>

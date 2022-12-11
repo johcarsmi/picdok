@@ -377,7 +377,7 @@ Only enabled if the description has been changed.</string>
      <x>0</x>
      <y>0</y>
      <width>753</width>
-     <height>30</height>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_Program">
@@ -621,10 +621,10 @@ Only enabled if the description has been changed.</string>
     <string>&amp;First</string>
    </property>
    <property name="toolTip">
-    <string>Go to first picture in directory. (Shift-Home)</string>
+    <string>Go to first picture in directory. (Ctrl-Home)</string>
    </property>
    <property name="shortcut">
-    <string>Shift+Home</string>
+    <string>Ctrl+Home</string>
    </property>
    <property name="visible">
     <bool>true</bool>
