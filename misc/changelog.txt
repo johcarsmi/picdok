@@ -1,4 +1,10 @@
 Change Log for picdok
+09/09/2023
+    Corrected shortcut indicator for moving cursor to the comment
+    entry field from Te&xt to T&ext.
+    Delete file in Subdirectoy ShortShow on delete or deselect
+    picture action.
+    Add image existance in ShortShow to the main screen.
 11/12/2022
     Change the modifier for moving to the first picture from
     ShiftModifier to ControlModifier to allow Shift+Home to be 

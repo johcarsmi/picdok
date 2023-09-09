@@ -99,7 +99,7 @@ private slots:
     // Menu / Directory
     void doSetDirectory();
     void doRenameFiles();
-    void renOcome(const bool inOcome);
+    void renOcome(bool inOcome);
     void doGeneratePage();
     void doRefresh();
     void doViewIndex();

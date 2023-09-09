@@ -290,12 +290,12 @@ void Picdok::doRenameFiles()    // Opens the form to rename all files in the dir
 {
     PdRenFiles *RenForm = new PdRenFiles(this, dirFiles, curDir, settings);
     // Connect the signal to tell this class if Go or Quit was clicked.
-    connect(RenForm, SIGNAL(renOutcome(const bool &)), this, SLOT(renOcome(const bool &)));
+    connect(RenForm, SIGNAL(renOutcome(bool&)), this, SLOT(renOcome(bool&)));
     RenForm->exec();
     delete RenForm;
 }
 
-void Picdok::renOcome(const bool inOcome)   // Refresh file list if renaming was successful.
+void Picdok::renOcome(bool inOcome)   // Refresh file list if renaming was successful.
 {
     if (!inOcome) return;
     setDirFiles();
@@ -433,6 +433,14 @@ void Picdok::doEnableSave()     // Enable the Save button - triggered when the U
 void Picdok::doSetPicture()     // Display selected picture and EXIF data.
 {
     img->load(curDir + curFile);
+    if (QFile::exists(curDir + "ShortShow" + QDir::separator() + curFile))
+    {
+        ui->lblSSind->setText("S");
+    }
+    else
+    {
+        ui->lblSSind->setText("");
+    }
     if (img->isNull()) { QMessageBox::information(this, ERROR_TITLE,  tr("Cannot open %1").arg(curFile)); return; }
     if (!getExifData(curFullFileName, picUserComment, picOrientation, picDatTimOri))
     {
@@ -571,6 +579,7 @@ void Picdok::doDeselect()       // Move the image file to a 'deselected' directo
     }
     // Deselect action. Update the combobox and rename file to deselected directory.
     QFile *qf = new QFile(curDir + curFile, this);
+    QFile *ssf = new QFile(curDir + "ShortShow" + QDir::separator() + curFile);
     if (qf->rename(curDir + "deselected" + QDir::separator() + curFile))
     {
         deleteCurrentFromCombo();
@@ -580,7 +589,13 @@ void Picdok::doDeselect()       // Move the image file to a 'deselected' directo
     {
         QMessageBox::critical(this, ERROR_TITLE, tr("Failure in deselecting file, error %1.").arg(qf->error()));
     }
+    // Remove ShortShow shortcut if it exists.
+    if (ssf->exists())
+    {
+        ssf->remove();
+    }
     delete qf;
+    delete ssf;
 }
 
 void Picdok::doDelete()     // Delete the current image file.
@@ -596,16 +611,29 @@ void Picdok::doDelete()     // Delete the current image file.
     }
     // Update the combobox, delete the file entry from the directory list and delete the file.
     QFile *qf = new QFile(curDir + curFile, this);
+    QFile *ssf = new QFile(curDir + "ShortShow" + QDir::separator() + curFile);
     if (qf->remove())
     {
         deleteCurrentFromCombo();
+        if (QFile::exists(curDir + "ShortShow" + QDir::separator() + curFile))
+        {
+            QFile::remove(curDir + "ShortShow" + QDir::separator() + curFile);
+        }
+
         flashMessage(tr("Picture deleted"));
+        // Remove ShortShow shortcut if it exists.
+        if (ssf->exists())
+        {
+            ssf->remove();
+        }
+
     }
     else
     {
         QMessageBox::critical(this, ERROR_TITLE, tr("Failure in deleting file, error %1.").arg(qf->error()));
     }
     delete qf;
+    delete ssf;
 }
 
 void Picdok::deleteCurrentFromCombo()
@@ -890,6 +918,7 @@ void Picdok::doShortLink()  // Creates links to files in the main directory in a
     {
         QMessageBox::critical(this, tr("Error"), tr("A failure has occurred creating a link to the short show."));
     }
+    ui->lblSSind->setText("S");
     flashMessage(tr("Picture added to short show"));
 }
 
