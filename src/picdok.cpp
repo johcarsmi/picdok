@@ -290,15 +290,20 @@ void Picdok::doRenameFiles()    // Opens the form to rename all files in the dir
 {
     PdRenFiles *RenForm = new PdRenFiles(this, dirFiles, curDir, settings);
     // Connect the signal to tell this class if Go or Quit was clicked.
-    connect(RenForm, SIGNAL(renOutcome(bool&)), this, SLOT(renOcome(bool&)));
+    connect(RenForm, SIGNAL(renOutcomeOK()), this, SLOT(renOcomeOK()));
+    connect(RenForm, SIGNAL(renOutcomeQuit()), this, SLOT(renOcomeQuit()));
     RenForm->exec();
     delete RenForm;
 }
 
-void Picdok::renOcome(bool inOcome)   // Refresh file list if renaming was successful.
+void Picdok::renOcomeOK()   // Refresh file list if renaming was successful.
 {
-    if (!inOcome) return;
     setDirFiles();
+}
+
+void Picdok::renOcomeQuit()
+{
+    return;     // Nothing here at present.
 }
 
 void Picdok::setDirFiles()  // Retrieve the list of files and populate the combo with them.

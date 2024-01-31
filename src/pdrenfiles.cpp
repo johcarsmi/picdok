@@ -48,7 +48,7 @@ PdRenFiles::~PdRenFiles()
 
 void PdRenFiles::doRenQuit()    // Close form without doing anything.
 {
-    emit renOutcome(false);     // Signal no processing invoked to calling class.
+    emit renOutcomeQuit();     // Signal no processing invoked to calling class.
     this->close();
 }
 
@@ -114,7 +114,7 @@ void PdRenFiles::doRenGo()  // Do the file renaming according to the entered pat
     // Save the parameters used.
     saveSettings();
     //QMessageBox::information(this, "Information", "Go clicked"); // DEBUG
-    emit renOutcome(true);     // Signal to calling class that files have been renamed.
+    emit renOutcomeOK();     // Signal to calling class that files have been renamed.
     QApplication::restoreOverrideCursor();
     this->close();
 }

@@ -41,7 +41,8 @@ public:
     ~PdRenFiles();
 
 signals:
-    void renOutcome(const bool iOcome);
+    void renOutcomeOK();
+    void renOutcomeQuit();
 
 private:
     // Variables
