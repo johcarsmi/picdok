@@ -112,7 +112,7 @@ private slots:
     void doDeselect();
     void doPicMove();
     void doEditComment();
-    void doShowPic(bool Chkd);
+    void doShowPic(bool);
     void doMoveFirst();
     void doFind();
     void doShortLink();
