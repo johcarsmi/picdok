@@ -1,4 +1,7 @@
 Change Log for picdok
+01/12/2024
+    Corrected prototype for a slot.
+    Corrected picdok.ui so that widgets resize.
 31/01/2024
     Found that the drop-down of file names was not refreshing on rename
     so re-implemented signals and slots without using a bool& parameter.
