@@ -33,6 +33,9 @@ public slots:
     void addImageToGrid(int num);
     void allDone();
 
+signals:
+    void cellSelected();
+
 private:
     Ui::PdThumbSel *ui;
     QStringList srcFiles;
@@ -45,12 +48,16 @@ private:
     QStringList sourceFiles;
     QList<pdthumb *> thumbList;
     QFutureWatcher<QPixmap> *pdFutWat;
+    int cdRow;
+    int cdCol;
 
     // methods
     void SetUpTable();
 
-private slots:
-    void on_tblThumbs_doubleClicked(const QModelIndex &index);
+ private slots:
+ //   void on_tblThumbs_doubleClicked(const QModelIndex &index);
+    void tblThumbs_clicked(int, int);
+    void tblThumbs_DoubleClicked(int, int);
 };
 
 #endif // PDTHUMBSEL_H

@@ -18,6 +18,7 @@
 #include <qt5/QtCore/QMutex>
 #include "pdshowpic.h"
 #include "pdflashmsg.h"
+#include "pdthumbsel.h"
 
 namespace Ui {
     class Picdok;
@@ -34,6 +35,10 @@ public:
     explicit Picdok(QWidget *parent);
     ~Picdok();
     static void WaitPtr(const bool &);
+
+public slots:
+    void BrowseNew();
+
 
 private:
     // Variables
@@ -90,6 +95,7 @@ private:
     void setDirCount();
     void searchInComment(const bool searchForEmpty, const QString searchString, Qt::CheckState);
     void flashMessage(const QString);
+    PdThumbSel *pdts;
 
 private slots:
     // Menu / Program

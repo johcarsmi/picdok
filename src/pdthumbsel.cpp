@@ -63,6 +63,8 @@ PdThumbSel::PdThumbSel(QWidget *parent) :
     pdFutWat = new QFutureWatcher<QPixmap>(this);
     connect(pdFutWat, SIGNAL(resultReadyAt(int)), SLOT(addImageToGrid(int)));
     connect(pdFutWat, SIGNAL(finished()), SLOT(allDone()));
+    connect(ui->tblThumbs , SIGNAL(cellClicked(int,int)), SLOT(tblThumbs_clicked(int, int)));
+    connect(ui->tblThumbs , SIGNAL(cellDoubleClicked(int,int)), SLOT(tblThumbs_DoubleClicked(int, int)));
 }
 
 PdThumbSel::~PdThumbSel()
@@ -133,14 +135,19 @@ void PdThumbSel::allDone()
     Picdok::WaitPtr(false);
 }
 
-void PdThumbSel::on_tblThumbs_doubleClicked(const QModelIndex &index)
+void PdThumbSel::tblThumbs_clicked(int cdRow, int cdCol)
 {
-    //qDebug("row %d", index.row());
-    //qDebug("column %d", index.column());
-    pdthumb * selItem = static_cast<pdthumb *>(ui->tblThumbs->cellWidget(index.row(), index.column()));
-    //qDebug() << selItem->type() << selItem->getFileName();
-    if (selItem == nullptr) return;   // Clicked on empty cell.
+    pdthumb * selItem = static_cast<pdthumb *>(ui->tblThumbs->cellWidget(cdRow, cdCol));
     retName = selItem->getFileName();
+    emit(cellSelected());
+    return;
+}
+
+void PdThumbSel::tblThumbs_DoubleClicked(int cdRow, int cdCol)
+{
+    pdthumb * selItem = static_cast<pdthumb *>(ui->tblThumbs->cellWidget(cdRow, cdCol));
+    retName = selItem->getFileName();
+    emit(cellSelected());
     this->close();
     return;
 }

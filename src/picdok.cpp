@@ -889,13 +889,22 @@ void Picdok::doRefresh()    // Refresh the view of the current directory and res
 void Picdok::doBrowse()
 {
     WaitPtr(true);
-    PdThumbSel *pdts = new PdThumbSel(this);
+    pdts = new PdThumbSel(this);
     pdts->setFiles(dirFiles, curDir);
+    connect(pdts, SIGNAL(cellSelected()), this, SLOT(BrowseNew()));
     WaitPtr(false);
     pdts->exec();
     QString selFile = pdts->getResult();
     delete pdts;
     //qDebug() << selFile;
+    if (selFile == "") return;
+    int pix = 0;
+    pix = ui->cmbPicFile->findText(selFile);
+    ui->cmbPicFile->setCurrentIndex(pix);
+}
+void Picdok::BrowseNew()
+{
+    QString selFile = pdts->getResult();
     if (selFile == "") return;
     int pix = 0;
     pix = ui->cmbPicFile->findText(selFile);
