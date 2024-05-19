@@ -49,14 +49,16 @@ PdThumbSel::PdThumbSel(QWidget *parent) :
     ui(new Ui::PdThumbSel)
 {
     ui->setupUi(this);
-    ui->tblThumbs->setColumnCount(4);
+    ui->tblThumbs->setColumnCount(8);
     img = new QImage();
     pixmScaled = new QPixmap();
     pixmDisp = new QPixmap();
-    ui->tblThumbs->setColumnWidth(0,160);
-    ui->tblThumbs->setColumnWidth(1,160);
-    ui->tblThumbs->setColumnWidth(2,160);
-    ui->tblThumbs->setColumnWidth(3,160);
+    int cIx = 0;
+    while ( cIx < ui->tblThumbs->columnCount() )
+    {
+        ui->tblThumbs->setColumnWidth(cIx,160);
+        cIx++;
+    }
     ui->tblThumbs->setRowHeight(0,180);
     qDeleteAll(thumbList);
     thumbList.clear();

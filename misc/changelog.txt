@@ -1,4 +1,11 @@
 Change Log for picdok
+19/05/2024
+    Made browse screen eight thumbnails wide.
+    Code improvements in PdThumbSel
+    Version changed to 0.4.5
+18/05/2024
+    Implemented the facility to change image when displaying full-
+    screen using single click on the Browse facility.
 01/12/2024
     Corrected prototype for a slot.
     Corrected picdok.ui so that widgets resize.

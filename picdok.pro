@@ -25,7 +25,7 @@ man.path = /usr/local/man/man1                      # Location for man pages in 
 man.files = misc/picdok.1.gz
 INSTALLS += man
 
-VERSION  = 0.4.4
+VERSION  = 0.4.5
 
 APPVERSTR = '\\"$${VERSION}\\"'     # places quotes around the version string
 DEFINES += APPVER=\"$${APPVERSTR}\" # create an APPVER defines containing the version string
