@@ -902,6 +902,7 @@ void Picdok::doBrowse()
     pix = ui->cmbPicFile->findText(selFile);
     ui->cmbPicFile->setCurrentIndex(pix);
 }
+
 void Picdok::BrowseNew()
 {
     QString selFile = pdts->getResult();

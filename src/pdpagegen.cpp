@@ -17,6 +17,7 @@ PdPageGen::PdPageGen(QWidget *parent, const QString &inDir, const QStringList &i
     ui(new Ui::PdPageGen)
 {
     ui->setupUi(this);
+    justDeleted = false;
     picDir = inDir;
     picFiles = inFiles;
     modl = new QStringListModel(this);
@@ -219,11 +220,17 @@ void PdPageGen::doAdd()     // Add a new row to the 'subjects' list and ready fo
 
 void PdPageGen::doDel()     // Remove a row from the subjects list.
 {
+    justDeleted = true;
     modl->removeRow(ui->lstSubject->currentIndex().row());
 }
 
 void PdPageGen::lstSelChange(const QModelIndex, const QModelIndex &deselected)    // Remove editted row if empty.
 {
+    if (justDeleted)
+    {
+        justDeleted = false;
+        return;
+    }
     QString dat = modl->data(deselected,Qt::EditRole).toString();
     if (dat.trimmed() == "")
     {

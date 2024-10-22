@@ -41,6 +41,7 @@ private:
     QString addPicInfo(DTAB *);
     QString writeFile(DTAB *);
     bool appendFile(const QString &, QFile &, QTextStream &);
+    bool justDeleted;
 
 private slots:
     void doAdd();
