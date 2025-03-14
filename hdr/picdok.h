@@ -76,6 +76,7 @@ private:
     bool rbBrowse;
     bool rbFileSel;
     bool msgUp;
+    bool resizeReqd;
     PdShowPic *showPic;
     //QDesktopWidget *desk;
     QStringList deselFiles;

@@ -1,4 +1,7 @@
 Change Log for picdok
+14/03/2025
+    Improved image scaling on main window resize.
+    Aligned central widget centre.
 19/05/2024
     Made browse screen eight thumbnails wide.
     Code improvements in PdThumbSel

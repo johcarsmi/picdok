@@ -59,6 +59,7 @@ Picdok::Picdok(QWidget *parent) :
     img = new QImage;
     imgDisp = new QImage;
     pixmDisp = new QPixmap;
+    resizeReqd = false;
     matx = new QTransform;
     msgUp = false;
     settings = new QSettings(QDir::homePath() + QDir::separator() + SETTINGS_FILE, QSettings::IniFormat, this);
@@ -97,8 +98,11 @@ Picdok::~Picdok()
 
 void Picdok::resizeEvent(QResizeEvent *e)   // Trap the form resize event to allow the picture to be resized to match.
 {
-    QMainWindow::resizeEvent(e);
-    doResize();
+    e->accept();
+    if (resizeReqd)
+        doResize();
+    else
+        resizeReqd = true;
 }
 
 QString Picdok::checkParams(QStringList *inP)   // Validate supplied command line directory name.
